@@ -1,0 +1,31 @@
+[
+	{
+	"flavor": "",
+	"hook": "",
+	"importance": "",
+	"localHookTemplate": "config/pupilLDOGAnalysisLocalHookTemplate.m",
+	"printLocalHookOutput": "1",
+	"name": "pupilLDOGAnalysis",
+	"pathPlacement": "append",
+	"subfolder": "code",
+	"toolboxRoot": "",
+	"type": "git",
+	"update": "",
+	"url": ""
+	},
+ 	{
+	"flavor": "",
+	"hook": "",
+	"importance": "",
+	"localHookTemplate": "",
+	"name": "transparentTrack",
+	"pathPlacement": "append",
+	"subfolder": "",
+	"toolboxRoot": "",
+	"type": "include",
+	"update": "",
+	"url": ""
+	}
+
+]
+
