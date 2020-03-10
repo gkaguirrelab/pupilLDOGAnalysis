@@ -12,6 +12,21 @@
 % Get the DropBox base directory
 dropboxBaseDir = getpref('pupilLDOGAnalysis','dropboxBaseDir');
 
+% set common path params
+pathParams.dataSourceDirRoot = fullfile(dropboxBaseDir,'LDOG_data');
+pathParams.dataOutputDirRoot = fullfile(dropboxBaseDir,'LDOG_processing');
+pathParams.Approach = 'OLApproach_TrialSequenceMR';
+pathParams.Protocol = 'MRFlickerLDOG';
+
+
+%% Session parameters
+
+% Params
+pathParams.Subject = 'N292';
+pathParams.Date = '2020-03-05';
+pathParams.Session = 'session_3';
+
+
 % Define the analysis directory
 outputBaseDir = fullfile(pathParams.dataOutputDirRoot, ...
     'Experiments',...
@@ -21,12 +36,6 @@ outputBaseDir = fullfile(pathParams.dataOutputDirRoot, ...
     pathParams.Subject,...
     pathParams.Date,...
     pathParams.Session);
-
-% set common path params
-pathParams.dataSourceDirRoot = fullfile(dropboxBaseDir,'LDOG_data');
-pathParams.dataOutputDirRoot = fullfile(dropboxBaseDir,'LDOG_processing');
-pathParams.Approach = 'OLApproach_TrialSequenceMR';
-pathParams.Protocol = 'MRFlickerLDOG';
 
 showPlots = true;
 
