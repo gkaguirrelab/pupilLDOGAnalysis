@@ -7,8 +7,8 @@
 %% Set up these parameters for the session
 
 % Subject and session params.
-pathParams.Subject = 'N292';
-pathParams.Date = '2020-03-05';
+pathParams.Subject = 'N293';
+pathParams.Date = '2020-03-10';
 pathParams.Session = 'session_3';
 
 % The approach and protocol. These shouldn't change much
@@ -16,20 +16,33 @@ pathParams.Approach = 'OLApproach_TrialSequenceMR';
 pathParams.Protocol = 'MRFlickerLDOG';
 
 % The names of the videos to process
-videoNameStems = {'pupil_LightFLux','pupil_L+S','pupil_RodMel','pupil_LightFLux02','pupil_L+S02','pupil_RodMel02'};
+videoNameStems = {...
+    'pupil_L+S_01',...
+    'pupil_LightFlux_02',...
+    'pupil_RodMel_03',...
+    'pupil_LightFlux_04',...
+    'pupil_RodMel_05',...
+    'pupil_L+S_06',...
+    'LplusS1_AP_01',...
+    'LminusS2_PA_02',...
+    'RodMelS3_AP_03',...
+    'LminusS4_PA_04',...
+    'RodMel5_AP_05',...
+    'LplusS6_PA_06',...
+    'RodMel7_AP_07',...
+    'LplusS8_PA_08',...
+    'LminusS9_AP_09'};
 
 % Define mask bounds. To do so, run the routine:
 %{
-	glintFrameMask = defineCropMask('','startFrame',10)
-	pupilFrameMask = defineCropMask('','startFrame',10)
+	glintFrameMask = defineCropMask('pupil_L+S_01.mov','startFrame',10)
+	pupilFrameMask = defineCropMask('pupil_L+S_01.mov','startFrame',10)
 %}
-% and select one of the videos when the file picker GUI appears. For the
-% glint, put a tight box around the glint. For the pupil, define a mask
-% area that safely contains the pupil at its most dilated. Enter the values
-% here:
-glintFrameMask = [222   215   170   330];
-pupilFrameMask = [186   124    69   239];
-
+% and select one of the videos. For the glint, put a tight box around the
+% glint. For the pupil, define a mask area that safely contains the pupil
+% at its most dilated. Enter the values here:
+glintFrameMask = [120   384   285   163];
+pupilFrameMask = [33   256   123    63];
 
 
 
