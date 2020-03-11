@@ -1,11 +1,6 @@
 %% SCRIPT_deriveResponse
 %
-% Calls the pupil analysis pre-processing pipeline for LDOG sesson data. It
-% is useful to define mask boxes for the glint and pupil. Use this code to
-% do so:
-%{
-	maskBounds = defineCropMask(grayVideoName,'startFrame',10);
-%}
+
 
 
 %% Universal parameters

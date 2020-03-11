@@ -1,4 +1,4 @@
-function pupilPipeline(pathParams,videoNameStems, universalKeyValues, sessionKeyValues)
+function pupilPipeline(pathParams,videoNameStems, sessionKeyValues)
 % Run through transparentTrack stages to perform pupil video pre-processing
 %
 % Syntax:
@@ -8,7 +8,44 @@ function pupilPipeline(pathParams,videoNameStems, universalKeyValues, sessionKey
 %   Calls the stages of transparent track to pre-process a set of videos
 %   from the LDOG project.
 %
+% Inputs:
+%   pathParams            - Structure. Defines the path to the data and the
+%                           processed output. Has the required fields:
+%                               dataSourceDirRoot, dataOutputDirRoot,
+%                               Approach, Protocol, Subject, Date
+%   videoNameStems        - Cell array of char vectors. The names of the
+%                           video files to process, omitting the '.mov'
+%                           suffix.
+%   sessionKeyValues      - Cell array. These key-values are passed to each
+%                           of the processing stages.
 %
+% Outputs:
+%   none
+%
+
+
+%% Define universal key values
+% These are parameters that are common to all videos processed under the
+% LDOG project.
+universalKeyValues = {...
+    'intrinsicCameraMatrix',[2627.0 0 338.1; 0 2628.1 246.2; 0 0 1],...
+    'radialDistortionVector',[-0.3517 3.5353],...
+    'eyeLaterality','left',...
+    'spectralDomain','nir', ...
+    'verbose',true, ...
+    'audioTrackSync', true, ...
+    'checkCountTRs', 1, ...
+    };
+
+
+
+%% Add the DropBox information to the pathParams
+% Get the DropBox base directory
+dropboxBaseDir = getpref('pupilLDOGAnalysis','dropboxBaseDir');
+
+% set common path params
+pathParams.dataSourceDirRoot = fullfile(dropboxBaseDir,'LDOG_data');
+pathParams.dataOutputDirRoot = fullfile(dropboxBaseDir,'LDOG_processing');
 
 
 %% Create the input and output paths
