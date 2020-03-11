@@ -81,6 +81,10 @@ warning('off','makeControlFile:overwrittingControlFile');
 
 %% Loop through the videos
 for vv = 1:length(videoNameStems)
+    
+    % Report which video we will now process
+    str = sprintf(['%d of %d, ' videoNameStems{vv} '\n\n'],vv,length(videoNameStems));
+    fprintf(str);
         
     % The file names
     videoInFileName = fullfile(inputBaseDir,[videoNameStems{vv} '.mov']);
