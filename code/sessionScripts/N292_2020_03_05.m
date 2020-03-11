@@ -54,5 +54,5 @@ sessionKeyValues = {...
 
 
 %% Call the pipeline
-pupilPipeline(pathParams,videoNameStems, universalKeyValues, sessionKeyValues);
+pupilPipeline(pathParams,videoNameStems, sessionKeyValues);
 

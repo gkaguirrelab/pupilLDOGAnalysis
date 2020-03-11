@@ -1,4 +1,4 @@
-%% N292 2020-03-05
+%% N293 2020-03-10
 %
 % The pupil analysis pre-processing pipeline for an LDOG session.
 %
@@ -67,5 +67,5 @@ sessionKeyValues = {...
 
 
 %% Call the pipeline
-pupilPipeline(pathParams,videoNameStems, universalKeyValues, sessionKeyValues);
+pupilPipeline(pathParams,videoNameStems, sessionKeyValues);
 
