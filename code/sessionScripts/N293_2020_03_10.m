@@ -48,9 +48,11 @@ pupilFrameMask = [33   256   123    63];
 
 
 %% Analysis parameters
-% These parameters will likely not require adjustment across sessions, but
-% are exposed here in case we need to tweak some of these values for a
-% particular data set.
+% To adjust these parameters for a given session, use the utility:
+%{
+    estimatePipelineParamsGUI('','TOME')
+%}
+% And select one of the raw data .mov files.
 
 sessionKeyValues = {...
     'glintFrameMask',glintFrameMask,...
@@ -67,5 +69,5 @@ sessionKeyValues = {...
 
 
 %% Call the pipeline
-pupilPipeline(pathParams,videoNameStems, sessionKeyValues);
+pupilPipeline(pathParams,videoNameStems,sessionKeyValues);
 
