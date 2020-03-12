@@ -107,7 +107,7 @@ for vv = 1:length(videoNameStems)
     
     % Glint
     findGlint(grayVideoName, glintFileName, ...
-        universalKeyValues{:});
+        universalKeyValues{:},sessionKeyValues{:});    
     
     % Perimeter
     findPupilPerimeter(grayVideoName, perimeterFileName, ...
