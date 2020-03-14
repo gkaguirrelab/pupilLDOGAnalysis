@@ -69,6 +69,3 @@ sessionKeyValues = {...
 %% Call the pipeline
 pupilPipeline(pathParams,videoNameStems,sessionKeyValues);
 
-
-
-end
