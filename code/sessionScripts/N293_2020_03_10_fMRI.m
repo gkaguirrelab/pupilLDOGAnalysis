@@ -35,9 +35,15 @@ videoNameStems = {...
     'LplusS8_PA_08',...
     'LminusS9_AP_09'};
 
+
+% Stimulus properties
+sets = {[1 6 8],[2 4 9],[3 5 7]};
+labels = {'fMRI_L+S','fMRI_L-S','fMRI_RodMel'};
+durations = [432,432,432,432,432,432,432,432,432];
+freqs = [1/24,1/24,1/24,1/24,1/24,1/24,1/24,1/24,1/24];
+
 % There are TTL pulses for each TR
 checkCountTRs = 144;
-
 
 % Mask bounds
 glintFrameMask = [120   384   285   163];
@@ -66,6 +72,10 @@ sessionKeyValues = {...
     };
 
 
-%% Call the pipeline
-pupilPipeline(pathParams,videoNameStems,sessionKeyValues);
 
+%% Call the pre-processing pipeline
+%pupilPipeline(pathParams,videoNameStems,sessionKeyValues);
+
+
+%% Call the frequency fitting pipeline
+fourierFitPipeline(pathParams,videoNameStems,sets,labels,durations,freqs);

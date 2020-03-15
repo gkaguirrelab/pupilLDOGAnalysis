@@ -32,6 +32,12 @@ videoNameStems = {...
     'pupil_RodMel_05',...
     'pupil_L+S_06'};
 
+% Stimulus properties
+sets = {[1 6],[2 4],[3 5]};
+labels = {'pupil_L+S','pupil_LightFlux','pupil_RodMel'};
+durations = [504,504,504];
+freqs = [1/6,1/12,1/12];
+
 % There is only one audio TTL pulse 
 checkCountTRs = 1;
 
@@ -62,5 +68,10 @@ sessionKeyValues = {...
     };
 
 
-%% Call the pipeline
-pupilPipeline(pathParams,videoNameStems,sessionKeyValues);
+%% Call the pre-processing pipeline
+%pupilPipeline(pathParams,videoNameStems,sessionKeyValues);
+
+
+%% Call the frequency fitting pipeline
+fourierFitPipeline(pathParams,videoNameStems,sets,labels,durations,freqs);
+
