@@ -39,8 +39,8 @@ videoNameStems = {...
 % Stimulus properties
 sets = {[1 6 8],[2 4 9],[3 5 7]};
 labels = {'fMRI_L+S','fMRI_L-S','fMRI_RodMel'};
-durations = [432,432,432,432,432,432,432,432,432];
-freqs = [1/24,1/24,1/24,1/24,1/24,1/24,1/24,1/24,1/24];
+durations = [432,432,432];
+freqs = [1/24,1/24,1/24];
 
 % There are TTL pulses for each TR
 checkCountTRs = 144;
