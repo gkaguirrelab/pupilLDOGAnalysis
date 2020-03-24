@@ -47,19 +47,36 @@ for ii = 1:fieldlength
             AllDirections.(fn{1,ii}).describe.validation(validationNumber).luminanceActual(4) AllDirections.(fn{1,ii}).describe.validation(validationNumber).luminanceDesired(4);...
             AllDirections.(fn{1,ii}).describe.validation(validationNumber).luminanceActual(5) AllDirections.(fn{1,ii}).describe.validation(validationNumber).luminanceDesired(5)];  
         % Create a table
-        summary.(fn{1,ii}).summaryTable = table(Type, Value);
+        summary.(fn{1,ii}).luminanceSummaryTable = table(Type, Value);
+        
+        % Single validation contrasts
+        contrastType = [convertCharsToStrings(AllDirections.(fn{1,ii}).describe.directionParams.photoreceptorClasses{1}); convertCharsToStrings(AllDirections.(fn{1,ii}).describe.directionParams.photoreceptorClasses{2}); convertCharsToStrings(AllDirections.(fn{1,ii}).describe.directionParams.photoreceptorClasses{3}); convertCharsToStrings(AllDirections.(fn{1,ii}).describe.directionParams.photoreceptorClasses{4})];
+        contrastValue = [AllDirections.(fn{1,ii}).describe.validation(validationNumber).contrastActual(1) AllDirections.(fn{1,ii}).describe.validation(validationNumber).contrastDesired(1); AllDirections.(fn{1,ii}).describe.validation(validationNumber).contrastActual(2) AllDirections.(fn{1,ii}).describe.validation(validationNumber).contrastDesired(2); AllDirections.(fn{1,ii}).describe.validation(validationNumber).contrastActual(3) AllDirections.(fn{1,ii}).describe.validation(validationNumber).contrastDesired(3); AllDirections.(fn{1,ii}).describe.validation(validationNumber).contrastActual(4) AllDirections.(fn{1,ii}).describe.validation(validationNumber).contrastDesired(4)];
+        summary.(fn{1,ii}).contrastSummaryTable = table(contrastType, contrastValue);
         
     elseif strcmp(validationNumber, 'median')
         % Get the pre and post val cells 
         precellGot = {AllDirections.(fn{1,ii}).describe.validation(1:5).luminanceActual};
         postcellGot = {AllDirections.(fn{1,ii}).describe.validation(6:10).luminanceActual};
         precellDesired = {AllDirections.(fn{1,ii}).describe.validation(1:5).luminanceDesired};
-        postcellDesired = {AllDirections.(fn{1,ii}).describe.validation(6:10).luminanceDesired};   
-        % Create table values and the table
+        postcellDesired = {AllDirections.(fn{1,ii}).describe.validation(6:10).luminanceDesired};
+        
+        % Same for the contrasts
+        precellGotContrast = {AllDirections.(fn{1,ii}).describe.validation(1:5).contrastActual};
+        postcellGotContrast = {AllDirections.(fn{1,ii}).describe.validation(6:10).contrastActual};
+        precellDesiredContrast = {AllDirections.(fn{1,ii}).describe.validation(1:5).contrastDesired};
+        postcellDesiredContrast = {AllDirections.(fn{1,ii}).describe.validation(6:10).contrastDesired};      
+        
+        % Create luminance table values and the luminance table
         Type = ["medianBackgroundLuminance";"medianPositiveArmLuminance";"medianNegativeArmLuminance";"medianBackgroundMinusPositiveArmLuminance";"medianBackgroundMinusNegativeArmLuminance"];
         PreValidation = [median(cellfun(@(v)v(1),precellGot)) median(cellfun(@(v)v(1),precellDesired));median(cellfun(@(v)v(2),precellGot)) median(cellfun(@(v)v(2),precellDesired));median(cellfun(@(v)v(3),precellGot)) median(cellfun(@(v)v(3),precellDesired));median(cellfun(@(v)v(4),precellGot)) median(cellfun(@(v)v(4),precellDesired));median(cellfun(@(v)v(5),precellGot)) median(cellfun(@(v)v(5),precellDesired))];
         PostValidation = [median(cellfun(@(v)v(1),postcellGot)) median(cellfun(@(v)v(1),postcellDesired));median(cellfun(@(v)v(2),postcellGot)) median(cellfun(@(v)v(2),postcellDesired));median(cellfun(@(v)v(3),postcellGot)) median(cellfun(@(v)v(3),postcellDesired));median(cellfun(@(v)v(4),postcellGot)) median(cellfun(@(v)v(4),postcellDesired));median(cellfun(@(v)v(5),postcellGot)) median(cellfun(@(v)v(5),postcellDesired))];
-        summary.(fn{1,ii}).summaryTable = table(Type, PreValidation, PostValidation);
+        summary.(fn{1,ii}).luminanceSummaryTable = table(Type, PreValidation, PostValidation);
+        % Create contrast table values and the contrast table
+        contrastType = [convertCharsToStrings(AllDirections.(fn{1,ii}).describe.directionParams.photoreceptorClasses{1}); convertCharsToStrings(AllDirections.(fn{1,ii}).describe.directionParams.photoreceptorClasses{2}); convertCharsToStrings(AllDirections.(fn{1,ii}).describe.directionParams.photoreceptorClasses{3}); convertCharsToStrings(AllDirections.(fn{1,ii}).describe.directionParams.photoreceptorClasses{4})];
+        contrastPreVal = [median(cellfun(@(v)v(1),precellGotContrast)) median(cellfun(@(v)v(1),precellDesiredContrast));median(cellfun(@(v)v(2),precellGotContrast)) median(cellfun(@(v)v(2),precellDesiredContrast));median(cellfun(@(v)v(3),precellGotContrast)) median(cellfun(@(v)v(3),precellDesiredContrast));median(cellfun(@(v)v(4),precellGotContrast)) median(cellfun(@(v)v(4),precellDesiredContrast))];
+        contrastPostVal = [median(cellfun(@(v)v(1),postcellGotContrast)) median(cellfun(@(v)v(1),postcellDesiredContrast));median(cellfun(@(v)v(2),postcellGotContrast)) median(cellfun(@(v)v(2),postcellDesiredContrast));median(cellfun(@(v)v(3),postcellGotContrast)) median(cellfun(@(v)v(3),postcellDesiredContrast));median(cellfun(@(v)v(4),postcellGotContrast)) median(cellfun(@(v)v(4),postcellDesiredContrast))];
+        summary.(fn{1,ii}).contrastSummaryTable = table(contrastType, contrastPreVal, contrastPostVal);
     end
    
         % Mesured Backgrounds
