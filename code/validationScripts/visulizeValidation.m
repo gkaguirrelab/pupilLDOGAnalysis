@@ -1,18 +1,18 @@
-function summary = ldogVisulizeValidation(pathToLDOGDirectionObject, varargin)
+function summary = visulizeValidation(pathToDirectionObject, varargin)
 
-% A function for visualizing the validations in LDOG project
+% A function for visualizing validations
 %
 % Syntax:
-%   summaryTable = ldogVisulizeValidation(pathToLDOGDirectionObject, validationNumber, whatToPlot)
+%   summaryTable = visulizeValidation(pathToDirectionObject, validationNumber, whatToPlot)
 %
 % Description:
 %   Creates a table showing the luminance and contrast values of the
-%   validations for the LDOG project. SPD plots showing measured and
+%   validations. SPD plots showing measured and
 %   predicted background and mirror on/off conditions can also be created
 %   with this function.
 %
 % Inputs:
-%   pathToLDOGDirectionObject     - String. Path to the directionObject.mat  
+%   pathToDirectionObject         - String. Path to the directionObject.mat  
 %
 % Optional key/value pairs:
 %   'validationNumber'            - Number or String. Which validation to
@@ -42,17 +42,17 @@ function summary = ldogVisulizeValidation(pathToLDOGDirectionObject, varargin)
 p = inputParser; p.KeepUnmatched = true;
 
 % Required
-p.addRequired('pathToLDOGDirectionObject',@isstr);
+p.addRequired('pathToDirectionObject',@isstr);
 
 % Optional params
 p.addParameter('validationNumber', 'median');
 p.addParameter('whatToPlot', 'noSPD', @isstr);
 
 % parse
-p.parse(pathToLDOGDirectionObject, varargin{:})
+p.parse(pathToDirectionObject, varargin{:})
 
 % Load the directionObject
-load(pathToLDOGDirectionObject)
+load(pathToDirectionObject)
 
 % Get all values in a cell for better indexing and get the labels 
 AllDirections = [];
