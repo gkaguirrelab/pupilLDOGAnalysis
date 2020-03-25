@@ -54,17 +54,19 @@ p.parse(pathToDirectionObject, varargin{:})
 % Load the directionObject
 load(pathToDirectionObject)
 
-% Get all values in a cell for better indexing and get the labels 
+% Put all values in a cell for better indexing
 AllDirections = [];
 AllDirections.LightFluxDirection = LightFluxDirection;
 AllDirections.LminusSDirection = LminusSDirection;
 AllDirections.LplusSDirection = LplusSDirection;
 AllDirections.RodMelDirection = RodMelDirection;
+
+% Get the labels
 fn = fieldnames(AllDirections)';
 fieldlength = length(fn);
 
-%Loop through directions and save the validation summary for each
-%condition
+% Initialize figures for different conditions with different variables for
+% a better organization
 summary = [];
 if strcmp(p.Results.whatToPlot, 'bgOnOff')
     prefigureBgOnOff = figure;
@@ -83,23 +85,29 @@ elseif strcmp(p.Results.whatToPlot, 'noSPD')
 else
     error("Unknown plotting method passed")
 end
+
+% Loop through directions and save the validation summary for each
+% condition
 for ii = 1:fieldlength
+    % For single validation
     if isnumeric(p.Results.validationNumber)
-        % Specify table values
+        % Specify table values for luminance
         Type = ["BackgroundLuminance";"PositiveArmLuminance";"NegativeArmLuminance";"BackgroundMinusPositiveArmLuminance";"BackgroundMinusNegativeArmLuminance"];
         Value = [AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).luminanceActual(1) AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).luminanceDesired(1);...
             AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).luminanceActual(2) AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).luminanceDesired(2);...
             AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).luminanceActual(3) AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).luminanceDesired(3);...
             AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).luminanceActual(4) AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).luminanceDesired(4);...
             AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).luminanceActual(5) AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).luminanceDesired(5)];  
-        % Create a table
+        % Create the table
         summary.(fn{1,ii}).luminanceSummaryTable = table(Type, Value);
         
-        % Single validation contrasts
+        % Specify table values for contrasts
         contrastType = [convertCharsToStrings(AllDirections.(fn{1,ii}).describe.directionParams.photoreceptorClasses{1}); convertCharsToStrings(AllDirections.(fn{1,ii}).describe.directionParams.photoreceptorClasses{2}); convertCharsToStrings(AllDirections.(fn{1,ii}).describe.directionParams.photoreceptorClasses{3}); convertCharsToStrings(AllDirections.(fn{1,ii}).describe.directionParams.photoreceptorClasses{4})];
         contrastValue = [AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).contrastActual(1) AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).contrastDesired(1); AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).contrastActual(2) AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).contrastDesired(2); AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).contrastActual(3) AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).contrastDesired(3); AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).contrastActual(4) AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).contrastDesired(4)];
+        % Create the table
         summary.(fn{1,ii}).contrastSummaryTable = table(contrastType, contrastValue);
-        
+    
+    % For median validation values
     elseif strcmp(p.Results.validationNumber, 'median')
         % Get the pre and post val cells 
         precellGot = {AllDirections.(fn{1,ii}).describe.validation(1:5).luminanceActual};
@@ -107,7 +115,7 @@ for ii = 1:fieldlength
         precellDesired = {AllDirections.(fn{1,ii}).describe.validation(1:5).luminanceDesired};
         postcellDesired = {AllDirections.(fn{1,ii}).describe.validation(6:10).luminanceDesired};
         
-        % Same for the contrasts
+        % Get the same thing for the contrasts
         precellGotContrast = {AllDirections.(fn{1,ii}).describe.validation(1:5).contrastActual};
         postcellGotContrast = {AllDirections.(fn{1,ii}).describe.validation(6:10).contrastActual};
         precellDesiredContrast = {AllDirections.(fn{1,ii}).describe.validation(1:5).contrastDesired};
@@ -125,31 +133,32 @@ for ii = 1:fieldlength
         summary.(fn{1,ii}).contrastSummaryTable = table(contrastType, contrastPreVal_actual_vs_desired, contrastPostVal_actual_vs_desired);
     end
    
-        % Mesured Backgrounds
+        % Mesured Background SPD values
         valBackgroundSPDAll = [AllDirections.(fn{1,ii}).describe.validation.SPDbackground];
         preValBackgroundSPDMeasuredAveraged = (valBackgroundSPDAll(1).measuredSPD + valBackgroundSPDAll(2).measuredSPD +valBackgroundSPDAll(3).measuredSPD +valBackgroundSPDAll(4).measuredSPD +valBackgroundSPDAll(5).measuredSPD) / 5;
         postValBackgroundSPDMeasuredAveraged = (valBackgroundSPDAll(6).measuredSPD + valBackgroundSPDAll(7).measuredSPD +valBackgroundSPDAll(8).measuredSPD +valBackgroundSPDAll(9).measuredSPD +valBackgroundSPDAll(10).measuredSPD) / 5;
 
-        % Predicted Backgrounds 
+        % Predicted Background SPD values 
         preValBackgroundSPDPredictedAveraged = (valBackgroundSPDAll(1).predictedSPD + valBackgroundSPDAll(2).predictedSPD +valBackgroundSPDAll(3).predictedSPD +valBackgroundSPDAll(4).predictedSPD +valBackgroundSPDAll(5).measuredSPD) / 5;
         postValBackgroundSPDPredictedAveraged = (valBackgroundSPDAll(6).predictedSPD + valBackgroundSPDAll(7).predictedSPD +valBackgroundSPDAll(8).predictedSPD +valBackgroundSPDAll(9).predictedSPD +valBackgroundSPDAll(10).measuredSPD) / 5;
         
-        % Mesured Mirror on/off conditions
+        % Mesured Mirror on/off SPD conditions
         valArmSPDAll = [AllDirections.(fn{1,ii}).describe.validation.SPDcombined];
         preValPositiveArmSPDMeasuredAveraged = (valArmSPDAll(1).measuredSPD + valArmSPDAll(3).measuredSPD +valArmSPDAll(5).measuredSPD +valArmSPDAll(7).measuredSPD +valArmSPDAll(9).measuredSPD) / 5;
         postValPositiveArmSPDMeasuredAveraged = (valArmSPDAll(11).measuredSPD + valArmSPDAll(13).measuredSPD +valArmSPDAll(15).measuredSPD +valArmSPDAll(17).measuredSPD +valArmSPDAll(19).measuredSPD) / 5;
         preValNegativeArmSPDMeasuredAveraged = (valArmSPDAll(2).measuredSPD + valArmSPDAll(4).measuredSPD +valArmSPDAll(6).measuredSPD +valArmSPDAll(8).measuredSPD +valArmSPDAll(10).measuredSPD) / 5;
         postValNegativeArmSPDMeasuredAveraged = (valArmSPDAll(12).measuredSPD + valArmSPDAll(14).measuredSPD +valArmSPDAll(16).measuredSPD +valArmSPDAll(18).measuredSPD +valArmSPDAll(20).measuredSPD) / 5;
 
-        % Predicted Mirror on/off conditions
+        % Predicted Mirror on/off SPD conditions
         preValPositiveArmSPDPredictedAveraged = (valArmSPDAll(1).predictedSPD + valArmSPDAll(3).predictedSPD +valArmSPDAll(5).predictedSPD +valArmSPDAll(7).predictedSPD +valArmSPDAll(9).predictedSPD) / 5;
         postValPositiveArmSPDPredictedAveraged = (valArmSPDAll(11).predictedSPD + valArmSPDAll(13).predictedSPD +valArmSPDAll(15).predictedSPD +valArmSPDAll(17).predictedSPD +valArmSPDAll(19).predictedSPD) / 5;
         preValNegativeArmSPDPredictedAveraged = (valArmSPDAll(2).predictedSPD + valArmSPDAll(4).predictedSPD +valArmSPDAll(6).predictedSPD +valArmSPDAll(8).predictedSPD +valArmSPDAll(10).predictedSPD) / 5;
         postValNegativeArmSPDPredictedAveraged = (valArmSPDAll(12).predictedSPD + valArmSPDAll(14).predictedSPD +valArmSPDAll(16).predictedSPD +valArmSPDAll(18).predictedSPD +valArmSPDAll(20).predictedSPD) / 5;
         
-        % visualize SPDs;
+        % Get the wavelengths;
         wavelengths = AllDirections.(fn{1,ii}).calibration.describe.S(1):AllDirections.(fn{1,ii}).calibration.describe.S(2): AllDirections.(fn{1,ii}).calibration.describe.S(1) + AllDirections.(fn{1,ii}).calibration.describe.S(2)*AllDirections.(fn{1,ii}).calibration.describe.S(3) - AllDirections.(fn{1,ii}).calibration.describe.S(2);
 
+        % Plot stuff for each direction
         if strcmp(p.Results.whatToPlot, 'bgOnOff')
             set(0,'CurrentFigure',prefigureBgOnOff)
             subplot(2,2,ii);
