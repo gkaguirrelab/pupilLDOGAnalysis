@@ -51,7 +51,7 @@ p.addRequired('pathToDirectionObject',@isstr);
 % Optional params
 p.addParameter('validationNumber', 'median');
 p.addParameter('whatToPlot', 'noSPD', @isstr);
-p.addParameter('savepath', 'NA', @isstr);
+p.addParameter('savePath', 'NA', @isstr);
 
 % parse
 p.parse(pathToDirectionObject, varargin{:})
@@ -259,9 +259,9 @@ for ii = 1:fieldlength
 
 % Save some stuff if a path is specified
 if ~strcmp(p.Results.savePath, 'NA')  
-    savefig(prevalfig, strcat(p.Results.savePath, strcat(p.Results.whatToPlot, 'preVal', '.fig')))
-    savefig(prevalfig, strcat(p.Results.savePath, strcat(p.Results.whatToPlot, 'preVal', '.fig')))
-    save('summaryTable.mat', summary)
+    savefig(prevalfig, fullfile(p.Results.savePath, strcat(p.Results.whatToPlot, 'preVal', '.fig')))
+    savefig(prevalfig, fullfile(p.Results.savePath, strcat(p.Results.whatToPlot, 'postVal', '.fig')))
+    save(fullfile(p.Results.savePath, 'summaryTable.mat'), 'summary')
 end
 end
 end
