@@ -31,7 +31,11 @@ function summary = visulizeValidation(pathToDirectionObject, varargin)
 %                                   measured and predicted mirrors off
 %                                   cond.
 %                                   noSPD: Does not plot SPDs (Default)
-%                                   
+%
+%   'savePath'                    - String. Save the figures and tables to
+%                                   this location. If 'NA', do not save.
+%                                   Default: 'NA'
+%
 % Outputs:
 %   summary                       - MATLAB Table. A table containing the
 %                                   luminance and contrast values for all
@@ -47,6 +51,7 @@ p.addRequired('pathToDirectionObject',@isstr);
 % Optional params
 p.addParameter('validationNumber', 'median');
 p.addParameter('whatToPlot', 'noSPD', @isstr);
+p.addParameter('savepath', 'NA', @isstr);
 
 % parse
 p.parse(pathToDirectionObject, varargin{:})
@@ -251,6 +256,12 @@ for ii = 1:fieldlength
             ylabel('Power')
             title(fn{1,ii})   
         end
-        
+
+% Save some stuff if a path is specified
+if ~strcmp(p.Results.savePath, 'NA')  
+    savefig(prevalfig, strcat(p.Results.savePath, strcat(p.Results.whatToPlot, 'preVal', '.fig')))
+    savefig(prevalfig, strcat(p.Results.savePath, strcat(p.Results.whatToPlot, 'preVal', '.fig')))
+    save('summaryTable.mat', summary)
+end
 end
 end
