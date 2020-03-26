@@ -54,32 +54,27 @@ p.parse(pathToDirectionObject, varargin{:})
 % Load the directionObject
 load(pathToDirectionObject)
 
-% Put all values in a cell for better indexing
+% Putting all values in a table for better indexing
 AllDirections = [];
-AllDirections.LightFluxDirection = LightFluxDirection;
-AllDirections.LminusSDirection = LminusSDirection;
-AllDirections.LplusSDirection = LplusSDirection;
-AllDirections.RodMelDirection = RodMelDirection;
+
+% Check if we are dealing with the maxFlash protocol which includes a var
+% named modDirection
+if exist('modDirection','var')
+    AllDirections.modDirection = modDirection;
+else
+    AllDirections.LightFluxDirection = LightFluxDirection;
+    AllDirections.LminusSDirection = LminusSDirection;
+    AllDirections.LplusSDirection = LplusSDirection;
+    AllDirections.RodMelDirection = RodMelDirection;
 
 % Get the labels
 fn = fieldnames(AllDirections)';
 fieldlength = length(fn);
 
-% Initialize figures for different conditions with different variables for
-% a better organization
-summary = [];
-if strcmp(p.Results.whatToPlot, 'bgOnOff')
-    prefigureBgOnOff = figure;
-    postfigureBgOnOff = figure;
-elseif strcmp(p.Results.whatToPlot, 'measuredVsPredictedBG')
-    prefigureMeasuredVsPredictedBG = figure;   
-    postfigureMeasuredVsPredictedBG = figure;    
-elseif strcmp(p.Results.whatToPlot, 'measuredVsPredictedMirrorsOn')
-    prefigureMeasuredVsPredictedOn = figure;
-    postfigureMeasuredVsPredictedOn = figure;
-elseif strcmp(p.Results.whatToPlot, 'measuredVsPredictedMirrorsOff')
-    prefigureMeasuredVsPredictedOff = figure;
-    postfigureMeasuredVsPredictedOff = figure;    
+% Initialize figures the figures
+if ~strcmp(p.Results.whatToPlot, 'noSPD')
+    prevalfig = figure;
+    postvalfig = figure;
 elseif strcmp(p.Results.whatToPlot, 'noSPD') 
     fprintf('Not plotting any SPDs')
 else
@@ -88,6 +83,7 @@ end
 
 % Loop through directions and save the validation summary for each
 % condition
+summary = [];
 for ii = 1:fieldlength
     % For single validation
     if isnumeric(p.Results.validationNumber)
@@ -101,12 +97,14 @@ for ii = 1:fieldlength
         % Create the table
         summary.(fn{1,ii}).luminanceSummaryTable = table(Type, Value);
         
-        % Specify table values for contrasts
-        contrastType = [convertCharsToStrings(AllDirections.(fn{1,ii}).describe.directionParams.photoreceptorClasses{1}); convertCharsToStrings(AllDirections.(fn{1,ii}).describe.directionParams.photoreceptorClasses{2}); convertCharsToStrings(AllDirections.(fn{1,ii}).describe.directionParams.photoreceptorClasses{3}); convertCharsToStrings(AllDirections.(fn{1,ii}).describe.directionParams.photoreceptorClasses{4})];
-        contrastValue = [AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).contrastActual(1) AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).contrastDesired(1); AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).contrastActual(2) AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).contrastDesired(2); AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).contrastActual(3) AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).contrastDesired(3); AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).contrastActual(4) AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).contrastDesired(4)];
-        % Create the table
-        summary.(fn{1,ii}).contrastSummaryTable = table(contrastType, contrastValue);
-    
+        % Specify table values for contrasts if not maxFlash
+        if ~exist('modDirection','var')
+            contrastType = [convertCharsToStrings(AllDirections.(fn{1,ii}).describe.directionParams.photoreceptorClasses{1}); convertCharsToStrings(AllDirections.(fn{1,ii}).describe.directionParams.photoreceptorClasses{2}); convertCharsToStrings(AllDirections.(fn{1,ii}).describe.directionParams.photoreceptorClasses{3}); convertCharsToStrings(AllDirections.(fn{1,ii}).describe.directionParams.photoreceptorClasses{4})];
+            contrastValue = [AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).contrastActual(1) AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).contrastDesired(1); AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).contrastActual(2) AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).contrastDesired(2); AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).contrastActual(3) AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).contrastDesired(3); AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).contrastActual(4) AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).contrastDesired(4)];
+            % Create the table
+            summary.(fn{1,ii}).contrastSummaryTable = table(contrastType, contrastValue);
+        end
+        
     % For median validation values
     elseif strcmp(p.Results.validationNumber, 'median')
         % Get the pre and post val cells 
@@ -115,11 +113,13 @@ for ii = 1:fieldlength
         precellDesired = {AllDirections.(fn{1,ii}).describe.validation(1:5).luminanceDesired};
         postcellDesired = {AllDirections.(fn{1,ii}).describe.validation(6:10).luminanceDesired};
         
-        % Get the same thing for the contrasts
-        precellGotContrast = {AllDirections.(fn{1,ii}).describe.validation(1:5).contrastActual};
-        postcellGotContrast = {AllDirections.(fn{1,ii}).describe.validation(6:10).contrastActual};
-        precellDesiredContrast = {AllDirections.(fn{1,ii}).describe.validation(1:5).contrastDesired};
-        postcellDesiredContrast = {AllDirections.(fn{1,ii}).describe.validation(6:10).contrastDesired};      
+        % Get the same thing for the contrasts if not maxFlash
+        if ~exist('modDirection','var')
+            precellGotContrast = {AllDirections.(fn{1,ii}).describe.validation(1:5).contrastActual};
+            postcellGotContrast = {AllDirections.(fn{1,ii}).describe.validation(6:10).contrastActual};
+            precellDesiredContrast = {AllDirections.(fn{1,ii}).describe.validation(1:5).contrastDesired};
+            postcellDesiredContrast = {AllDirections.(fn{1,ii}).describe.validation(6:10).contrastDesired};      
+        end
         
         % Create luminance table values and the luminance table
         Type = ["medianBackgroundLuminance";"medianPositiveArmLuminance";"medianNegativeArmLuminance";"medianBackgroundMinusPositiveArmLuminance";"medianBackgroundMinusNegativeArmLuminance"];
@@ -160,7 +160,7 @@ for ii = 1:fieldlength
 
         % Plot stuff for each direction
         if strcmp(p.Results.whatToPlot, 'bgOnOff')
-            set(0,'CurrentFigure',prefigureBgOnOff)
+            set(0,'CurrentFigure',prevalfig)
             subplot(2,2,ii);
             suptitle('Pre-validation BG/on/off')
             hold on;
@@ -173,7 +173,7 @@ for ii = 1:fieldlength
             title(fn{1,ii})   
 
             % visualize SPDs;
-            set(0,'CurrentFigure',postfigureBgOnOff)
+            set(0,'CurrentFigure',postvalfig)
             subplot(2,2,ii);
             suptitle('Post-validation BG/on/off')
             hold on;
@@ -185,7 +185,7 @@ for ii = 1:fieldlength
             ylabel('Power')
             title(fn{1,ii})  
         elseif strcmp(p.Results.whatToPlot, 'measuredVsPredictedBG')
-            set(0,'CurrentFigure',prefigureMeasuredVsPredictedBG)
+            set(0,'CurrentFigure',prevalfig)
             subplot(2,2,ii);
             suptitle('Pre-validation MesuredVsPredicted BG')
             hold on;
@@ -196,7 +196,7 @@ for ii = 1:fieldlength
             ylabel('Power')
             title(fn{1,ii})             
 
-            set(0,'CurrentFigure',postfigureMeasuredVsPredictedBG)
+            set(0,'CurrentFigure',postvalfig)
             subplot(2,2,ii);
             suptitle('Post-validation MesuredVsPredicted BG')
             hold on;
@@ -207,7 +207,7 @@ for ii = 1:fieldlength
             ylabel('Power')
             title(fn{1,ii})           
         elseif strcmp(p.Results.whatToPlot, 'measuredVsPredictedMirrorsOn')
-            set(0,'CurrentFigure',prefigureMeasuredVsPredictedOn)
+            set(0,'CurrentFigure',prevalfig)
             subplot(2,2,ii);
             suptitle('Pre-validation MesuredVsPredicted Mirrors On')
             hold on;
@@ -218,7 +218,7 @@ for ii = 1:fieldlength
             ylabel('Power')
             title(fn{1,ii})               
  
-            set(0,'CurrentFigure',postfigureMeasuredVsPredictedOn)
+            set(0,'CurrentFigure',postvalfig)
             subplot(2,2,ii);
             suptitle('Post-validation MesuredVsPredicted MirrorsOn')
             hold on;
@@ -229,7 +229,7 @@ for ii = 1:fieldlength
             ylabel('Power')
             title(fn{1,ii})   
         elseif strcmp(p.Results.whatToPlot, 'measuredVsPredictedMirrorsOff')
-            set(0,'CurrentFigure',prefigureMeasuredVsPredictedOff)
+            set(0,'CurrentFigure',prevalfig)
             subplot(2,2,ii);
             suptitle('Pre-validation MesuredVsPredicted Mirrors Off')
             hold on;
@@ -240,7 +240,7 @@ for ii = 1:fieldlength
             ylabel('Power')
             title(fn{1,ii})               
  
-            set(0,'CurrentFigure',postfigureMeasuredVsPredictedOff)
+            set(0,'CurrentFigure',postvalfig)
             subplot(2,2,ii);
             suptitle('Post-validation MesuredVsPredicted MirrorsOff')
             hold on;
