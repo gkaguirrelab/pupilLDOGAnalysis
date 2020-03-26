@@ -56,8 +56,50 @@ p.addParameter('savePath', 'NA', @isstr);
 % parse
 p.parse(pathToDirectionObject, varargin{:})
 
-% Load the directionObject
-load(pathToDirectionObject)
+% Load the directionObject if pathParams is specified, construct the paths
+if isstruct(pathToDirectionObject)
+    % set common path params
+    dropboxBaseDir = getpref('pupilLDOGAnalysis','dropboxBaseDir');
+    pathParams.dataSourceDirRoot = fullfile(dropboxBaseDir,'LDOG_data');
+    
+    % Input path
+    inputBaseDir = fullfile(pathParams.dataSourceDirRoot, ...
+        'Experiments',...
+        pathParams.Approach,...
+        pathParams.Protocol,...
+        'DirectionObjects',...
+        pathParams.Subject,...
+        pathParams.Session,...
+        pathParams.Date);    
+    
+    % Output path
+    outputBaseDir = fullfile(pathParams.dataOutputDirRoot, ...
+        'Experiments',...
+        pathParams.Approach,...
+        pathParams.Protocol,...
+        'ValidationSummary',...
+        pathParams.Subject,...
+        pathParams.Date,...
+        pathParams.Session);
+
+    % If the outputBaseDir does not exist, make it
+    if ~exist(outputBaseDir)
+        mkdir(outputBaseDir)
+    end
+    
+    % load the input and create the final save path variable
+    load(inputBaseDir)
+    if strcmp(p.Results.savePath, 'NA')
+        saveHere = outputBaseDir;
+    else
+        saveHere = p.Results.savePath;
+    end
+    
+else
+    % This is used if direct paths are specified instead of pathParams 
+    load(pathToDirectionObject)
+    saveHere = p.Results.savePath;
+end
 
 % Putting all values in a table for better indexing
 AllDirections = [];
@@ -259,9 +301,9 @@ for ii = 1:fieldlength
 
 % Save some stuff if a path is specified
 if ~strcmp(p.Results.savePath, 'NA')  
-    savefig(prevalfig, fullfile(p.Results.savePath, strcat(p.Results.whatToPlot, 'preVal', '.fig')))
-    savefig(prevalfig, fullfile(p.Results.savePath, strcat(p.Results.whatToPlot, 'postVal', '.fig')))
-    save(fullfile(p.Results.savePath, 'summaryTable.mat'), 'summary')
+    savefig(prevalfig, fullfile(saveHere, strcat(p.Results.whatToPlot, 'preVal', '.fig')))
+    savefig(prevalfig, fullfile(saveHere, strcat(p.Results.whatToPlot, 'postVal', '.fig')))
+    save(fullfile(saveHere, 'summaryTable.mat'), 'summary')
 end
 end
 end
