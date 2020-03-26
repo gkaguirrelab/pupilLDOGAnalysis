@@ -1,9 +1,9 @@
-function summary = visulizeValidation(pathToDirectionObject, varargin)
+function summary = visulizeValidation(pathParams, varargin)
 
 % A function for visualizing validations
 %
 % Syntax:
-%   summaryTable = visulizeValidation(pathToDirectionObject, validationNumber, whatToPlot)
+%   summaryTable = visulizeValidation(pathParams, validationNumber, whatToPlot)
 %
 % Description:
 %   Creates a table showing the luminance and contrast values of the
@@ -12,7 +12,7 @@ function summary = visulizeValidation(pathToDirectionObject, varargin)
 %   with this function.
 %
 % Inputs:
-%   pathToDirectionObject         - String. Path to the directionObject.mat  
+%   pathParams                    - String. Path to the directionObject.mat  
 %
 % Optional key/value pairs:
 %   'validationNumber'            - Number or String. Which validation to
@@ -46,7 +46,7 @@ function summary = visulizeValidation(pathToDirectionObject, varargin)
 p = inputParser; p.KeepUnmatched = true;
 
 % Required
-p.addRequired('pathToDirectionObject',@isstr);
+p.addRequired('pathParams');
 
 % Optional params
 p.addParameter('validationNumber', 'median');
@@ -54,13 +54,14 @@ p.addParameter('whatToPlot', 'noSPD', @isstr);
 p.addParameter('savePath', 'NA', @isstr);
 
 % parse
-p.parse(pathToDirectionObject, varargin{:})
+p.parse(pathParams, varargin{:})
 
 % Load the directionObject if pathParams is specified, construct the paths
-if isstruct(pathToDirectionObject)
+if isstruct(pathParams)
     % set common path params
     dropboxBaseDir = getpref('pupilLDOGAnalysis','dropboxBaseDir');
     pathParams.dataSourceDirRoot = fullfile(dropboxBaseDir,'LDOG_data');
+    pathParams.dataOutputDirRoot = fullfile(dropboxBaseDir,'LDOG_processing');
     
     % Input path
     inputBaseDir = fullfile(pathParams.dataSourceDirRoot, ...
@@ -97,7 +98,7 @@ if isstruct(pathToDirectionObject)
     
 else
     % This is used if direct paths are specified instead of pathParams 
-    load(pathToDirectionObject)
+    load(pathParams)
     saveHere = p.Results.savePath;
 end
 
