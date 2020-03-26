@@ -13,4 +13,4 @@ pathParams.Protocol = 'MRScotoLDOG';
 validationNumber = 'median';
 whatToPlot = 'noSPD';
 
-results = visulizeValidation(pathParams, 'validationNumber', validationNumber, 'whatToPlot', whatToPlot);
+results = visualizeValidation(pathParams, 'validationNumber', validationNumber, 'whatToPlot', whatToPlot);
