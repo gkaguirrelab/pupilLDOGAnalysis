@@ -2,7 +2,7 @@ function summary = visualizeValidation(pathParams, varargin)
 % Summarizes and plots the contents of a OneLight validation file
 %
 % Syntax:
-%   summaryTable = visualizeValidation(pathParams, validationNumber, whatToPlot)
+%   summaryTable = visualizeValidation(pathParams, whatToPlot)
 %
 % Description:
 %   Creates a table showing the luminance and contrast values of the
@@ -10,30 +10,24 @@ function summary = visualizeValidation(pathParams, varargin)
 %   mirror on/off conditions can also be created with this function.
 %
 % Inputs:
-%   pathParams            - String. Path to the directionObject.mat
+%   pathParams            - String. Path to the directionObject.mat or a 
+%                           path params struct.
 %
 % Optional key/value pairs:
-%  'validationNumber'     - Number or String. Which validation to
-%                           visualize. The key 'median' can be used to get
-%                           the pre/post validation median values. Default:
-%                           'median'
-%
-%% ADJUST INDENTATION OF HEADER COMMENTS
 %  'whatToPlot'           - String. Plot SPD on demand. Options are
-%                           bgOnOff: compares background and mirror
-%                           on and off.
-%                                   measuredVsPredictedBG: Compares
-%                                   measured and predicted background.
-%                                   measuredVsPredictedMirrorsOn: Compares
-%                                   measured and predicred mirrors on cond.
-%                                   measuredVsPredictedMirrorsOff: Compares
-%                                   measured and predicted mirrors off
-%                                   cond.
-%                                   noSPD: Does not plot SPDs (Default)
+%                           .bgOnOff: compares background and mirror on and
+%                           off. 
+%                           .measuredVsPredictedBG: Compares measured
+%                           and predicted background.
+%                           .measuredVsPredictedPositiveArm: Compares
+%                           measured and predicred mirrors on cond.
+%                           .measuredVsPredictedNegativeArm: Compares
+%                           measured and predicted mirrors off cond. 
+%                           .noSPD: Does not plot SPDs (Default)
 %
 %  'savePath'             - String. Save the figures and tables to
-%                                   this location. If 'NA', do not save.
-%                                   Default: 'NA'
+%                           this location. If 'NA', do not save. Default:
+%                           'NA'
 %
 % Outputs:
 %   summary               - Structure. A structure with fields for each
@@ -51,7 +45,6 @@ p = inputParser; p.KeepUnmatched = true;
 p.addRequired('pathParams');
 
 % Optional params
-p.addParameter('validationNumber', 'median');
 p.addParameter('whatToPlot', 'noSPD', @isstr);
 p.addParameter('savePath', 'NA', @isstr);
 
@@ -139,54 +132,70 @@ else
     % Loop through directions and save the validation summary for each
     % condition
     for ii = 1:fieldlength
-        % For single validation
-        if isnumeric(p.Results.validationNumber)
-            % Specify table values for luminance
-            Type = ["BackgroundLuminance";"PositiveArmLuminance";"NegativeArmLuminance";"BackgroundMinusPositiveArmLuminance";"BackgroundMinusNegativeArmLuminance"];
-            Value = [AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).luminanceActual(1) AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).luminanceDesired(1);...
-                AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).luminanceActual(2) AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).luminanceDesired(2);...
-                AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).luminanceActual(3) AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).luminanceDesired(3);...
-                AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).luminanceActual(4) AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).luminanceDesired(4);...
-                AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).luminanceActual(5) AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).luminanceDesired(5)];
-            % Create the table
-            summary.(fn{1,ii}).luminanceSummaryTable = table(Type, Value);
-            
-            % Specify table values for contrasts if not maxFlash
-            if ~exist('modDirection','var')
-                contrastType = [convertCharsToStrings(AllDirections.(fn{1,ii}).describe.directionParams.photoreceptorClasses{1}); convertCharsToStrings(AllDirections.(fn{1,ii}).describe.directionParams.photoreceptorClasses{2}); convertCharsToStrings(AllDirections.(fn{1,ii}).describe.directionParams.photoreceptorClasses{3}); convertCharsToStrings(AllDirections.(fn{1,ii}).describe.directionParams.photoreceptorClasses{4})];
-                contrastValue = [AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).contrastActual(1) AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).contrastDesired(1); AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).contrastActual(2) AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).contrastDesired(2); AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).contrastActual(3) AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).contrastDesired(3); AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).contrastActual(4) AllDirections.(fn{1,ii}).describe.validation(p.Results.validationNumber).contrastDesired(4)];
-                % Create the table
-                summary.(fn{1,ii}).contrastSummaryTable = table(contrastType, contrastValue);
-            end
-            
-            % For median validation values
-        elseif strcmp(p.Results.validationNumber, 'median')
-            % Get the pre and post val cells
-            precellGot = {AllDirections.(fn{1,ii}).describe.validation(1:5).luminanceActual};
-            postcellGot = {AllDirections.(fn{1,ii}).describe.validation(6:10).luminanceActual};
-            precellDesired = {AllDirections.(fn{1,ii}).describe.validation(1:5).luminanceDesired};
-            postcellDesired = {AllDirections.(fn{1,ii}).describe.validation(6:10).luminanceDesired};
-            
-            % Get the same thing for the contrasts if not maxFlash
-            if ~exist('modDirection','var')
-                precellGotContrast = {AllDirections.(fn{1,ii}).describe.validation(1:5).contrastActual};
-                postcellGotContrast = {AllDirections.(fn{1,ii}).describe.validation(6:10).contrastActual};
-                precellDesiredContrast = {AllDirections.(fn{1,ii}).describe.validation(1:5).contrastDesired};
-                postcellDesiredContrast = {AllDirections.(fn{1,ii}).describe.validation(6:10).contrastDesired};
-            end
-            
-            % Create luminance table values and the luminance table
-            Type = ["medianBackgroundLuminance";"medianPositiveArmLuminance";"medianNegativeArmLuminance";"medianBackgroundMinusPositiveArmLuminance";"medianBackgroundMinusNegativeArmLuminance"];
-            PreValidation_actual_vs_desired = [median(cellfun(@(v)v(1),precellGot)) median(cellfun(@(v)v(1),precellDesired));median(cellfun(@(v)v(2),precellGot)) median(cellfun(@(v)v(2),precellDesired));median(cellfun(@(v)v(3),precellGot)) median(cellfun(@(v)v(3),precellDesired));median(cellfun(@(v)v(4),precellGot)) median(cellfun(@(v)v(4),precellDesired));median(cellfun(@(v)v(5),precellGot)) median(cellfun(@(v)v(5),precellDesired))];
-            PostValidation_actual_vs_desired = [median(cellfun(@(v)v(1),postcellGot)) median(cellfun(@(v)v(1),postcellDesired));median(cellfun(@(v)v(2),postcellGot)) median(cellfun(@(v)v(2),postcellDesired));median(cellfun(@(v)v(3),postcellGot)) median(cellfun(@(v)v(3),postcellDesired));median(cellfun(@(v)v(4),postcellGot)) median(cellfun(@(v)v(4),postcellDesired));median(cellfun(@(v)v(5),postcellGot)) median(cellfun(@(v)v(5),postcellDesired))];
-            summary.(fn{1,ii}).luminanceSummaryTable = table(Type, PreValidation_actual_vs_desired, PostValidation_actual_vs_desired);
-            % Create contrast table values and the contrast table
-            contrastType = [convertCharsToStrings(AllDirections.(fn{1,ii}).describe.directionParams.photoreceptorClasses{1}); convertCharsToStrings(AllDirections.(fn{1,ii}).describe.directionParams.photoreceptorClasses{2}); convertCharsToStrings(AllDirections.(fn{1,ii}).describe.directionParams.photoreceptorClasses{3}); convertCharsToStrings(AllDirections.(fn{1,ii}).describe.directionParams.photoreceptorClasses{4})];
-            contrastPreVal_actual_vs_desired = [median(cellfun(@(v)v(1),precellGotContrast)) median(cellfun(@(v)v(1),precellDesiredContrast));median(cellfun(@(v)v(2),precellGotContrast)) median(cellfun(@(v)v(2),precellDesiredContrast));median(cellfun(@(v)v(3),precellGotContrast)) median(cellfun(@(v)v(3),precellDesiredContrast));median(cellfun(@(v)v(4),precellGotContrast)) median(cellfun(@(v)v(4),precellDesiredContrast))];
-            contrastPostVal_actual_vs_desired = [median(cellfun(@(v)v(1),postcellGotContrast)) median(cellfun(@(v)v(1),postcellDesiredContrast));median(cellfun(@(v)v(2),postcellGotContrast)) median(cellfun(@(v)v(2),postcellDesiredContrast));median(cellfun(@(v)v(3),postcellGotContrast)) median(cellfun(@(v)v(3),postcellDesiredContrast));median(cellfun(@(v)v(4),postcellGotContrast)) median(cellfun(@(v)v(4),postcellDesiredContrast))];
-            summary.(fn{1,ii}).contrastSummaryTable = table(contrastType, contrastPreVal_actual_vs_desired, contrastPostVal_actual_vs_desired);
-        end
         
+        % Get the number of validations
+        validationNum = size(LightFluxDirection.describe.validation,2);
+
+        % Get the pre and post val cells
+        precellGotValidation = {AllDirections.(fn{1,ii}).describe.validation(1:(validationNum/2)).luminanceActual};
+        postcellGotValidation = {AllDirections.(fn{1,ii}).describe.validation((validationNum/2+1):validationNum).luminanceActual};
+
+        % Get the same thing for the contrasts if not maxFlash
+        if ~exist('modDirection','var')
+            precellGotContrast = {AllDirections.(fn{1,ii}).describe.validation(1:(validationNum/2)).contrastActual};
+            postcellGotContrast = {AllDirections.(fn{1,ii}).describe.validation((validationNum/2+1):validationNum).contrastActual};
+            precellDesiredContrast = {AllDirections.(fn{1,ii}).describe.validation(1:(validationNum/2)).contrastDesired};
+            postcellDesiredContrast = {AllDirections.(fn{1,ii}).describe.validation((validationNum/2+1):validationNum).contrastDesired};
+        end
+
+        % Create luminance table values and the luminance table
+        Vals = ["medianLuminance"]; 
+        PreValidation = [median(cellfun(@(v)v(1),precellGotValidation))];
+        PostValidation = [median(cellfun(@(v)v(1),postcellGotValidation))];        
+        baseNameVals = "Luminance";
+        for v = 1:validationNum
+            nameToAddToType = strcat('Validation_', num2str(v), '_', baseNameVals);
+            Vals = [Vals; nameToAddToType];
+            if v <= 5
+                PreValidation = [PreValidation; AllDirections.(fn{1,ii}).describe.validation(v).luminanceActual(1)];
+            else 
+                PreValidation = [PreValidation; 0];
+            end
+            
+            if v >= 6
+                PostValidation = [PostValidation; AllDirections.(fn{1,ii}).describe.validation(v).luminanceActual(1)];
+            else
+                PostValidation = [PostValidation; 0];
+            end
+        end    
+        summary.(fn{1,ii}).BackgroundLuminanceSummary = table(Vals, PreValidation, PostValidation);
+        % Create contrast table values and the contrast table
+        photoReceptor = [strcat('PosArm_', convertCharsToStrings(AllDirections.(fn{1,ii}).describe.directionParams.photoreceptorClasses{1}));...
+            strcat('NegArm_', convertCharsToStrings(AllDirections.(fn{1,ii}).describe.directionParams.photoreceptorClasses{1}));...
+            strcat('PosArm_', convertCharsToStrings(AllDirections.(fn{1,ii}).describe.directionParams.photoreceptorClasses{2}));...
+            strcat('NegArm_', convertCharsToStrings(AllDirections.(fn{1,ii}).describe.directionParams.photoreceptorClasses{2}));...
+            strcat('PosArm_', convertCharsToStrings(AllDirections.(fn{1,ii}).describe.directionParams.photoreceptorClasses{3}));...
+            strcat('NegArm_', convertCharsToStrings(AllDirections.(fn{1,ii}).describe.directionParams.photoreceptorClasses{3}));...
+            strcat('PosArm_', convertCharsToStrings(AllDirections.(fn{1,ii}).describe.directionParams.photoreceptorClasses{4}));...
+            strcat('NegArm_', convertCharsToStrings(AllDirections.(fn{1,ii}).describe.directionParams.photoreceptorClasses{4}))];
+        contrastPreVal_actual_vs_desired = [median(cellfun(@(v)v(1,1),precellGotContrast)) median(cellfun(@(v)v(1,1),precellDesiredContrast));...
+            median(cellfun(@(v)v(1,2),precellGotContrast)) median(cellfun(@(v)v(1,2),precellDesiredContrast));...
+            median(cellfun(@(v)v(2,1),precellGotContrast)) median(cellfun(@(v)v(2,1),precellDesiredContrast));...
+            median(cellfun(@(v)v(2,2),precellGotContrast)) median(cellfun(@(v)v(2,2),precellDesiredContrast));...
+            median(cellfun(@(v)v(3,1),precellGotContrast)) median(cellfun(@(v)v(3,1),precellDesiredContrast));...
+            median(cellfun(@(v)v(3,2),precellGotContrast)) median(cellfun(@(v)v(3,2),precellDesiredContrast));...
+            median(cellfun(@(v)v(4,1),precellGotContrast)) median(cellfun(@(v)v(4,1),precellDesiredContrast));...
+            median(cellfun(@(v)v(4,2),precellGotContrast)) median(cellfun(@(v)v(4,2),precellDesiredContrast))];
+        contrastPostVal_actual_vs_desired = [median(cellfun(@(v)v(1,1),postcellGotContrast)) median(cellfun(@(v)v(1,1),postcellDesiredContrast));...
+            median(cellfun(@(v)v(1,2),postcellGotContrast)) median(cellfun(@(v)v(1,2),postcellDesiredContrast));...
+            median(cellfun(@(v)v(2,1),postcellGotContrast)) median(cellfun(@(v)v(2,1),postcellDesiredContrast));...
+            median(cellfun(@(v)v(2,2),postcellGotContrast)) median(cellfun(@(v)v(2,2),postcellDesiredContrast));...
+            median(cellfun(@(v)v(3,1),postcellGotContrast)) median(cellfun(@(v)v(3,1),postcellDesiredContrast));...
+            median(cellfun(@(v)v(3,2),postcellGotContrast)) median(cellfun(@(v)v(3,2),postcellDesiredContrast));...
+            median(cellfun(@(v)v(4,1),postcellGotContrast)) median(cellfun(@(v)v(4,1),postcellDesiredContrast));...
+            median(cellfun(@(v)v(4,2),postcellGotContrast)) median(cellfun(@(v)v(4,2),postcellDesiredContrast))];
+        summary.(fn{1,ii}).contrastSummaryTable = table(photoReceptor, contrastPreVal_actual_vs_desired, contrastPostVal_actual_vs_desired);
+
         % Mesured Background SPD values
         valBackgroundSPDAll = [AllDirections.(fn{1,ii}).describe.validation.SPDbackground];
         preValBackgroundSPDMeasuredAveraged = (valBackgroundSPDAll(1).measuredSPD + valBackgroundSPDAll(2).measuredSPD +valBackgroundSPDAll(3).measuredSPD +valBackgroundSPDAll(4).measuredSPD +valBackgroundSPDAll(5).measuredSPD) / 5;
@@ -216,7 +225,7 @@ else
         if strcmp(p.Results.whatToPlot, 'bgOnOff')
             set(0,'CurrentFigure',prevalfig)
             subplot(2,2,ii);
-            suptitle('Pre-validation BG/on/off')
+            suptitle('Pre-validation Measured BG/on/off')
             hold on;
             plot(wavelengths, preValBackgroundSPDMeasuredAveraged);
             plot(wavelengths, preValPositiveArmSPDMeasuredAveraged);
@@ -229,7 +238,7 @@ else
             % visualize SPDs;
             set(0,'CurrentFigure',postvalfig)
             subplot(2,2,ii);
-            suptitle('Post-validation BG/on/off')
+            suptitle('Post-validation Measured BG/on/off')
             hold on;
             plot(wavelengths, postValBackgroundSPDMeasuredAveraged);
             plot(wavelengths, postValPositiveArmSPDMeasuredAveraged);
@@ -260,10 +269,10 @@ else
             xlabel('Wavelength')
             ylabel('Power')
             title(fn{1,ii})
-        elseif strcmp(p.Results.whatToPlot, 'measuredVsPredictedMirrorsOn')
+        elseif strcmp(p.Results.whatToPlot, 'measuredVsPredictedPositiveArm')
             set(0,'CurrentFigure',prevalfig)
             subplot(2,2,ii);
-            suptitle('Pre-validation MesuredVsPredicted Mirrors On')
+            suptitle('Pre-validation MesuredVsPredicted Positive Arm')
             hold on;
             plot(wavelengths, preValPositiveArmSPDMeasuredAveraged);
             plot(wavelengths, preValPositiveArmSPDPredictedAveraged);
@@ -274,7 +283,7 @@ else
             
             set(0,'CurrentFigure',postvalfig)
             subplot(2,2,ii);
-            suptitle('Post-validation MesuredVsPredicted MirrorsOn')
+            suptitle('Post-validation MesuredVsPredicted PositiveArm')
             hold on;
             plot(wavelengths, postValPositiveArmSPDMeasuredAveraged);
             plot(wavelengths, postValPositiveArmSPDPredictedAveraged);
@@ -282,10 +291,10 @@ else
             xlabel('Wavelength')
             ylabel('Power')
             title(fn{1,ii})
-        elseif strcmp(p.Results.whatToPlot, 'measuredVsPredictedMirrorsOff')
+        elseif strcmp(p.Results.whatToPlot, 'measuredVsPredictedNegativeArm')
             set(0,'CurrentFigure',prevalfig)
             subplot(2,2,ii);
-            suptitle('Pre-validation MesuredVsPredicted Mirrors Off')
+            suptitle('Pre-validation MesuredVsPredicted Negative Arm')
             hold on;
             plot(wavelengths, preValNegativeArmSPDMeasuredAveraged);
             plot(wavelengths, preValNegativeArmSPDPredictedAveraged);
@@ -296,7 +305,7 @@ else
             
             set(0,'CurrentFigure',postvalfig)
             subplot(2,2,ii);
-            suptitle('Post-validation MesuredVsPredicted MirrorsOff')
+            suptitle('Post-validation MesuredVsPredicted Negative Arm')
             hold on;
             plot(wavelengths, postValNegativeArmSPDMeasuredAveraged);
             plot(wavelengths, postValNegativeArmSPDPredictedAveraged);
@@ -306,11 +315,14 @@ else
             title(fn{1,ii})
         end
         
-        %% NEED TO FIX LOGIC HERE FOR FIGURE SAVING
-         % Right now it tries to save a figure even if one was not created
         % Save some stuff if a path is specified
-%        savefig(prevalfig, fullfile(saveHere, strcat(p.Results.whatToPlot, 'preVal', '.fig')))
-%        savefig(prevalfig, fullfile(saveHere, strcat(p.Results.whatToPlot, 'postVal', '.fig')))
-        save(fullfile(saveHere, 'summaryTable.mat'), 'summary')
+        if ~strcmp(p.Results.whatToPlot, 'noSPD') && ~strcmp(saveHere, 'NA')
+            savefig(prevalfig, fullfile(saveHere, strcat(p.Results.whatToPlot, 'preVal', '.fig')))
+            savefig(postvalfig, fullfile(saveHere, strcat(p.Results.whatToPlot, 'postVal', '.fig')))
+        end    
+        
+        if ~strcmp(saveHere, 'NA')
+            save(fullfile(saveHere, 'summaryTable.mat'), 'summary')
+        end
     end
 end
