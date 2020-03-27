@@ -221,6 +221,10 @@ else
         % Get the wavelengths;
         wavelengths = AllDirections.(fn{1,ii}).calibration.describe.S(1):AllDirections.(fn{1,ii}).calibration.describe.S(2): AllDirections.(fn{1,ii}).calibration.describe.S(1) + AllDirections.(fn{1,ii}).calibration.describe.S(2)*AllDirections.(fn{1,ii}).calibration.describe.S(3) - AllDirections.(fn{1,ii}).calibration.describe.S(2);
         
+        % Find the maximum value in all SPDs to set the max X value
+        allvals = [preValBackgroundSPDMeasuredAveraged postValBackgroundSPDMeasuredAveraged preValBackgroundSPDPredictedAveraged postValBackgroundSPDPredictedAveraged preValPositiveArmSPDMeasuredAveraged postValPositiveArmSPDMeasuredAveraged preValNegativeArmSPDMeasuredAveraged postValNegativeArmSPDMeasuredAveraged preValPositiveArmSPDPredictedAveraged postValPositiveArmSPDPredictedAveraged preValNegativeArmSPDPredictedAveraged postValNegativeArmSPDPredictedAveraged];
+        maximum = max(max(allvals));
+        
         % Plot stuff for each direction
         if strcmp(p.Results.whatToPlot, 'bgOnOff')
             set(0,'CurrentFigure',prevalfig)
@@ -233,6 +237,7 @@ else
             legend('BG', 'AllOn', 'AllOff', 'Location', 'best');
             xlabel('Wavelength')
             ylabel('Power')
+            ylim([0 maximum])
             title(fn{1,ii})
             
             % visualize SPDs;
@@ -246,6 +251,7 @@ else
             legend('BG', 'AllOn', 'AllOff', 'Location', 'best');
             xlabel('Wavelength')
             ylabel('Power')
+            ylim([0 maximum])            
             title(fn{1,ii})
         elseif strcmp(p.Results.whatToPlot, 'measuredVsPredictedBG')
             set(0,'CurrentFigure',prevalfig)
@@ -257,6 +263,7 @@ else
             legend('MeasuredBG', 'PredictedBG', 'Location', 'best');
             xlabel('Wavelength')
             ylabel('Power')
+            ylim([0 maximum])            
             title(fn{1,ii})
             
             set(0,'CurrentFigure',postvalfig)
@@ -268,6 +275,7 @@ else
             legend('MeasuredBG', 'PredictedBG', 'Location', 'best');
             xlabel('Wavelength')
             ylabel('Power')
+            ylim([0 maximum])            
             title(fn{1,ii})
         elseif strcmp(p.Results.whatToPlot, 'measuredVsPredictedPositiveArm')
             set(0,'CurrentFigure',prevalfig)
@@ -279,6 +287,7 @@ else
             legend('MeasuredOn', 'PredictedOn', 'Location', 'best');
             xlabel('Wavelength')
             ylabel('Power')
+            ylim([0 maximum])            
             title(fn{1,ii})
             
             set(0,'CurrentFigure',postvalfig)
@@ -290,6 +299,7 @@ else
             legend('MeasuredOn', 'PredictedOn', 'Location', 'best');
             xlabel('Wavelength')
             ylabel('Power')
+            ylim([0 maximum])            
             title(fn{1,ii})
         elseif strcmp(p.Results.whatToPlot, 'measuredVsPredictedNegativeArm')
             set(0,'CurrentFigure',prevalfig)
@@ -301,6 +311,7 @@ else
             legend('MeasuredOff', 'PredictedOff', 'Location', 'best');
             xlabel('Wavelength')
             ylabel('Power')
+            ylim([0 maximum])            
             title(fn{1,ii})
             
             set(0,'CurrentFigure',postvalfig)
@@ -312,6 +323,7 @@ else
             legend('MeasuredOff', 'PredictedOff', 'Location', 'best');
             xlabel('Wavelength')
             ylabel('Power')
+            ylim([0 maximum])            
             title(fn{1,ii})
         end
         
