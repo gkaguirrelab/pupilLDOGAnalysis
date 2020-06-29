@@ -2,7 +2,7 @@ function [amplitude, phase, figHandle] = fitFourier(videoPathNameStems, freq, en
 % Fit a Fourier basis at a specified frequency to pupil ellipse area
 %
 % Syntax:
-%  [amplitude, phase] = fitFourier(videoNameStem)
+%  [amplitude, phase, figHandle] = fitFourier(videoPathNameStems, freq, endTime, startTime, highPassCutoff, showPlot)
 %
 % Description:
 %   Loads the pupil file associated with a video name stem and fits a
@@ -106,7 +106,7 @@ else
     figHandle = figure('visible','off');
 end
 set(figHandle,'color','w');
-ts = t ./ 60;
+ts = t ./ fs;
 plot(ts,y,'.','Color',[0.85 0.85 0.85]);
 hold on
 plot(ts,X*b,'-r');
