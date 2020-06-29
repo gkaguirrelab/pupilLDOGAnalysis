@@ -105,7 +105,7 @@ sessionKeyValues = {...
     };
 
 % Call the pre-processing pipeline
-pupilPipeline(pathParams,videoNameStems(7:12),sessionKeyValues);
+%pupilPipeline(pathParams,videoNameStems(7:12),sessionKeyValues);
 
 
 %% Call the frequency fitting pipeline
