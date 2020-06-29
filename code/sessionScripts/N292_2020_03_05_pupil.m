@@ -18,6 +18,13 @@ pathParams.Protocol = 'MRFlickerLDOG';
 % The names of the videos to process
 videoNameStems = {'pupil_LightFLux','pupil_L+S','pupil_RodMel','pupil_LightFLux02','pupil_L+S02','pupil_RodMel02'};
 
+
+% Stimulus properties
+stimSets = {[2 4],[1 6],[3 5]};
+stimLabels = {'lightFlux [c = 95%]','L+S [c = 35%]','RodMel [ c = 50% ]'};
+stimColors = {'k','r','c'};
+
+
 % Define mask bounds. To do so, run the routine:
 %{
 	glintFrameMask = defineCropMask('','startFrame',10)
@@ -29,10 +36,6 @@ videoNameStems = {'pupil_LightFLux','pupil_L+S','pupil_RodMel','pupil_LightFLux0
 % here:
 glintFrameMask = [222   215   170   330];
 pupilFrameMask = [186   124    69   239];
-
-
-
-
 
 
 %% Analysis parameters
@@ -57,5 +60,10 @@ sessionKeyValues = {...
 
 
 %% Call the pipeline
-pupilPipeline(pathParams,videoNameStems,sessionKeyValues);
+%pupilPipeline(pathParams,videoNameStems,sessionKeyValues);
+
+
+%% Call the frequency fitting pipeline
+fourierFitPipeline(pathParams,videoNameStems,sets,labels,durations,freqs);
+
 
