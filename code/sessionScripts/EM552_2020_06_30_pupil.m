@@ -78,7 +78,7 @@ pupilFrameMaskSet = {[179   253   175   275], ...
 numVids = length(videoNameStems);
 for ii = 1:numVids
 
-    videoName = videoNameStems{ii};
+    videoName = {videoNameStems{ii}};
     glintFrameMask = glintFrameMaskSet{ii};
     pupilFrameMask = pupilFrameMaskSet{ii};
     % Analysis parameters
