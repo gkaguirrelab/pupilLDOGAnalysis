@@ -42,6 +42,10 @@ freqs = [1/6,1/12,1/12];
 checkCountTRs = 1;
 
 % Mask bounds
+% To pick good numbers here, use the utility:
+%{
+    defineCropMask
+%}
 glintFrameMask = [120   384   285   163];
 pupilFrameMask = [33   256   123    63];
 
@@ -69,7 +73,7 @@ sessionKeyValues = {...
 
 
 %% Call the pre-processing pipeline
-%pupilPipeline(pathParams,videoNameStems,sessionKeyValues);
+pupilPipeline(pathParams,videoNameStems,sessionKeyValues);
 
 
 %% Call the frequency fitting pipeline
