@@ -92,7 +92,7 @@ ellipseEccentLBUB = {[0.3 0.45],[0.3 0.45],[0.3 0.45],[0.3 0.45],[0.3 0.45],[0.3
 
 %% Loop through video name stems get each video and its corresponding masks
 numVids = length(videoNameStems);
-for ii = 11:numVids
+for ii = 1:numVids
 
     pupilCircleThresh = pupilCircleThreshSet(ii);
     pupilRange = pupilRangeSets{ii};
@@ -128,9 +128,8 @@ for ii = 11:numVids
     % Call the pre-processing pipeline
     pupilPipeline(pathParams,videoName,sessionKeyValues);
     
-    foo=1;
 end
-% 
+
 % %% Call the frequency fitting pipeline
 % fourierFitPipeline(pathParams,videoNameStems,sets,labels,durations,freqs);
 
