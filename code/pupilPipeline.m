@@ -97,21 +97,21 @@ for vv = 1:length(videoNameStems)
     pupilFileName = fullfile(outputBaseDir,[videoNameStems{vv} '_pupil.mat']);
     fitVideoName = fullfile(outputBaseDir,[videoNameStems{vv} '_stage6fit.avi']);    
     
-%     % Deinterlace
-%     deinterlaceVideo(videoInFileName, grayVideoName, ...
-%         universalKeyValues{:},sessionKeyValues{:});    
-%     
-%     % Timebase
-%     makeTimebase(videoInFileName, timebaseFileName, ...
-%         universalKeyValues{:},sessionKeyValues{:});    
-%     
-%     % Glint
-%     findGlint(grayVideoName, glintFileName, ...
-%         universalKeyValues{:},sessionKeyValues{:});    
-%     
-%     % Perimeter
-%     findPupilPerimeter(grayVideoName, perimeterFileName, ...
-%         universalKeyValues{:},sessionKeyValues{:});    
+    % Deinterlace
+    deinterlaceVideo(videoInFileName, grayVideoName, ...
+        universalKeyValues{:},sessionKeyValues{:});    
+    
+    % Timebase
+    makeTimebase(videoInFileName, timebaseFileName, ...
+        universalKeyValues{:},sessionKeyValues{:});    
+    
+    % Glint
+    findGlint(grayVideoName, glintFileName, ...
+        universalKeyValues{:},sessionKeyValues{:});    
+    
+    % Perimeter
+    findPupilPerimeter(grayVideoName, perimeterFileName, ...
+        universalKeyValues{:},sessionKeyValues{:});    
     
     % Control
     makeControlFile(controlFileName, perimeterFileName, glintFileName, ...

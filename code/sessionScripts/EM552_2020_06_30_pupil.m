@@ -79,20 +79,12 @@ pupilRangeSets = {[39 60], [41 50], [39 70], [47 58], [47 57], [55 67], [58 71],
 
 candidateThetas = {[5*pi/4],[5*pi/4],[5*pi/4],[5*pi/4],[5*pi/4],[5*pi/4],[5*pi/4],[5*pi/4],[5*pi/4],[5*pi/4],[pi; 5*pi/4],[pi; 5*pi/4]};
 
-ellipseEccenLBUB = {[0.3 0.45],[0.3 0.45],[0.3 0.45],[0.3 0.45],[0.3 0.45],[0.3 0.45],[0.3 0.45],[0.3 0.45],[0.3 0.45],[0.3 0.45],[0.35 0.45],[0.4 0.5]};
+ellipseEccenLBUB = {[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.35 0.45],[0.4 0.5]};
 
-% % This can be used to run single videos
-% videoNameStems = {...
-%     'pupil_LplusS_1-6Hz_LeftEyeStim_12'}; % cut [3*pi/2 5*pi/4]
-% pupilCircleThreshSet = [0.0350];
-% pupilRangeSets = {[45 60]};
-% %glintFrameMaskSet = {[163 445 301 180]};
-% glintFrameMaskSet = {[139   437   299   164]};
-% pupilFrameMaskSet = {[95 340 223 130]}; 
 
 %% Loop through video name stems get each video and its corresponding masks
 numVids = length(videoNameStems);
-for ii = 11:numVids
+for ii = 1:numVids
 
     pupilCircleThresh = pupilCircleThreshSet(ii);
     pupilRange = pupilRangeSets{ii};
@@ -108,7 +100,7 @@ for ii = 11:numVids
 
     sessionKeyValues = {...
         'startFrame',1, ...
-        'nFrames', 3500, ...
+        'nFrames', Inf, ...
         'checkCountTRs',checkCountTRs, ...
         'glintFrameMask',glintFrameMask,...
         'glintGammaCorrection',1.3,...
