@@ -85,7 +85,7 @@ for vv = 1:length(videoNameStems)
     % Report which video we will now process
     str = sprintf(['%d of %d, ' videoNameStems{vv} '\n\n'],vv,length(videoNameStems));
     fprintf(str);
-        
+    
     % The file names
     videoInFileName = fullfile(inputBaseDir,[videoNameStems{vv} '.mov']);
     grayVideoName = fullfile(outputBaseDir,[videoNameStems{vv} '.avi']);
@@ -95,43 +95,49 @@ for vv = 1:length(videoNameStems)
     correctedPerimeterFileName = fullfile(outputBaseDir,[videoNameStems{vv} '_correctedPerimeter.mat']);
     controlFileName = fullfile(outputBaseDir,[videoNameStems{vv} '_controlFile.csv']);
     pupilFileName = fullfile(outputBaseDir,[videoNameStems{vv} '_pupil.mat']);
-    fitVideoName = fullfile(outputBaseDir,[videoNameStems{vv} '_stage6fit.avi']);    
+    fit3VideoName = fullfile(outputBaseDir,[videoNameStems{vv} '_stage3fit.avi']);
+    fit6VideoName = fullfile(outputBaseDir,[videoNameStems{vv} '_stage6fit.avi']);
     
     % Deinterlace
     deinterlaceVideo(videoInFileName, grayVideoName, ...
-        universalKeyValues{:},sessionKeyValues{:});    
+        universalKeyValues{:},sessionKeyValues{:});
     
     % Timebase
     makeTimebase(videoInFileName, timebaseFileName, ...
-        universalKeyValues{:},sessionKeyValues{:});    
+        universalKeyValues{:},sessionKeyValues{:});
     
     % Glint
     findGlint(grayVideoName, glintFileName, ...
-        universalKeyValues{:},sessionKeyValues{:});    
+        universalKeyValues{:},sessionKeyValues{:});
     
     % Perimeter
     findPupilPerimeter(grayVideoName, perimeterFileName, ...
-        universalKeyValues{:},sessionKeyValues{:});    
+        universalKeyValues{:},sessionKeyValues{:});
+    
+    % Video
+    makeFitVideo(grayVideoName, fit3VideoName, ...
+        'perimeterFileName',perimeterFileName,...
+        universalKeyValues{:},sessionKeyValues{:});
     
     % Control
     makeControlFile(controlFileName, perimeterFileName, glintFileName, ...
-        universalKeyValues{:},sessionKeyValues{:});    
+        universalKeyValues{:},sessionKeyValues{:});
     
     % Correct
     applyControlFile(perimeterFileName, controlFileName, correctedPerimeterFileName, ...
-        universalKeyValues{:},sessionKeyValues{:});    
+        universalKeyValues{:},sessionKeyValues{:});
     
     % Fit
     fitPupilPerimeter(correctedPerimeterFileName, pupilFileName, ...
-        universalKeyValues{:},sessionKeyValues{:});    
+        universalKeyValues{:},sessionKeyValues{:});
     
     % Video
-    makeFitVideo(grayVideoName, fitVideoName, ...
+    makeFitVideo(grayVideoName, fit6VideoName, ...
         'perimeterFileName',correctedPerimeterFileName,...
         'pupilFileName',pupilFileName,...
         'glintFileName',glintFileName,...
         'fitLabel', 'initial', ...
-        universalKeyValues{:},sessionKeyValues{:});    
+        universalKeyValues{:},sessionKeyValues{:});
     
 end
 
