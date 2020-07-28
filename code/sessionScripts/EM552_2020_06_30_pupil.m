@@ -83,19 +83,23 @@ pupilCircleThreshSet = [0.0200, 0.0160, 0.0250, 0.0450, 0.0310, 0.0530, 0.0490, 
 
 pupilRangeSets = {[39 60], [41 50], [39 70], [47 58], [47 57], [55 67], [58 71], [42 60], [44 57], [63 80], [45 55], [44 54], [45 60]};
 
-candidateThetas = {[7*pi/4],[5*pi/4],[5*pi/4],[3*pi/2; pi],[3*pi/2],[3*pi/2; pi],[5*pi/4],[5*pi/4],[pi],[pi; 5*pi/4],[pi; 5*pi/4],[pi; 5*pi/4]};
+candidateThetas = {[7*pi/4],[5*pi/4],[5*pi/4],[3*pi/2; pi],[3*pi/2],[3*pi/2; pi],[5*pi/4],[5*pi/4],[pi],[5*pi/4 ; pi],[pi; 5*pi/4],[pi; 5*pi/4]};
 
 ellipseEccenLBUB = {[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.35 0.45],[0.4 0.5]};
 
-glintPatchRadius = [30,20,20,20,20,20,20,20,20,20,20,20];
+glintPatchRadius = [40,20,20,20,20,20,20,20,20,20,20,30];
 
 minRadiusProportion = [0, 0, 0, 0.5, 0, 0, 0, 0, 0, 0.5, 0.5, 0.5];
 
-cutErrorThreshold = [1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 2, 2];
+cutErrorThreshold = [1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 2, 1.5];
 
 %% Loop through video name stems get each video and its corresponding masks
-numVids = length(videoNameStems);
-for ii = 1:numVids
+% This is for running videos in different order
+vids = [1, 10, 12];
+for ii = vids
+
+%numVids = length(videoNameStems);
+%for ii = 1:numVids
 
     pupilCircleThresh = pupilCircleThreshSet(ii);
     pupilRange = pupilRangeSets{ii};
