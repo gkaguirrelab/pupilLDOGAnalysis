@@ -87,17 +87,17 @@ candidateThetas = {[7*pi/4],[5*pi/4],[5*pi/4],[3*pi/2; pi],[3*pi/2],[3*pi/2; pi]
 
 ellipseEccenLBUB = {[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.35 0.45],[0.4 0.5]};
 
-glintPatchRadius = [40,20,20,20,20,20,20,20,20,20,20,30];
+glintPatchRadius = [35,20,20,20,20,20,20,20,20,20,20,30];
 
 minRadiusProportion = [0, 0, 0, 0.5, 0, 0, 0, 0, 0, 0, 0.5, 0.5];
 
 cutErrorThreshold = [1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 2, 1.5];
 
-ellipseAreaLB = [5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000];
+ellipseAreaLB = [1000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000];
 ellipseAreaUP = [15000, 15000, 15000, 50000, 15000, 15000, 15000, 15000, 15000, 50000, 15000, 15000];
 %% Loop through video name stems get each video and its corresponding masks
 % This is for running videos in different order
-vids = [10];
+vids = [1];
 for ii = vids
 
 %numVids = length(videoNameStems);
