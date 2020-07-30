@@ -51,7 +51,7 @@ checkCountTRs = 112;
 
 % Mask bounds
 glintFrameMaskSet = {...
-    [229   281   225   332], ... % Selected frame 1956
+    [222   279   220   322], ... % Selected frame 1956
     [224   290   234   329], ... % 2519
     [210   290   248   327], ... % 10790
     [116   198   214   142], ... % 6825
@@ -62,7 +62,7 @@ glintFrameMaskSet = {...
     [157   306   300   315], ... % 253
     [159   432   297   185], ... % 261
     [162   440   294   178], ... % 2470
-    [163   445   301   180], ... % 1527
+    [143   412   286   178], ... % 1527
     }; 
 pupilFrameMaskSet = {...
     [179   253   175   275], ...
@@ -87,17 +87,17 @@ candidateThetas = {[7*pi/4],[5*pi/4],[5*pi/4],[3*pi/2; pi],[3*pi/2],[3*pi/2; pi]
 
 ellipseEccenLBUB = {[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.35 0.45],[0.4 0.5]};
 
-glintPatchRadius = [35,20,20,20,20,20,20,20,20,20,20,30];
+glintPatchRadius = [30,20,20,20,20,20,20,20,20,20,20,30];
 
 minRadiusProportion = [0, 0, 0, 0.5, 0, 0, 0, 0, 0, 0, 0.5, 0.5];
 
 cutErrorThreshold = [1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 2, 1.5];
 
 ellipseAreaLB = [1000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000];
-ellipseAreaUP = [15000, 15000, 15000, 50000, 15000, 15000, 15000, 15000, 15000, 50000, 15000, 15000];
+ellipseAreaUP = [15000, 15000, 15000, 50000, 15000, 15000, 15000, 15000, 15000, 50000, 15000, 50000];
 %% Loop through video name stems get each video and its corresponding masks
 % This is for running videos in different order
-vids = [1];
+vids = [1, 12];
 for ii = vids
 
 %numVids = length(videoNameStems);
