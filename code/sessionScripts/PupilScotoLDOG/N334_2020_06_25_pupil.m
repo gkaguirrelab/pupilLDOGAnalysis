@@ -39,7 +39,7 @@ durations = [504,504,504,504,504,504];
 freqs = [1/24,1/12,1/6];
 
 % There is only one audio TTL pulse 
-checkCountTRs = 1;
+checkCountTRs = 112;
 
 % Mask bounds
 glintFrameMaskSet = {
