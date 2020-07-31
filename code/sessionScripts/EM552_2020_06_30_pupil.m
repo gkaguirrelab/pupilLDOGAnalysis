@@ -83,7 +83,7 @@ pupilCircleThreshSet = [0.0200, 0.0160, 0.0250, 0.0450, 0.0310, 0.0530, 0.0490, 
 
 pupilRangeSets = {[39 60], [41 50], [39 70], [47 60], [47 57], [55 67], [58 71], [42 60], [44 57], [63 80], [50 70], [44 54], [45 60]};
 
-candidateThetas = {[7*pi/4],[5*pi/4],[5*pi/4],[3*pi/2; pi],[3*pi/2],[3*pi/2; pi],[5*pi/4],[5*pi/4],[pi],[3*pi/2; 5*pi/4; pi],[pi; 5*pi/4],[pi; 5*pi/4]};
+candidateThetas = {[7*pi/4; pi/2],[5*pi/4],[5*pi/4],[3*pi/2; pi],[3*pi/2],[3*pi/2; pi],[5*pi/4],[5*pi/4],[pi],[3*pi/2; 5*pi/4; pi],[pi; 5*pi/4],[pi; 5*pi/4]};
 
 ellipseEccenLBUB = {[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.35 0.45],[0.4 0.5]};
 
@@ -98,7 +98,7 @@ ellipseAreaUP = [15000, 15000, 15000, 50000, 15000, 15000, 15000, 15000, 15000, 
 glintThreshold = [0.3, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.3];
 %% Loop through video name stems get each video and its corresponding masks
 % This is for running videos in different order
-vids = [1]; % video one glint threshold reduced to 0.3 from 0.5
+vids = [1];
 for ii = vids
 
 %numVids = length(videoNameStems);
