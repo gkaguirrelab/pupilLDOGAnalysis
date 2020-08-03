@@ -55,27 +55,26 @@ pupilFrameMaskSet = {...
     [90   147   150   173], ... % 202 94 start
     };
 
-pupilCircleThreshSet = [0.0200, 0.0160, 0.0250, 0.0450, 0.0310, 0.0530, 0.0490, 0.0400, 0.0300, 0.0400, 0.0490, 0.0370, 0.0350];
+pupilCircleThreshSet = [0.01, 0.01, 0.01, 0.01, 0.01];
 
-pupilRangeSets = {[39 60], [41 50], [39 70], [47 60], [47 57], [55 67], [58 71], [42 60], [44 57], [63 80], [50 70], [44 54], [45 60]};
+pupilRangeSets = {[39 70], [39 70], [39 70], [39 70]};
+candidateThetas = {[pi],[pi],[pi],[pi]};
 
-candidateThetas = {[7*pi/4; pi/2],[5*pi/4],[5*pi/4],[3*pi/2; pi],[3*pi/2],[3*pi/2; pi],[5*pi/4],[5*pi/4],[pi],[3*pi/2; 5*pi/4; pi],[pi; 5*pi/4],[pi; 5*pi/4; 3*pi/2]};
+ellipseEccenLBUB = {[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6]};
 
-ellipseEccenLBUB = {[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.35 0.45],[0.4 0.5]};
+glintPatchRadius = [20,20,20,20];
 
-glintPatchRadius = [30,20,20,20,20,20,20,20,20,20,20,30];
+minRadiusProportion = [0, 0, 0, 0];
 
-minRadiusProportion = [0, 0, 0, 0.5, 0, 0, 0, 0, 0, 0, 0.5, 0.5];
+cutErrorThreshold = [1.5, 1.5, 1.5, 1.5];
 
-cutErrorThreshold = [1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 2, 1.5];
-
-ellipseAreaLB = [1000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000];
-ellipseAreaUP = [15000, 15000, 15000, 50000, 15000, 15000, 15000, 15000, 15000, 50000, 15000, 50000];
-glintThreshold = [0.3, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.3];
+ellipseAreaLB = [5000, 5000, 5000, 5000];
+ellipseAreaUP = [50000, 50000, 50000, 50000];
+glintThreshold = [0.5, 0.5, 0.5, 0.5];
 %% Loop through video name stems get each video and its corresponding masks
 % This is for running videos in different order
-vids = [12];
-for ii = vids
+numVids = length(videoNameStems);
+for ii = 1:numVids
 
 %numVids = length(videoNameStems);
 %for ii = 1:numVids
