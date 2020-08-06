@@ -25,10 +25,10 @@ pathParams.Protocol = 'PupilPhotoLDOG';
 
 % The names of the videos to process
 videoNameStems = {...
-    'pupil_LightFlux_1-6Hz_RightEyeStim_01',...
-    'pupil_RodMel_1-6Hz_RightEyeStim_02',...
-    'pupil_LplusS_1-6Hz_RightEyeStim_03',...
-    'pupil_LightFlux_1-6Hz_LeftEyeStim_04',...
+    'pupil_LightFlux_1-6Hz_RightEyeStim_01',... % TR num 112
+    'pupil_RodMel_1-6Hz_RightEyeStim_02',... % TR num 109
+    'pupil_LplusS_1-6Hz_RightEyeStim_03',... % TR num 112
+    'pupil_LightFlux_1-6Hz_LeftEyeStim_04',... % TR num 112
     };
 
 % Stimulus properties
@@ -39,7 +39,7 @@ durations = [504,504,504,504];
 freqs = [1/6,1/6,1/6,1/6];
 
 % There is only one audio TTL pulse 
-checkCountTRs = 112;
+checkCountTRs = [112 109 112 112];
 
 % Mask bounds
 glintFrameMaskSet = {...
@@ -72,13 +72,9 @@ ellipseAreaLB = [5000, 5000, 5000, 5000];
 ellipseAreaUP = [50000, 50000, 50000, 50000];
 glintThreshold = [0.5, 0.5, 0.5, 0.5];
 %% Loop through video name stems get each video and its corresponding masks
-% This is for running videos in different order
+
 numVids = length(videoNameStems);
 for ii = 1:numVids
-
-%numVids = length(videoNameStems);
-%for ii = 1:numVids
-
     pupilCircleThresh = pupilCircleThreshSet(ii);
     pupilRange = pupilRangeSets{ii};
     videoName = {videoNameStems{ii}};
@@ -94,7 +90,7 @@ for ii = 1:numVids
     sessionKeyValues = {...
         'startFrame',1, ...
         'nFrames', Inf, ...
-        'checkCountTRs',checkCountTRs, ...
+        'checkCountTRs',checkCountTRs(ii), ...
         'glintFrameMask',glintFrameMask,...
         'glintGammaCorrection',1.3,...
         'glintThreshold',glintThreshold(ii),...
