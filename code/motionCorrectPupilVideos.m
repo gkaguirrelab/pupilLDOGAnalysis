@@ -33,22 +33,29 @@ row_val = glintFile.glintData.Y(fixedFrame);
 col_val = glintFile.glintData.X(fixedFrame);
 
 % Create the video object and open it
-vidfile = VideoWriter(outputPath,'MPEG-4');
+vidfile = VideoWriter(outputPath);
 open(vidfile);
 
 %% Loop through each frame and calculate the coordinate difference 
 fprintf('Correcting motion')
 for ii = 1:rawVideoGray.NumFrames
+    % Load the frame
     frame = read(rawVideoGray, ii);
+
+    % Get the row and column
     r = glintFile.glintData.Y(ii);
     c = glintFile.glintData.X(ii);
-    if isnan(r)
+    
+    % Calculate the difference between the coordinates
+    row_val_diff = r - row_val;
+    col_val_diff = c - col_val;
+    
+    % If the difference is NaN (usually means a blink) set coordinate
+    % difference to 0
+    if isnan(row_val_diff) || isnan(col_val_diff)
         row_val_diff = 0;
         col_val_diff = 0;
-    else
-        row_val_diff = row_val - r ;
-        col_val_diff = col_val - c;        
-    end 
+    end
     % Translation
     frame = imtranslate(frame, [row_val_diff, col_val_diff]);
     % Write the video and show it on the screen

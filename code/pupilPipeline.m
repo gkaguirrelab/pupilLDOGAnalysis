@@ -111,9 +111,11 @@ for vv = 1:length(videoNameStems)
         universalKeyValues{:},sessionKeyValues{:});
 
     % Motion correction
-    if true(sessionKeyValues.motionCorrect)
+    if true(sessionKeyValues{find(strcmp(sessionKeyValues, 'motionCorrect')) + 1})
+        motionCorrectedVideoName = fullfile(outputBaseDir,[videoNameStems{vv} '_corrected' '.avi']);
         motionCorrectPupilVideos(grayVideoName, glintFileName, ...
-            sessionKeyValues.goodGlintFrame, grayVideoName)
+            sessionKeyValues{find(strcmp(sessionKeyValues, 'goodGlintFrame')) + 1}, motionCorrectedVideoName)
+        grayVideoName = motionCorrectedVideoName;
     end
     
     % Perimeter
