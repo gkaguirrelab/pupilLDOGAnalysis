@@ -116,6 +116,10 @@ for vv = 1:length(videoNameStems)
         motionCorrectPupilVideos(grayVideoName, glintFileName, ...
             sessionKeyValues{find(strcmp(sessionKeyValues, 'goodGlintFrame')) + 1}, motionCorrectedVideoName)
         grayVideoName = motionCorrectedVideoName;
+        
+        % Find the glint again
+        findGlint(grayVideoName, glintFileName, ...
+            universalKeyValues{:},sessionKeyValues{:});
     end
     
     % Perimeter
