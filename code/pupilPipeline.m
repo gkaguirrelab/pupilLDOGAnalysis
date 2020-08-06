@@ -109,6 +109,12 @@ for vv = 1:length(videoNameStems)
     % Glint
     findGlint(grayVideoName, glintFileName, ...
         universalKeyValues{:},sessionKeyValues{:});
+
+    % Motion correction
+    if true(sessionKeyValues.motionCorrect)
+        motionCorrectPupilVideos(grayVideoName, glintFileName, ...
+            sessionKeyValues.goodGlintFrame, grayVideoName)
+    end
     
     % Perimeter
     findPupilPerimeter(grayVideoName, perimeterFileName, ...
