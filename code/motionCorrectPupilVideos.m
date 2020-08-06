@@ -1,4 +1,4 @@
-function motionCorrectPupilVideos(grayVideo, glintFileName, goodGlintFrame, outputPath) 
+function motionCorrectPupilVideos(grayVideo, glintFileName, fixedFrame, outputPath) 
 %
 % Using the glint location in a good frame as the reference this function 
 % registers all frames to that good frame. Only does a translation (3DOF). 
@@ -15,7 +15,7 @@ function motionCorrectPupilVideos(grayVideo, glintFileName, goodGlintFrame, outp
 % Inputs:
 %   grayVideo             - String. Path to the input gray video.
 %   glintFileName         - String. Path to the glint file.
-%   goodGlintFrame        - Number. A good frame where the glint is visible
+%   fixedFrame            - Number. A good frame where the glint is visible
 %                           and the pupil is in a good location. Used as 
 %                           the fixed image for the registration.
 %   outputPath            - String. Path to the output folder and filename.
@@ -29,15 +29,15 @@ rawVideoGray = VideoReader(grayVideo);
 glintFile = load(glintFileName);
 
 % Get the glint location on the selected good frame
-row_val = glintFile.glintData.Y(goodGlintFrame);
-col_val = glintFile.glintData.X(goodGlintFrame);
+row_val = glintFile.glintData.Y(fixedFrame);
+col_val = glintFile.glintData.X(fixedFrame);
 
 % Create the video object and open it
 vidfile = VideoWriter(outputPath,'MPEG-4');
 open(vidfile);
 
 %% Loop through each frame and calculate the coordinate difference 
-for ii = goodGlintFrame:rawVideoGray.NumFrames
+for ii = 1:rawVideoGray.NumFrames
     frame = read(rawVideoGray, ii);
     r = glintFile.glintData.Y(ii);
     c = glintFile.glintData.X(ii);
