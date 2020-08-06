@@ -37,6 +37,7 @@ vidfile = VideoWriter(outputPath,'MPEG-4');
 open(vidfile);
 
 %% Loop through each frame and calculate the coordinate difference 
+fprintf('Correcting motion')
 for ii = 1:rawVideoGray.NumFrames
     frame = read(rawVideoGray, ii);
     r = glintFile.glintData.Y(ii);
