@@ -56,7 +56,8 @@ inputBaseDir = fullfile(pathParams.dataSourceDirRoot, ...
     pathParams.Protocol,...
     'Videos',...
     pathParams.Subject,...
-    pathParams.Date);
+    pathParams.Date,...
+    pathParams.Session);
 
 outputBaseDir = fullfile(pathParams.dataOutputDirRoot, ...
     'Experiments',...
@@ -111,15 +112,17 @@ for vv = 1:length(videoNameStems)
         universalKeyValues{:},sessionKeyValues{:});
 
     % Motion correction
-    if true(sessionKeyValues{find(strcmp(sessionKeyValues, 'motionCorrect')) + 1})
-        motionCorrectedVideoName = fullfile(outputBaseDir,[videoNameStems{vv} '_corrected' '.avi']);
-        motionCorrectPupilVideos(grayVideoName, glintFileName, ...
-            sessionKeyValues{find(strcmp(sessionKeyValues, 'goodGlintFrame')) + 1}, motionCorrectedVideoName)
-        grayVideoName = motionCorrectedVideoName;
-        
-        % Find the glint again
-        findGlint(grayVideoName, glintFileName, ...
-            universalKeyValues{:},sessionKeyValues{:});
+    if any(strcmp(sessionKeyValues,'motionCorrect'))
+        if true(sessionKeyValues{find(strcmp(sessionKeyValues, 'motionCorrect')) + 1})
+            motionCorrectedVideoName = fullfile(outputBaseDir,[videoNameStems{vv} '_corrected' '.avi']);
+            motionCorrectPupilVideos(grayVideoName, glintFileName, ...
+                sessionKeyValues{find(strcmp(sessionKeyValues, 'goodGlintFrame')) + 1}, motionCorrectedVideoName)
+            grayVideoName = motionCorrectedVideoName;
+
+            % Find the glint again
+            findGlint(grayVideoName, glintFileName, ...
+                universalKeyValues{:},sessionKeyValues{:});
+        end
     end
     
     % Perimeter
