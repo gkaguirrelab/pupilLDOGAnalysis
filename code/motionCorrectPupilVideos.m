@@ -1,4 +1,4 @@
-function motionCorrectPupilVideos(grayVideo, glintFileName, fixedFrame, outputPath) 
+function motionCorrectPupilVideos(grayVideo, glintFileName, fixedFrame, outputPath, startFrame, nFrames) 
 %
 % Using the glint location in a good frame as the reference this function 
 % registers all frames to that good frame. Only does a translation (3DOF). 
@@ -29,38 +29,49 @@ rawVideoGray = VideoReader(grayVideo);
 glintFile = load(glintFileName);
 
 % Get the glint location on the selected good frame
-row_val = glintFile.glintData.Y(fixedFrame);
-col_val = glintFile.glintData.X(fixedFrame);
+fixedY = glintFile.glintData.Y(fixedFrame);
+fixedX = glintFile.glintData.X(fixedFrame);
 
 % Create the video object and open it
 vidfile = VideoWriter(outputPath);
 open(vidfile);
 
+% If nframes is infinite, set it to the video frame number
+if nFrames == Inf
+    lastFrame = rawVideoGray.NumFrames;
+else
+    lastFrame = startFrame + nFrames;
+end
+
 %% Loop through each frame and calculate the coordinate difference 
 fprintf('Correcting motion')
-for ii = 1:rawVideoGray.NumFrames
+for ii = startFrame:lastFrame
     % Load the frame
     frame = read(rawVideoGray, ii);
 
     % Get the row and column
-    r = glintFile.glintData.Y(ii);
-    c = glintFile.glintData.X(ii);
+    y = glintFile.glintData.Y(ii);
+    x = glintFile.glintData.X(ii);
     
     % Calculate the difference between the coordinates
-    row_val_diff = r - row_val;
-    col_val_diff = c - col_val;
+    x_diff = fixedX - x;
+    y_diff = fixedY - y;
     
     % If the difference is NaN (usually means a blink) set coordinate
     % difference to 0
-    if isnan(row_val_diff) || isnan(col_val_diff)
-        row_val_diff = 0;
-        col_val_diff = 0;
+    if isnan(x_diff) || isnan(y_diff)
+        x_diff = 0;
+        y_diff = 0;
     end
     % Translation
-    frame = imtranslate(frame, [row_val_diff, col_val_diff]);
+    frame = imtranslate(frame, [x_diff, y_diff]);
     % Write the video and show it on the screen
     writeVideo(vidfile, frame)
     imshow(frame)
+    hold on
+    plot(fixedX, fixedY, 'r+')
+    hold off
+    pause(0.001)
 end
 
 % Close the video
