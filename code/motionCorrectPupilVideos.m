@@ -26,6 +26,15 @@ function motionCorrectPupilVideos(grayVideo, glintFileName, fixedFrame, outputPa
 
 % Load the video and the glint
 rawVideoGray = VideoReader(grayVideo);
+
+% Video properties
+frameRate = rawVideoGray.FrameRate;
+Duration = rawVideoGray.Duration;
+frameCount = rawVideoGray.Numframes;
+Height = rawVideoGray.Height;
+Width = rawVideoGray.Width;
+Quality = 100;
+
 glintFile = load(glintFileName);
 
 % Get the glint location on the selected good frame
@@ -34,13 +43,17 @@ fixedX = glintFile.glintData.X(fixedFrame);
 
 % Create the video object and open it
 vidfile = VideoWriter(outputPath);
+vidfile.FrameRate = frameRate;
+% vidfile.Height = Height;
+% vidfile.Width = Width;
+vidfile.Quality = Quality;
 open(vidfile);
 
 % If nframes is infinite, set it to the video frame number
 if nFrames == Inf
     lastFrame = rawVideoGray.NumFrames;
 else
-    lastFrame = startFrame + nFrames;
+    lastFrame = startFrame + nFrames - 1;
 end
 
 %% Loop through each frame and calculate the coordinate difference 
@@ -67,11 +80,11 @@ for ii = startFrame:lastFrame
     frame = imtranslate(frame, [x_diff, y_diff]);
     % Write the video and show it on the screen
     writeVideo(vidfile, frame)
-    imshow(frame)
-    hold on
-    plot(fixedX, fixedY, 'r+')
-    hold off
-    pause(0.001)
+%     imshow(frame)
+%     hold on
+%     plot(fixedX, fixedY, 'r+')
+%     hold off
+%     pause(0.001)
 end
 
 % Close the video
