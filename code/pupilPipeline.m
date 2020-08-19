@@ -97,7 +97,7 @@ for vv = 1:length(videoNameStems)
     pupilFileName = fullfile(outputBaseDir,[videoNameStems{vv} '_pupil.mat']);
     fit3VideoName = fullfile(outputBaseDir,[videoNameStems{vv} '_stage3fit.avi']);
     fit6VideoName = fullfile(outputBaseDir,[videoNameStems{vv} '_stage6fit.avi']);
-    
+     
     % Deinterlace
     deinterlaceVideo(videoInFileName, grayVideoName, ...
         universalKeyValues{:},sessionKeyValues{:});
@@ -114,10 +114,10 @@ for vv = 1:length(videoNameStems)
     if any(strcmp(sessionKeyValues,'motionCorrect'))
         if true(sessionKeyValues{find(strcmp(sessionKeyValues, 'motionCorrect')) + 1})
             motionCorrectedVideoName = fullfile(outputBaseDir,[videoNameStems{vv} '_corrected' '.avi']);
-            motionCorrectPupilVideos(grayVideoName, glintFileName, ...
+            correctMotion(grayVideoName, glintFileName, ...
                 sessionKeyValues{find(strcmp(sessionKeyValues, 'goodGlintFrame')) + 1}, ...
-                motionCorrectedVideoName, sessionKeyValues{find(strcmp(sessionKeyValues, 'startFrame')) + 1},...
-                sessionKeyValues{find(strcmp(sessionKeyValues, 'nFrames')) + 1})
+                'startFrame', sessionKeyValues{find(strcmp(sessionKeyValues, 'startFrame')) + 1},...
+                'nFrames', sessionKeyValues{find(strcmp(sessionKeyValues, 'nFrames')) + 1}, 'verbose', true)
             grayVideoName = motionCorrectedVideoName;
 
             % Find the glint again
@@ -125,11 +125,17 @@ for vv = 1:length(videoNameStems)
                 universalKeyValues{:},sessionKeyValues{:});
         end
     end
+    % Set gray video variable to motion corrected video if the flag is used
+    if any(strcmp(sessionKeyValues,'motionCorrect'))
+        if true(sessionKeyValues{find(strcmp(sessionKeyValues, 'motionCorrect')) + 1})
+            grayVideoName = fullfile(outputBaseDir,[videoNameStems{vv} '_corrected' '.avi']);
+        end
+    end
     
     % Perimeter
     findPupilPerimeter(grayVideoName, perimeterFileName, ...
         universalKeyValues{:},sessionKeyValues{:});
-    
+
     % Video
     makeFitVideo(grayVideoName, fit3VideoName, ...
         'perimeterFileName',perimeterFileName,...
