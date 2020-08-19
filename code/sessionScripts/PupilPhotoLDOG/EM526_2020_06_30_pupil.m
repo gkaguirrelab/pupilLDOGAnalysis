@@ -43,14 +43,14 @@ checkCountTRs = [112 109 112 112];
 
 % Mask bounds
 glintFrameMaskSet = {...
-    [1   246   213    74], ... 
-    [1   141   267   276], ... 
+    [51   352   276   169], ... 
+    [1   158   239   244], ... 
     [3   169   118   204], ... 
     [105   178   213   142], ... 
     }; 
 pupilFrameMaskSet = {...
-    [6   203   234   147], ... % 268
-    [5   120   281   298], ... %194
+    [1   278   237    48], ... % 268
+    [17   122   255   299], ... %194
     [1   171   221   192], ... %1371
     [82   214   159   139], ... % 202 94 start
     };
@@ -72,11 +72,10 @@ ellipseAreaLB = [5000, 5000, 5000, 5000];
 ellipseAreaUP = [50000, 50000, 50000, 50000];
 glintThreshold = [0.4, 0.5, 0.5, 0.5];
 
-goodGlintFrame = [47, 13, 15, 90];
+goodGlintFrame = [100, 13, 15, 90];
 %% Loop through video name stems get each video and its corresponding masks
-
-numVids = length(videoNameStems);
-for ii = 1:numVids
+vids = [1];
+for ii = vids
     pupilCircleThresh = pupilCircleThreshSet(ii);
     pupilRange = pupilRangeSets{ii};
     videoName = {videoNameStems{ii}};
