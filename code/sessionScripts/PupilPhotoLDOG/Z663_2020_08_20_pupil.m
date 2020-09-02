@@ -82,7 +82,7 @@ pupilFrameMaskSet = {...
 pupilCircleThreshSet = [0.062, 0.062, 0.062, 0.062, 0.062, 0.062, 0.062, 0.062, 0.062, 0.062, 0.062, 0.062];
 
 pupilRangeSets = {[50 78], [50 78], [50 78], [50 78], [50 78], [50 78], [50 78], [50 78], [50 78], [50 78], [50 78], [50 78]};
-candidateThetas = {[pi/2; pi],[pi],[pi],[pi],[pi],[pi],[pi],[pi],[pi],[pi],[0],[pi]};
+candidateThetas = {[pi/2; pi],[pi],[pi],[4*pi/6],[4*pi/6],[pi/2; 5*pi/4],[3*pi/2],[3*pi/2],[5*pi/4],[5*pi/4],[0; 5*pi/4],[3*pi/2]};
 
 ellipseEccenLBUB = {[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6]};
 
@@ -99,7 +99,7 @@ glintThreshold = [0.4, 0.4, 0.36, 0.36, 0.36, 0.36, 0.4, 0.36, 0.36, 0.4, 0.4, 0
 goodGlintFrame = [15, 9, 13, 5, 25, 9, 13, 179, 8, 9, 15, 3];
 pupilGammaCorrection = [0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75];
 %% Loop through video name stems get each video and its corresponding masks
-vids = [7, 8, 9, 10, 11, 12];
+vids = [4,5,6,7,8,9,10,11,12];
 for ii = vids
     pupilCircleThresh = pupilCircleThreshSet(ii);
     pupilRange = pupilRangeSets{ii};
