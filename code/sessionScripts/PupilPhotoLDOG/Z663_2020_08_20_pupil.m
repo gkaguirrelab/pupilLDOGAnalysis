@@ -40,11 +40,11 @@ videoNameStems = {...
     };
 
 % Stimulus properties
-sets = {[1 7],[2 8],[3 9],[4 10],[5 11], [6, 12]};
+sets = {[1 7],[2 8],[3 9],[4 4],[5 11], [6, 12]};
 labels = {'pupil_LightFlux_1-6Hz_RightEyeStim','pupil_RodMel_1-6Hz_RightEyeStim',...
     'pupil_LplusS_1-6Hz_RightEyeStim', 'pupil_LightFlux_1-6Hz_LeftEyeStim',...
     'pupil_RodMel_1-6Hz_LeftEyeStim', 'pupil_LplusS_1-6Hz_LeftEyeStim'};
-durations = [504,504,504,504];
+durations = [504,504,504,504,504,504,504];
 freqs = [1/6,1/6,1/6,1/6,1/6,1/6];
 
 % There is only one audio TTL pulse 
@@ -75,7 +75,7 @@ pupilFrameMaskSet = {...
     [32   200   194   180], ...
     [49   164   205   242], ...
     [104    66   167   346], ...
-    [1    36    50    80], ...
+    [17    21   134    88], ...
     [29     0   106   235], ...
     [2    59   135   220]};
 
@@ -86,7 +86,7 @@ candidateThetas = {[pi/2; pi],[pi],[pi],[pi; 4*pi/6],[pi; 4*pi/6],[pi/2],[3*pi/2
 
 ellipseEccenLBUB = {[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6]};
 
-glintPatchRadius = [20,30,20,35,35,35,35,20,20,50,50,60];
+glintPatchRadius = [20,30,20,35,35,35,35,20,20,50,60,60];
 
 minRadiusProportion = [0, 0, 0, 0, 0, -0.8, 0, 0, 0, 0, 0, 0];
 
@@ -99,7 +99,7 @@ glintThreshold = [0.4, 0.4, 0.36, 0.36, 0.36, 0.36, 0.4, 0.36, 0.36, 0.4, 0.4, 0
 goodGlintFrame = [15, 9, 13, 5, 25, 9, 13, 179, 8, 9, 15, 3];
 pupilGammaCorrection = [0.75,0.75,0.75,0.75,0.75,0.95,0.75,0.75,0.75,0.75,0.75,0.75];
 %% Loop through video name stems get each video and its corresponding masks
-vids = [2];
+vids = [10];
 for ii = vids
     pupilCircleThresh = pupilCircleThreshSet(ii);
     pupilRange = pupilRangeSets{ii};
