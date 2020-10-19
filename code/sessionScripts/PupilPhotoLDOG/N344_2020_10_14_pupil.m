@@ -70,7 +70,7 @@ pupilFrameMaskSet = {...
     [91   182   128   176], ...  % 60
     [31   154   219   235], ... % 10790
     [1   103   197   210], ... % 410
-    [1   108   195   201], ... % 7
+    [1    91   187   203], ... % 7
     [1    66   208   283], ... % 545
     [1    63   203   268], ... % 19
     [1    90   218   283], ... % 1415
@@ -78,12 +78,12 @@ pupilFrameMaskSet = {...
     [183   159    48   210], ... % 927
     [198   177    62   220]}; % 698
 
-pupilCircleThreshSet = [0.047, 0.052, 0.053, 0.08, 0.196, 0.184, 0.095, 0.108, 0.08, 0.075, 0.071, 0.071];
+pupilCircleThreshSet = [0.057, 0.063, 0.063, 0.08, 0.129, 0.128, 0.095, 0.108, 0.08, 0.075, 0.071, 0.071];
 
 pupilRangeSets = {[65 80], [71 87], [72 88], [63 77], [106 131], [106 131], [93 119], [93 119], [80 98], [68 84], [70 86], [71 86]};
 candidateThetas = {[pi/2; pi],[3*pi/2; pi/2; pi],[pi],[pi; 4*pi/6],[pi; 4*pi/6],[pi/2],[3*pi/2],[3*pi/2],[5*pi/4],[5*pi/4],[pi/2; pi],[pi/2; pi]};
 
-ellipseEccenLBUB = {[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0 0.6]};
+ellipseEccenLBUB = {[0.2 0.6],[0.2 0.7],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0 0.6]};
 
 glintPatchRadius = [40,40,40,40,40,40,40,40,40,40,40,40];
 
@@ -99,7 +99,7 @@ goodGlintFrame = [15, 9, 13, 5, 25, 9, 13, 179, 8, 9, 15, 3];
 pupilGammaCorrection = [0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75];
 motionCorrect = [false,false,false,false,false,false,false,false,false,false,false,false];
 %% Loop through video name stems get each video and its corresponding masks
-vids = [1,2,3,4,5,6,7,8,9,10,11,12];
+vids = [9];
 for ii = vids
     pupilCircleThresh = pupilCircleThreshSet(ii);
     pupilRange = pupilRangeSets{ii};
@@ -140,6 +140,6 @@ for ii = vids
     
 end
 
-%% Call the frequency fitting pipeline
-fourierFitPipeline(pathParams,videoNameStems,sets,labels,durations,freqs);
+% %% Call the frequency fitting pipeline
+% fourierFitPipeline(pathParams,videoNameStems,sets,labels,durations,freqs);
 
