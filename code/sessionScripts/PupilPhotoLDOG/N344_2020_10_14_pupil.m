@@ -81,15 +81,15 @@ pupilFrameMaskSet = {...
 pupilCircleThreshSet = [0.057, 0.063, 0.063, 0.08, 0.129, 0.128, 0.095, 0.108, 0.08, 0.075, 0.071, 0.071];
 
 pupilRangeSets = {[65 80], [71 87], [72 88], [63 77], [106 131], [106 131], [93 119], [93 119], [80 98], [68 84], [70 86], [71 86]};
-candidateThetas = {[pi],[pi],[pi],[pi/2],[pi/2],[pi],[pi],[pi],[pi],[pi],[pi/2],[pi]};
+candidateThetas = {[pi],[pi],[pi],[pi/2],[pi/2],[pi/2],[pi],[pi],[pi],[pi],[pi/2],[pi]};
 
 ellipseEccenLBUB = {[0.2 0.6],[0.2 0.7],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0 0.6]};
 
-glintPatchRadius = [45,45,45,45,45,45,45,45,45,45,45,45];
+glintPatchRadius = [45,45,50,45,45,45,45,45,45,45,45,45];
 
 minRadiusProportion = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
-cutErrorThreshold = [2,2,2,1,1,2,2,2,2,2,1,2];
+cutErrorThreshold = [2,2,2,1,1,1,2,2,2,2,1,2];
 
 ellipseAreaLB = [1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000];
 ellipseAreaUP = [90000, 90000, 90000, 90000, 90000, 90000, 90000, 90000, 90000, 90000, 90000, 90000];
@@ -140,6 +140,6 @@ for ii = vids
     
 end
 
-% %% Call the frequency fitting pipeline
-% fourierFitPipeline(pathParams,videoNameStems,sets,labels,durations,freqs);
+%% Call the frequency fitting pipeline
+fourierFitPipeline(pathParams,videoNameStems,sets,labels,durations,freqs);
 
