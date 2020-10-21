@@ -1,9 +1,22 @@
 10/14/2020 - 10/15/2020
 
 Z665 - Being Analyzed by Linux Machine
-N344 - Script ready
-EM543 - 
-EM529 - 
-AS2-430 - 
+1-Good fit
+2- Larger glint patch
+3-No fit smaller glint patch
+4-Good fit
+5-Good fit
+6-Good fit
+7-Good fit
+8-Bad fit
+9-Good fit
+10-Good fit
+11-Good fit
+12-Good fit
 
- 
+EM543 - Script ready
+EM529 - Script ready
+AS2-430 - 
+2353 - 
+
+N344 - Done 
