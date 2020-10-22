@@ -1,8 +1,8 @@
-10/14/2020 - 10/15/2020
+10/14/2020 - 10/15/2020 - 20/15/2020
 
-Z665 - Being Analyzed by Linux Machine
+Z665 - On hold
 1-Good fit
-2- Larger glint patch
+2-Bad but nothing
 3-No fit smaller glint patch
 4-Good fit
 5-Good fit
@@ -14,9 +14,24 @@ Z665 - Being Analyzed by Linux Machine
 11-Good fit
 12-Good fit
 
-EM543 - Script ready
-EM529 - Script ready
+EM529 - Running on the Windows Machine
+1- Good no cut
+2- Good no cut
+3- Good top cut
+4- Good no cut
+5- Good no cut
+6- Good, bottom right cut
+7- Good no cut
+8- Good no cut
+9- Good no cut
+10- Good no cut
+11- Good no cut
+12- Good no cut
+
+EM543 - Running on the Linux machine
+
+
 AS2-430 - 
 2353 - 
 
-N344 - Done 
+N344 - Done, All good
