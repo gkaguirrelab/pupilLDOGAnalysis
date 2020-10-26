@@ -54,7 +54,7 @@ checkCountTRs = [112 112 112 112 112 112 112 112 112 112 112 112];
 % Mask bounds
 glintFrameMaskSet = {...
     [112   256   332   350], ... %2232
-    [39   258   309   231], ... 
+    [21   263   313   183], ... 
     [107   218   341   392], ... 
     [221   358   217   244], ... 
     [214   355   218   237], ...
@@ -83,13 +83,13 @@ pupilFrameMaskSet = {...
 pupilCircleThreshSet = [0.08, 0.08, 0.065, 0.08, 0.137, 0.1, 0.1, 0.1, 0.125, 0.187, 0.199, 0.198];
 
 pupilRangeSets = {[90 119], [90 119], [90 119], [90 119], [90 119], [90 113], [90 119], [90 113], [90 113], [116 144], [116 144], [116 144]};
-candidateThetas = {[3*pi/4],[pi; 0],[5*pi/4],[pi],[pi],[5*pi/4],[pi],[3*pi/4; pi],[5*pi/4],[5*pi/4],[pi],[pi]};
+candidateThetas = {[3*pi/4],[pi; 0],[5*pi/4; pi],[pi],[pi],[5*pi/4],[pi],[3*pi/4; pi],[5*pi/4],[5*pi/4],[pi],[pi]};
 
 ellipseEccenLBUB = {[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0 0.6]};
 
-glintPatchRadius = [40,40,40,40,40,40,40,40,40,40,40,40];
+glintPatchRadius = [40,40,45,40,40,40,40,40,40,40,40,40];
 
-minRadiusProportion = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+minRadiusProportion = [0, 0, 0, 0, 0, 0, 0, 0.6, 0, 0, 0, 0];
 
 cutErrorThreshold = [1,1,1,2,2,1,1,1,1,1,2,2];
 
@@ -101,7 +101,7 @@ goodGlintFrame = [15, 9, 13, 5, 25, 9, 13, 179, 8, 9, 15, 3];
 pupilGammaCorrection = [0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75];
 motionCorrect = [false,false,false,false,false,false,false,false,false,false,false,false];
 %% Loop through video name stems get each video and its corresponding masks
-vids = [1,2,3,4,5,6,7,8,9,10,11,12];
+vids = [2,3,8];
 for ii = vids
     pupilCircleThresh = pupilCircleThreshSet(ii);
     pupilRange = pupilRangeSets{ii};
