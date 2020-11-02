@@ -58,7 +58,7 @@ pupilFrameMaskSet = {...
     [83   155   146   210], ... % 
     [122   141   112   215]}; % 
 
-pupilCircleThreshSet = [0.038, 0.038, 0.038, 0.038, 0.038, 0.038];
+pupilCircleThreshSet = [0.038, 0.038, 0.038, 0.038, 0.04, 0.038];
 
 pupilRangeSets = {[59 72], [59 72], [59 72], [59 72], [59 72], [59 72]};
 candidateThetas = {[pi],[pi],[pi],[pi],[pi],[pi]};
@@ -79,7 +79,7 @@ goodGlintFrame = [15, 9, 13, 5, 25, 9];
 pupilGammaCorrection = [0.75,0.75,0.75,0.75,0.75,0.75];
 motionCorrect = [false,false,false,false,false,false];
 %% Loop through video name stems get each video and its corresponding masks
-vids = [1,2,3,4,5,6];
+vids = [5,6];
 for ii = vids
     pupilCircleThresh = pupilCircleThreshSet(ii);
     pupilRange = pupilRangeSets{ii};
