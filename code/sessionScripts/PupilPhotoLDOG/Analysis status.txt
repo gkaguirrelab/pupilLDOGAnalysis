@@ -1,6 +1,6 @@
 10/14/2020 - 10/15/2020 - 20/15/2020
 
-Z665 - On hold
+Z665 - On hold - fit stage
 1-Good fit
 2-Bad but nothing
 3-No fit smaller glint patch
@@ -14,24 +14,23 @@ Z665 - On hold
 11-Good fit
 12-Good fit
 
-EM529 - Running on the Windows Machine
-1- Good no cut
-2- Good no cut
-3- Good top cut
-4- Good no cut
-5- Good no cut
-6- Good, bottom right cut
-7- Good no cut
-8- Good no cut
-9- Good no cut
-10- Good no cut
-11- Good no cut
-12- Good no cut
 
 EM543 - Running on the Linux machine
+1-good - good
+2-good - good
+3-good - bad - need a larger pupil cut
+4-good - good
+5-good - good
+6-good - good
+7-good - bad
+8-good - good
+9-good - good
+10-good - good
+11-good - good
+12-good - good
 
 
-AS2-430 - 
 2353 - 
-
+AS2-430 - Done, number 13 may need revision
 N344 - Done, All good
+EM529 - Done, number 6 might need a revision
