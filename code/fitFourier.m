@@ -1,4 +1,4 @@
-function [amplitude, phase, figHandle] = fitFourier(videoPathNameStems, freq, endTime, startTime, highPassCutoff, showPlot)
+function [amplitude, phase, figHandle] = fitFourier(videoPathNameStems, freq, endTime, startTime, highPassCutoff, rmseThresh, showPlot)
 % Fit a Fourier basis at a specified frequency to pupil ellipse area
 %
 % Syntax:
@@ -26,13 +26,18 @@ switch nargin
     case 3
         startTime = 0;
         highPassCutoff = 0.01;
+        rmseThresh = 1;
         showPlot = false;
     case 4
         highPassCutoff = 0.01;
+        rmseThresh = 1;
         showPlot = false;
     case 5
+        rmseThresh = 1;
         showPlot = false;
-    case {1, 2, 6}
+    case 6
+        showPlot = false;
+    case {1, 2, 7}
         % all good
     otherwise
         error('Improper number of inputs');
@@ -65,6 +70,11 @@ for vv = 1:nVideos
     
     % Extract the pupil radius
     pupilRadius = sqrt(pupilData.initial.ellipses.values(startIdx:endIdx,3)./pi);
+    rmse = pupilData.initial.ellipses.RMSE(startIdx:endIdx);
+    
+    % nan those time points with pupil ellipse fits below the quality
+    % threshold
+    pupilRadius(rmse > rmseThresh) = nan;
     
     % Handle nans
     nanIdx = isnan(pupilRadius);
