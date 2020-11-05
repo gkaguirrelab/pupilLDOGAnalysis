@@ -66,7 +66,7 @@ glintFrameMaskSet = {...
     [105   273   311   308]}; 
 pupilFrameMaskSet = {...
     [157   232   104   187], ... % 
-    [136   205   103   188], ... % 
+    [135   193    61   138], ... % 
     [117   159    77   160], ...  % 
     [196   301    52    71], ... % 
     [211   340    51    82], ... % 
@@ -78,18 +78,18 @@ pupilFrameMaskSet = {...
     [101   198   161   208], ... % 
     [103   200   151   200]}; % 
 
-pupilCircleThreshSet = [0.019, 0.05, 0.094, 0.033, 0.045, 0.041, 0.026, 0.03, 0.029, 0.064, 0.1, 0.103];
+pupilCircleThreshSet = [0.019, 0.03, 0.094, 0.033, 0.045, 0.041, 0.026, 0.03, 0.029, 0.064, 0.064, 0.087];
 
-pupilRangeSets = {[46 60], [50 70], [90 110], [58 70], [55 68], [53 65], [55 68], [58 71], [59 72], [59 72], [64 78], [65 79]};
-candidateThetas = {[pi],[pi],[pi],[pi/2],[pi/2],[pi/2],[pi],[pi],[pi],[pi],[pi/2],[pi]};
+pupilRangeSets = {[46 60], [70 90], [90 110], [58 70], [55 68], [53 65], [55 68], [58 71], [59 72], [59 72], [64 78], [65 79]};
+candidateThetas = {[pi],[pi],[pi],[pi],[pi],[pi/2],[pi],[pi],[pi],[pi],[pi],[pi]};
 
 ellipseEccenLBUB = {[0.2 0.6],[0.2 0.7],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0 0.6]};
 
-glintPatchRadius = [45,45,50,45,45,45,45,45,45,45,45,45];
+glintPatchRadius = [45,45,50,45,45,55,45,45,55,45,45,45];
 
 minRadiusProportion = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
-cutErrorThreshold = [2,2,2,1,1,1,2,2,2,2,1,2];
+cutErrorThreshold = [2,2,2,2,2,1,2,2,2,2,2,2];
 
 ellipseAreaLB = [1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000];
 ellipseAreaUP = [90000, 90000, 90000, 90000, 90000, 90000, 90000, 90000, 90000, 90000, 90000, 90000];
@@ -99,7 +99,7 @@ goodGlintFrame = [15, 9, 13, 5, 25, 9, 13, 179, 8, 9, 15, 3];
 pupilGammaCorrection = [0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75];
 motionCorrect = [false,false,false,false,false,false,false,false,false,false,false,false];
 %% Loop through video name stems get each video and its corresponding masks
-vids = [1,2,3,4,5,6,7,8,9,10,11,12];
+vids = [6];
 for ii = vids
     pupilCircleThresh = pupilCircleThreshSet(ii);
     pupilRange = pupilRangeSets{ii};
