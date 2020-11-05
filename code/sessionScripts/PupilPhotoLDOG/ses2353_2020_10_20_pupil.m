@@ -99,7 +99,7 @@ goodGlintFrame = [15, 9, 13, 5, 25, 9, 13, 179, 8, 9, 15, 3];
 pupilGammaCorrection = [0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75];
 motionCorrect = [false,false,false,false,false,false,false,false,false,false,false,false];
 %% Loop through video name stems get each video and its corresponding masks
-vids = [6];
+vids = [1,2,3,4,5,6,7,8,9,10,11,12];
 for ii = vids
     pupilCircleThresh = pupilCircleThreshSet(ii);
     pupilRange = pupilRangeSets{ii};
@@ -140,6 +140,6 @@ for ii = vids
     
 end
 
-% %% Call the frequency fitting pipeline
-% fourierFitPipeline(pathParams,videoNameStems,sets,labels,durations,freqs);
+%% Call the frequency fitting pipeline
+fourierFitPipeline(pathParams,videoNameStems,sets,labels,durations,freqs);
 
