@@ -1,4 +1,4 @@
-%% EM552_2020_06_30_pupil
+%% EM522_2020_06_30_pupil
 %
 % The video analysis pre-processing pipeline for an LDOG session.
 %
@@ -133,7 +133,7 @@ for ii = 1:numVids
 
 
     % Call the pre-processing pipeline
-    pupilPipeline(pathParams,videoName,sessionKeyValues);
+%    pupilPipeline(pathParams,videoName,sessionKeyValues);
     
 end
 
