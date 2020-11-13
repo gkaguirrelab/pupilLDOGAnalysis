@@ -9,7 +9,7 @@ protocol = 'PupilPhotoLDOG';
 groups = { ...
     {'N344','N347'},...
     {'Z665','Z663'},...
-    {'EM529','EM543','EM522','EM526'},...
+    {'EM529','EM543','EM522'},...
     {'2353'} };
 
 groupLabels = {'WT','XLPRA2+','RHOT4R+','RCD1'};
@@ -17,11 +17,12 @@ groupLabels = {'WT','XLPRA2+','RHOT4R+','RCD1'};
 directionLabels = {'LightFlux','LplusS','RodMel'};
 eyeLabels = {'Left','Right'};
 
+    figHandle = figure();
+
 for gg = 1:length(groupLabels)
     subList = groups{gg};
-    figHandle = figure();
     for ss = 1:length(subList)
-        subplot(1,4,ss);
+        subplot(length(groupLabels),4,ss+(gg-1)*length(groupLabels));
         resultPath = fullfile(dataOutputDirRoot,'Experiments','OLApproach_TrialSequenceMR',protocol,'EyeTracking',subList{ss});
         sessList = dir(fullfile(resultPath,'*-*-*'));
         resultPath = fullfile(sessList(end).folder,sessList(end).name);
@@ -39,8 +40,9 @@ for gg = 1:length(groupLabels)
             end
         end
         
-        bar(categorical(directionLabels),Y')
+        bar(categorical(directionLabels),nanmean(Y',2))
         ylabel('% pupil change');
+        ylim([0 3]);
         title(subList{ss});
         
     end
