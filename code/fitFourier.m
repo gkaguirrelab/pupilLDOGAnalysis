@@ -26,14 +26,14 @@ switch nargin
     case 3
         startTime = 0;
         highPassCutoff = 0.01;
-        rmseThresh = 1;
+        rmseThresh = 1.5;
         showPlot = false;
     case 4
         highPassCutoff = 0.01;
-        rmseThresh = 1;
+        rmseThresh = 1.5;
         showPlot = false;
     case 5
-        rmseThresh = 1;
+        rmseThresh = 1.5;
         showPlot = false;
     case 6
         showPlot = false;
@@ -81,6 +81,10 @@ for vv = 1:nVideos
     meanRadius = nanmean(pupilRadius);
     pupilRadius(nanIdx) = meanRadius;
     
+    % Report proportion of nans
+    tmp = strsplit(videoPathNameStems{vv},filesep);
+    fprintf(sprintf([tmp{end} ' median RMSE: %2.2f, percent nan: %d \n'],nanmedian(rmse),round(100*sum(nanIdx)/length(nanIdx))));
+    
     % Filter low-frequencies
     pupilRadiusFiltered = highpass(pupilRadius,highPassCutoff,fs);
     
@@ -119,7 +123,8 @@ set(figHandle,'color','w');
 ts = t ./ fs;
 plot(ts,y,'.','Color',[0.85 0.85 0.85]);
 hold on
-plot(ts,X*b,'-r');
+yFit = highpass(X*b,highPassCutoff,fs);
+plot(ts,yFit,'-r');
 ylim([-25 25]);
 title(videoPathNameStems,'interpreter', 'none');
 xlabel('time [secs]');
