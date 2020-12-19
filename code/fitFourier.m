@@ -26,14 +26,14 @@ switch nargin
     case 3
         startTime = 0;
         highPassCutoff = 0.01;
-        rmseThresh = 1.5;
+        rmseThresh = 2;
         showPlot = false;
     case 4
         highPassCutoff = 0.01;
-        rmseThresh = 1.5;
+        rmseThresh = 2;
         showPlot = false;
     case 5
-        rmseThresh = 1.5;
+        rmseThresh = 2;
         showPlot = false;
     case 6
         showPlot = false;
@@ -43,10 +43,21 @@ switch nargin
         error('Improper number of inputs');
 end
 
+% Assign a uniformityThresh
+uniformityThresh = 0.5;
+
 % If videoPathNameStem is a char vector, make it a one element cell array
 if ~iscell(videoPathNameStems)
 videoPathNameStems{1} = videoPathNameStems;
 end
+
+% Anonymous function returns the linear non-uniformity of a set of values,
+% ranging from 0 when perfectly uniform to 1 when completely non-uniform. I
+% define the bins over which the distribution of perimeter angles that will
+% be evaluated. 20 bins works pretty well.
+nDivisions = 20;
+histBins = linspace(-pi,pi,nDivisions);
+nonUniformity = @(x) (sum(abs(x/sum(x)-mean(x/sum(x))))/2)/(1-1/length(x));
 
 % Loop over the identified videos
 nVideos = length(videoPathNameStems);
@@ -54,9 +65,11 @@ cellSignal = {};
 for vv = 1:nVideos
     timebaseFileName = [videoPathNameStems{vv} '_timebase.mat'];
     pupilFileName = [videoPathNameStems{vv} '_pupil.mat'];
+    perimeterFileName = [videoPathNameStems{vv} '_correctedPerimeter.mat'];
     
     load(timebaseFileName,'timebase');
     load(pupilFileName,'pupilData');
+    load(perimeterFileName,'perimeter');
     
     % Determine the sampling frequency of the data in Hz
     tmp = diff(timebase.values);
@@ -72,10 +85,33 @@ for vv = 1:nVideos
     pupilRadius = sqrt(pupilData.initial.ellipses.values(startIdx:endIdx,3)./pi);
     rmse = pupilData.initial.ellipses.RMSE(startIdx:endIdx);
     
-    % nan those time points with pupil ellipse fits below the quality
-    % threshold
-    pupilRadius(rmse > rmseThresh) = nan;
+    % Find the points with a bad rmse
+    badRMSE = rmse > rmseThresh;
     
+    % Loop over frames and measure linear non-uniformity. Frames which have
+    % no perimeter points will be given a distVal of NaN.
+    for ii = 1:length(pupilRadius)
+        
+        % Obtain the center of this fitted ellipse
+        centerX = pupilData.initial.ellipses.values(ii,1);
+        centerY = pupilData.initial.ellipses.values(ii,2);
+        
+        % Obtain the set of perimeter points
+        Xp = perimeter.data{ii}.Xp;
+        Yp = perimeter.data{ii}.Yp;
+        
+        % Calculate the deviation of the distribution of points from
+        % uniform
+        linearNonUniformity(ii) = nonUniformity(histcounts(atan2(Yp-centerY,Xp-centerX),histBins));
+    end
+    
+    % Find the points with a bad uniformity
+    badUniformity = linearNonUniformity > uniformityThresh;
+
+    % nan the bad time points
+    pupilRadius(badUniformity) = nan;
+    pupilRadius(badRMSE) = nan;
+
     % Handle nans
     nanIdx = isnan(pupilRadius);
     meanRadius = nanmean(pupilRadius);
@@ -83,7 +119,7 @@ for vv = 1:nVideos
     
     % Report proportion of nans
     tmp = strsplit(videoPathNameStems{vv},filesep);
-    fprintf(sprintf([tmp{end} ' median RMSE: %2.2f, percent nan: %d \n'],nanmedian(rmse),round(100*sum(nanIdx)/length(nanIdx))));
+    fprintf(sprintf([tmp{end} ' median RMSE: %2.2f, percent bad RMSE: %d, percent bad uniformity: %d \n'],nanmedian(rmse),round(100*sum(badRMSE)/length(nanIdx)),round(100*sum(badUniformity)/length(nanIdx))));
     
     % Filter low-frequencies
     pupilRadiusFiltered = highpass(pupilRadius,highPassCutoff,fs);
