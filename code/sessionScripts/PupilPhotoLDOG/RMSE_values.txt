@@ -1,0 +1,158 @@
+Z666_2020_12_11_pupil
+pupil_LightFlux_1-6Hz_RightEyeStim_01 median RMSE: 1.00, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_LightFlux_1-6Hz_RightEyeStim_07 median RMSE: 1.03, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_RodMel_1-6Hz_RightEyeStim_02 median RMSE: 0.99, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_RodMel_1-6Hz_RightEyeStim_08 median RMSE: 1.10, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_LplusS_1-6Hz_RightEyeStim_03 median RMSE: 0.99, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_LplusS_1-6Hz_RightEyeStim_09 median RMSE: 1.19, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_LightFlux_1-6Hz_LeftEyeStim_04 median RMSE: 0.96, percent bad RMSE: 1, percent bad uniformity: 0 
+pupil_LightFlux_1-6Hz_LeftEyeStim_10 median RMSE: 0.95, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_RodMel_1-6Hz_LeftEyeStim_05 median RMSE: 0.96, percent bad RMSE: 1, percent bad uniformity: 0 
+pupil_RodMel_1-6Hz_LeftEyeStim_11 median RMSE: 0.96, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_LplusS_1-6Hz_LeftEyeStim_06 median RMSE: 0.92, percent bad RMSE: 1, percent bad uniformity: 0 
+pupil_LplusS_1-6Hz_LeftEyeStim_12 median RMSE: 0.92, percent bad RMSE: 1, percent bad uniformity: 0 
+--------------------------------------------------------------------------------------------------------
+Z665_2020_10_14_pupil
+pupil_LightFlux_1-6Hz_RightEyeStim_01 median RMSE: 0.99, percent bad RMSE: 1, percent bad uniformity: 0 
+pupil_LightFlux_1-6Hz_RightEyeStim_07 median RMSE: 0.96, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_RodMel_1-6Hz_RightEyeStim_02 median RMSE: 0.99, percent bad RMSE: 7, percent bad uniformity: 13 
+pupil_RodMel_1-6Hz_RightEyeStim_08 median RMSE: 0.91, percent bad RMSE: 3, percent bad uniformity: 1 
+pupil_LplusS_1-6Hz_RightEyeStim_03 median RMSE: 1.15, percent bad RMSE: 6, percent bad uniformity: 1 
+pupil_LplusS_1-6Hz_RightEyeStim_09 median RMSE: 0.98, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_LightFlux_1-6Hz_LeftEyeStim_04 median RMSE: 1.27, percent bad RMSE: 1, percent bad uniformity: 0 
+pupil_LightFlux_1-6Hz_LeftEyeStim_10 median RMSE: 0.99, percent bad RMSE: 0, percent bad uniformity: 2 
+pupil_RodMel_1-6Hz_LeftEyeStim_05 median RMSE: 1.13, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_RodMel_1-6Hz_LeftEyeStim_11 median RMSE: 1.55, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_LplusS_1-6Hz_LeftEyeStim_06 median RMSE: 0.99, percent bad RMSE: 1, percent bad uniformity: 0 
+pupil_LplusS_1-6Hz_LeftEyeStim_12 median RMSE: 1.49, percent bad RMSE: 0, percent bad uniformity: 0 
+--------------------------------------------------------------------------------------------------------
+Z663_2020_08_20_pupil
+pupil_LightFlux_1-6Hz_RightEyeStim_01 median RMSE: 0.98, percent bad RMSE: 4, percent bad uniformity: 6 
+pupil_LightFlux_1-6Hz_RightEyeStim_07 median RMSE: 1.30, percent bad RMSE: 18, percent bad uniformity: 7 
+pupil_RodMel_1-6Hz_RightEyeStim_08 median RMSE: 0.99, percent bad RMSE: 3, percent bad uniformity: 4 
+pupil_RodMel_1-6Hz_RightEyeStim_08 median RMSE: 0.99, percent bad RMSE: 3, percent bad uniformity: 4 
+pupil_LplusS_1-6Hz_RightEyeStim_03 median RMSE: 0.98, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_LplusS_1-6Hz_RightEyeStim_09 median RMSE: 0.77, percent bad RMSE: 5, percent bad uniformity: 2 
+pupil_LightFlux_1-6Hz_LeftEyeStim_04 median RMSE: 0.95, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_LightFlux_1-6Hz_LeftEyeStim_04 median RMSE: 0.95, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_RodMel_1-6Hz_LeftEyeStim_05 median RMSE: 0.93, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_RodMel_1-6Hz_LeftEyeStim_11 median RMSE: 0.99, percent bad RMSE: 3, percent bad uniformity: 7 
+pupil_LplusS_1-6Hz_LeftEyeStim_06 median RMSE: 0.97, percent bad RMSE: 0, percent bad uniformity: 27 
+pupil_LplusS_1-6Hz_LeftEyeStim_12 median RMSE: 0.99, percent bad RMSE: 1, percent bad uniformity: 14
+--------------------------------------------------------------------------------------------------------
+ses2356_2020_12_11_pupil
+pupil_LightFlux_1-6Hz_RightEyeStim_01 median RMSE: 0.95, percent bad RMSE: 0, percent bad uniformity: 3 
+pupil_LightFlux_1-6Hz_RightEyeStim_07 median RMSE: 0.67, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_RodMel_1-6Hz_RightEyeStim_02 median RMSE: 1.03, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_RodMel_1-6Hz_RightEyeStim_08 median RMSE: 0.88, percent bad RMSE: 1, percent bad uniformity: 0 
+pupil_LplusS_1-6Hz_RightEyeStim_03 median RMSE: 1.07, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_LplusS_1-6Hz_RightEyeStim_09 median RMSE: 0.95, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_LightFlux_1-6Hz_LeftEyeStim_04 median RMSE: 0.81, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_LightFlux_1-6Hz_LeftEyeStim_10 median RMSE: 0.79, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_RodMel_1-6Hz_LeftEyeStim_05 median RMSE: 0.80, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_RodMel_1-6Hz_LeftEyeStim_11 median RMSE: 0.88, percent bad RMSE: 1, percent bad uniformity: 0 
+pupil_LplusS_1-6Hz_LeftEyeStim_06 median RMSE: 0.73, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_LplusS_1-6Hz_LeftEyeStim_12 median RMSE: 0.76, percent bad RMSE: 0, percent bad uniformity: 0 
+--------------------------------------------------------------------------------------------------------
+ses2353_2020_10_20_pupil
+pupil_LightFlux_1-6Hz_RightEyeStim_01 median RMSE: 0.70, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_LightFlux_1-6Hz_RightEyeStim_07 median RMSE: 0.86, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_RodMel_1-6Hz_RightEyeStim_02 median RMSE: 0.74, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_RodMel_1-6Hz_RightEyeStim_08 median RMSE: 0.90, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_LplusS_1-6Hz_RightEyeStim_03 median RMSE: 1.06, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_LplusS_1-6Hz_RightEyeStim_09 median RMSE: 0.90, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_LightFlux_1-6Hz_LeftEyeStim_04 median RMSE: 1.00, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_LightFlux_1-6Hz_LeftEyeStim_10 median RMSE: 0.70, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_RodMel_1-6Hz_LeftEyeStim_05 median RMSE: 1.16, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_RodMel_1-6Hz_LeftEyeStim_11 median RMSE: 0.64, percent bad RMSE: 1, percent bad uniformity: 0 
+pupil_LplusS_1-6Hz_LeftEyeStim_06 median RMSE: 0.89, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_LplusS_1-6Hz_LeftEyeStim_12 median RMSE: 0.63, percent bad RMSE: 0, percent bad uniformity: 0 
+--------------------------------------------------------------------------------------------------------
+ses2350_2020_12_11_pupil
+pupil_LightFlux_1-6Hz_RightEyeStim_01 median RMSE: 0.94, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_LightFlux_1-6Hz_RightEyeStim_07 median RMSE: 1.22, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_RodMel_1-6Hz_RightEyeStim_02 median RMSE: 1.17, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_RodMel_1-6Hz_RightEyeStim_08 median RMSE: 1.22, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_LplusS_1-6Hz_RightEyeStim_03 median RMSE: 1.34, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_LplusS_1-6Hz_RightEyeStim_09 median RMSE: 1.09, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_LightFlux_1-6Hz_LeftEyeStim_04 median RMSE: 0.97, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_LightFlux_1-6Hz_LeftEyeStim_10 median RMSE: 1.00, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_RodMel_1-6Hz_LeftEyeStim_05 median RMSE: 0.90, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_RodMel_1-6Hz_LeftEyeStim_11 median RMSE: 1.02, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_LplusS_1-6Hz_LeftEyeStim_06 median RMSE: 0.92, percent bad RMSE: 1, percent bad uniformity: 0 
+pupil_LplusS_1-6Hz_LeftEyeStim_12 median RMSE: 0.97, percent bad RMSE: 0, percent bad uniformity: 0 
+--------------------------------------------------------------------------------------------------------
+N344_2020_10_14_pupil
+pupil_LightFlux_1-6Hz_RightEyeStim_01 median RMSE: 0.91, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_LightFlux_1-6Hz_RightEyeStim_07 median RMSE: 1.08, percent bad RMSE: 1, percent bad uniformity: 0 
+pupil_RodMel_1-6Hz_RightEyeStim_02 median RMSE: 0.90, percent bad RMSE: 2, percent bad uniformity: 0 
+pupil_RodMel_1-6Hz_RightEyeStim_08 median RMSE: 1.09, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_LplusS_1-6Hz_RightEyeStim_03 median RMSE: 0.92, percent bad RMSE: 1, percent bad uniformity: 0 
+pupil_LplusS_1-6Hz_RightEyeStim_09 median RMSE: 1.23, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_LightFlux_1-6Hz_LeftEyeStim_04 median RMSE: 0.81, percent bad RMSE: 3, percent bad uniformity: 0 
+pupil_LightFlux_1-6Hz_LeftEyeStim_10 median RMSE: 1.61, percent bad RMSE: 21, percent bad uniformity: 1 
+pupil_RodMel_1-6Hz_LeftEyeStim_05 median RMSE: 0.97, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_RodMel_1-6Hz_LeftEyeStim_11 median RMSE: 0.99, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_LplusS_1-6Hz_LeftEyeStim_06 median RMSE: 0.97, percent bad RMSE: 1, percent bad uniformity: 0 
+pupil_LplusS_1-6Hz_LeftEyeStim_12 median RMSE: 1.01, percent bad RMSE: 0, percent bad uniformity: 0 
+--------------------------------------------------------------------------------------------------------
+EM543_2020_10_15_pupil
+pupil_LightFlux_1-6Hz_RightEyeStim_01 median RMSE: 1.37, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_LightFlux_1-6Hz_RightEyeStim_07 median RMSE: 0.98, percent bad RMSE: 1, percent bad uniformity: 0 
+pupil_RodMel_1-6Hz_RightEyeStim_02 median RMSE: 1.30, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_RodMel_1-6Hz_RightEyeStim_08 median RMSE: 0.96, percent bad RMSE: 1, percent bad uniformity: 1 
+pupil_LplusS_1-6Hz_RightEyeStim_03 median RMSE: 0.99, percent bad RMSE: 1, percent bad uniformity: 11 
+pupil_LplusS_1-6Hz_RightEyeStim_09 median RMSE: 0.92, percent bad RMSE: 1, percent bad uniformity: 3 
+pupil_LightFlux_1-6Hz_LeftEyeStim_04 median RMSE: 0.79, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_LightFlux_1-6Hz_LeftEyeStim_10 median RMSE: 0.84, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_RodMel_1-6Hz_LeftEyeStim_05 median RMSE: 0.76, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_RodMel_1-6Hz_LeftEyeStim_11 median RMSE: 0.91, percent bad RMSE: 5, percent bad uniformity: 0 
+pupil_LplusS_1-6Hz_LeftEyeStim_06 median RMSE: 0.72, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_LplusS_1-6Hz_LeftEyeStim_12 median RMSE: 0.89, percent bad RMSE: 0, percent bad uniformity: 0
+--------------------------------------------------------------------------------------------------------
+EM529_2020_10_15_pupil
+pupil_LightFlux_1-6Hz_RightEyeStim_01 median RMSE: 0.59, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_LightFlux_1-6Hz_RightEyeStim_07 median RMSE: 0.73, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_RodMel_1-6Hz_RightEyeStim_02 median RMSE: 0.83, percent bad RMSE: 0, percent bad uniformity: 2 
+pupil_RodMel_1-6Hz_RightEyeStim_08 median RMSE: 0.67, percent bad RMSE: 4, percent bad uniformity: 0 
+pupil_LplusS_1-6Hz_RightEyeStim_03 median RMSE: 0.98, percent bad RMSE: 0, percent bad uniformity: 1 
+pupil_LplusS_1-6Hz_RightEyeStim_09 median RMSE: 0.68, percent bad RMSE: 1, percent bad uniformity: 0 
+pupil_LightFlux_1-6Hz_LeftEyeStim_04 median RMSE: 0.93, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_LightFlux_1-6Hz_LeftEyeStim_10 median RMSE: 1.01, percent bad RMSE: 1, percent bad uniformity: 0 
+pupil_RodMel_1-6Hz_LeftEyeStim_05 median RMSE: 1.02, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_RodMel_1-6Hz_LeftEyeStim_11 median RMSE: 1.04, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_LplusS_1-6Hz_LeftEyeStim_06 median RMSE: 0.99, percent bad RMSE: 15, percent bad uniformity: 0 
+pupil_LplusS_1-6Hz_LeftEyeStim_12 median RMSE: 0.91, percent bad RMSE: 0, percent bad uniformity: 0
+--------------------------------------------------------------------------------------------------------
+EM526_2020_06_30_pupil
+pupil_LightFlux_1-6Hz_RightEyeStim_01 median RMSE: 4.37, percent bad RMSE: 49, percent bad uniformity: 11 
+Warning: Signals less than 3 samples long are filtered with an allpass filter. 
+pupil_RodMel_1-6Hz_RightEyeStim_02 median RMSE: 1.00, percent bad RMSE: 21, percent bad uniformity: 4 
+Warning: Signals less than 3 samples long are filtered with an allpass filter. 
+pupil_LplusS_1-6Hz_RightEyeStim_03 median RMSE: 8.30, percent bad RMSE: 53, percent bad uniformity: 29 
+Warning: Signals less than 3 samples long are filtered with an allpass filter. 
+pupil_LightFlux_1-6Hz_LeftEyeStim_04 median RMSE: 9.08, percent bad RMSE: 86, percent bad uniformity: 18 
+Warning: Signals less than 3 samples long are filtered with an allpass filter. 
+--------------------------------------------------------------------------------------------------------
+EM522_2020_06_30_pupil
+pupil_LightFlux_1-6Hz_RightEyeStim_01 median RMSE: 1.23, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_LightFlux_1-6Hz_RightEyeStim_07 median RMSE: 0.63, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_RodMel_1-6Hz_RightEyeStim_02 median RMSE: 1.23, percent bad RMSE: 1, percent bad uniformity: 0 
+pupil_RodMel_1-6Hz_RightEyeStim_08 median RMSE: 0.69, percent bad RMSE: 1, percent bad uniformity: 0 
+pupil_LplusS_1-6Hz_RightEyeStim_03 median RMSE: 0.67, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_LplusS_1-6Hz_RightEyeStim_09 median RMSE: 0.67, percent bad RMSE: 1, percent bad uniformity: 0 
+pupil_LightFlux_1-6Hz_LeftEyeStim_04 median RMSE: 0.90, percent bad RMSE: 2, percent bad uniformity: 0 
+pupil_LightFlux_1-6Hz_LeftEyeStim_10 median RMSE: 0.94, percent bad RMSE: 0, percent bad uniformity: 2 
+pupil_RodMel_1-6Hz_LeftEyeStim_05 median RMSE: 0.83, percent bad RMSE: 1, percent bad uniformity: 0 
+pupil_RodMel_1-6Hz_LeftEyeStim_11 median RMSE: 1.32, percent bad RMSE: 1, percent bad uniformity: 0 
+pupil_LplusS_1-6Hz_LeftEyeStim_12 median RMSE: 0.87, percent bad RMSE: 2, percent bad uniformity: 0 
+pupil_LplusS_1-6Hz_LeftEyeStim_12 median RMSE: 0.87, percent bad RMSE: 2, percent bad uniformity: 0 
+--------------------------------------------------------------------------------------------------------
+AS2430_2020_10_15_pupil
+pupil_LightFlux_1-6Hz_RightEyeStim_01 median RMSE: 1.27, percent bad RMSE: 1, percent bad uniformity: 0 
+pupil_LightFlux_1-6Hz_LeftEyeStim_04 median RMSE: 1.13, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_LightFlux_1-6Hz_RightEyeStim_07 median RMSE: 1.22, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_LightFlux_1-6Hz_LeftEyeStim_10 median RMSE: 0.99, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_LightFlux_1-6Hz_RightEyeStim_13 median RMSE: 1.27, percent bad RMSE: 0, percent bad uniformity: 0 
+pupil_LightFlux_1-6Hz_LeftEyeStim_16 median RMSE: 1.35, percent bad RMSE: 0, percent bad uniformity: 0 
+--------------------------------------------------------------------------------------------------------

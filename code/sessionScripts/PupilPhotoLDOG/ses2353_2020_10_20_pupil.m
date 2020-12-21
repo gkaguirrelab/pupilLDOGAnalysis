@@ -44,7 +44,7 @@ sets = {[1 7],[2 8],[3 9],[4 10],[5 11], [6, 12]};
 labels = {'pupil_LightFlux_1-6Hz_RightEyeStim','pupil_RodMel_1-6Hz_RightEyeStim',...
     'pupil_LplusS_1-6Hz_RightEyeStim', 'pupil_LightFlux_1-6Hz_LeftEyeStim',...
     'pupil_RodMel_1-6Hz_LeftEyeStim', 'pupil_LplusS_1-6Hz_LeftEyeStim'};
-durations = [504,504,504,504,504,504];
+durations = [360,360,360,360,360,360];
 freqs = [1/6,1/6,1/6,1/6,1/6,1/6];
 
 % There is only one audio TTL pulse 

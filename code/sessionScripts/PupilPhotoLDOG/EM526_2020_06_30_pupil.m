@@ -35,7 +35,7 @@ videoNameStems = {...
 sets = {[1],[2],[3],[4]};
 labels = {'pupil_LightFlux_1-6Hz_RightEyeStim','pupil_RodMel_1-6Hz_RightEyeStim_02',...
     'pupil_LplusS_1-6Hz_RightEyeStim_03', 'pupil_LightFlux_1-6Hz_LeftEyeStim_04'};
-durations = [504,504,504,504];
+durations = [360,360,360,360];
 freqs = [1/6,1/6,1/6,1/6];
 
 % There is only one audio TTL pulse 
@@ -74,7 +74,7 @@ glintThreshold = [0.4, 0.5, 0.5, 0.5];
 
 goodGlintFrame = [100, 13, 15, 90];
 %% Loop through video name stems get each video and its corresponding masks
-vids = [1];
+vids = [1,2,3,4];
 for ii = vids
     pupilCircleThresh = pupilCircleThreshSet(ii);
     pupilRange = pupilRangeSets{ii};
@@ -114,6 +114,6 @@ for ii = vids
     
 end
 
-% %% Call the frequency fitting pipeline
-% fourierFitPipeline(pathParams,videoNameStems,sets,labels,durations,freqs);
+%% Call the frequency fitting pipeline
+fourierFitPipeline(pathParams,videoNameStems,sets,labels,durations,freqs);
 

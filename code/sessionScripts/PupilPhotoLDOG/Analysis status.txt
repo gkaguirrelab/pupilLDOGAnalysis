@@ -1,8 +1,38 @@
-10/14/2020 - 10/15/2020 - 20/15/2020
+Analysis Report
 
-Z665 - Done, number 2 and 3 might need a revision
-AS2-430 - Done, number 13 may need revision 
-N344 - Done, All good 
-EM529 - Done, number 6 might need a revision 
-EM543 - Done 
-2353  - Done, number 2 no pupil at the end
+AS2-430 - Done
+EM529 - Done
+N344 - Done
+2353 - Done
+EM543 - Done
+EM522 - Done, Number 6 is very bad due to the eyelid blocking the pupil. (excluded from fourier)
+Z665 - Done, Number 2 is not so good due to motion towards the end (still included in fourier)
+Z666 - Done
+2350- Done
+2356- Done
+
+Z663 - 10 very bad, 2 very bad
+
+N347 - noisy
+1-meh
+2-meh
+3-meh
+4-bad
+5-bad and might be fixed by moving the box down a bit
+6-bad and might be fixed by moving the box down a bit and a smaller box
+7-bad, better threshold and box placement
+8-better glint detection and smaller box
+9-smaller box maybe
+10-better box smaller cut
+11-okay
+12-okay
+
+EM526
+1- Very bad
+2 - Bad towards the end
+3 - Very bad
+4- Very bad
+
+
+
+

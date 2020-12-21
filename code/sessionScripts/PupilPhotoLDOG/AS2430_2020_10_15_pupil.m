@@ -36,7 +36,7 @@ videoNameStems = {...
 % Stimulus properties
 sets = {[1 2 3], [4 5 6]};
 labels = {'pupil_LightFlux_1-6Hz_RightEyeStim','pupil_LightFlux_1-6Hz_LeftEyeStim'};
-durations = [504,504];
+durations = [360,360];
 freqs = [1/6,1/6];
 
 % There is only one audio TTL pulse 
@@ -79,7 +79,7 @@ goodGlintFrame = [15, 9, 13, 5, 25, 9];
 pupilGammaCorrection = [0.75,0.75,0.75,0.75,0.75,0.75];
 motionCorrect = [false,false,false,false,false,false];
 %% Loop through video name stems get each video and its corresponding masks
-vids = [5,6];
+vids = [1,2,3,4,5,6];
 for ii = vids
     pupilCircleThresh = pupilCircleThreshSet(ii);
     pupilRange = pupilRangeSets{ii};
