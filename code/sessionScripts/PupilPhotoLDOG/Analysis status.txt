@@ -1,5 +1,6 @@
 Analysis Report
 
+DONE
 AS2-430 - Done
 EM529 - Done
 N344 - Done
@@ -11,12 +12,15 @@ Z666 - Done
 2350- Done
 2356- Done
 
-Z663 - 10 very bad, 2 very bad
+----------------------------------------------------------------------------------------
+NEED TO WORK ON 
 
-N347 - noisy
-1-meh
-2-meh
-3-meh
+Z663 - number 2 and 10 needs fixing 
+
+N347
+1-okay
+2-okay
+3-okay
 4-bad
 5-bad and might be fixed by moving the box down a bit
 6-bad and might be fixed by moving the box down a bit and a smaller box
