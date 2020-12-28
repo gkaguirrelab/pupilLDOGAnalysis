@@ -8,9 +8,9 @@ protocol = 'PupilPhotoLDOG';
 
 groups = { ...
     {'N344','N347'},...
-    {'Z665','Z663'},...
-    {'EM529','EM543','EM522'},...
-    {'2353'} };
+    {'Z663','Z665','Z666'},...
+    {'EM522','EM529','EM543'},...
+    {'2350','2353','2356'} };
 
 groupLabels = {'WT','XLPRA2+','RHOT4R+','RCD1'};
 
@@ -26,7 +26,7 @@ for gg = 1:length(groupLabels)
         resultPath = fullfile(dataOutputDirRoot,'Experiments','OLApproach_TrialSequenceMR',protocol,'EyeTracking',subList{ss});
         sessList = dir(fullfile(resultPath,'*-*-*'));
         resultPath = fullfile(sessList(end).folder,sessList(end).name);
-        Y = nan(2,length(directionLabels));
+        Y = nan(length(eyeLabels),length(directionLabels));
         for dd = 1:length(directionLabels)
             for ee = 1:length(eyeLabels)
                 fileName = ['pupil_' directionLabels{dd} '_1-6Hz_' eyeLabels{ee} 'EyeStim_fourierFit.mat'];
@@ -40,9 +40,11 @@ for gg = 1:length(groupLabels)
             end
         end
         
-        bar(categorical(directionLabels),nanmean(Y',2))
+        data = nanmean(Y',2);
+        
+        bar(categorical(directionLabels),data)
         ylabel('% pupil change');
-        ylim([0 3]);
+        ylim([0 10]);
         title(subList{ss});
         
     end
