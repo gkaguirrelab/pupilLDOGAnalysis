@@ -12,6 +12,9 @@
 
 
 
+reprocessFlag = false;
+
+
 %% Session parameters
 
 % Subject and session params.
@@ -80,6 +83,8 @@ pupilGammaCorrection = [0.75,0.75,0.75,0.75,0.75,0.75];
 motionCorrect = [false,false,false,false,false,false];
 %% Loop through video name stems get each video and its corresponding masks
 vids = [1,2,3,4,5,6];
+
+if reprocessFlag
 for ii = vids
     pupilCircleThresh = pupilCircleThreshSet(ii);
     pupilRange = pupilRangeSets{ii};
@@ -118,6 +123,7 @@ for ii = vids
     % Call the pre-processing pipeline
     pupilPipeline(pathParams,videoName,sessionKeyValues);
     
+end
 end
 
 %% Call the frequency fitting pipeline
