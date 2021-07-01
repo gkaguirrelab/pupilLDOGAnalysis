@@ -1,4 +1,4 @@
-function [amplitude, phase, figHandle] = fitFourier(videoPathNameStems, freq, endTime, startTime, highPassCutoff, rmseThresh, showPlot)
+function [amplitude, phase, figHandle, ts, y, yFit] = fitFourier(videoPathNameStems, freq, endTime, startTime, highPassCutoff, rmseThresh, showPlot)
 % Fit a Fourier basis at a specified frequency to pupil ellipse area
 %
 % Syntax:
