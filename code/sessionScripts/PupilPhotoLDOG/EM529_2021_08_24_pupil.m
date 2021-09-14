@@ -103,7 +103,7 @@ pupilGammaCorrection = [0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0
 motionCorrect = [false,false,false,false,false,false,false,false,false,false,false,false];
 %% Loop through video name stems get each video and its corresponding masks
 vids = [1,2,3,4,5,6,7,8,9,10,11,12];
-vids = [7,8,9,10,11,12];
+vids = [8];
 if reprocessFlag
     for ii = vids
         pupilCircleThresh = pupilCircleThreshSet(ii);
