@@ -18,7 +18,6 @@ session = { 1, 1, 1, 1, 2 };
 groupLabels = {'WT','XLPRA2+','RCD1','RHOT4R+ PreInjury','RHOT4R+ PostInjury'};
 
 directionLabels = {'LightFlux','LplusS','RodMel'};
-yLimSet = {[-6 6],[-2 2],[-1 1]};
 eyeLabels = {'Left','Right'};
 
 
@@ -80,7 +79,7 @@ for gg = 1:length(groupLabels)
             end
         end
         
-        data = nanmean(Y',2);
+        data = nanmedian(Y',2);
         
         set(0,'CurrentFigure', figHandle1)
         subplot(length(groupLabels),5,ss+(gg-1)*length(groupLabels));
@@ -97,15 +96,22 @@ for gg = 1:length(groupLabels)
         yCycle=nan(samps,720);
         yFitCycle=nan(samps,720);
         for ii=1:samps
-            yCycle(ii,:)=nanmean(yAll{dd}(:,(ii-1)*720+1:ii*720));
-            yFitCycle(ii,:)=nanmean(yFitAll{dd}(:,(ii-1)*720+1:ii*720));
+            yCycle(ii,:)=nanmedian(yAll{dd}(:,(ii-1)*720+1:ii*720));
+            yFitCycle(ii,:)=nanmedian(yFitAll{dd}(:,(ii-1)*720+1:ii*720));
         end
-        plot(0:1/60:12-1/60,nanmean(yCycle),'.','Color',[0.75 0.75 0.75]);
+        yVals = nanmedian(yCycle);
+        yVals = yVals - mean(yVals);        
+        plot(0:1/60:12-1/60,yVals,'.','Color',[0.75 0.75 0.75]);
         hold on
-        plot(0:1/60:12-1/60,nanmean(yFitCycle),'-r','Linewidth',2);
+        yVals = nanmedian(yFitCycle);
+        yVals = yVals - mean(yVals);        
+        plot(0:1/60:12-1/60,yVals,'-r','Linewidth',2);
+        yFitCycleIQR = iqr(yFitCycle);
+        plot(0:1/60:12-1/60,yVals + yFitCycleIQR,'-','Color',[1,0.5,0.5],'Linewidth',1);
+        plot(0:1/60:12-1/60,yVals - yFitCycleIQR,'-','Color',[1,0.5,0.5],'Linewidth',1);
         xlim([0 12]);
         xlabel('time [seconds]')
-        ylim([-5 5]);
+        ylim([-7.5 7.5]);
         ylabel('pupil change [%]')
         box off
 
