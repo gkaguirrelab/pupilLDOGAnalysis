@@ -7,12 +7,15 @@ dataOutputDirRoot = fullfile(dropboxBaseDir,'LDOG_processing');
 protocol = 'PupilPhotoLDOG';
 
 groups = { ...
-    {'N344','N347'},...
+    {'N344','N347','N349'},...
     {'Z663','Z665','Z666'},...
     {'2350','2353','2356'},...
-    {'EM522','EM529','EM543'}	};
+    {'EM529','EM543','EM522'},...
+    {'EM529','EM543'} };
 
-groupLabels = {'WT','XLPRA2+','RCD1','RHOT4R+'};
+session = { 1, 1, 1, 1, 2 };
+
+groupLabels = {'WT','XLPRA2+','RCD1','RHOT4R+ PreInjury','RHOT4R+ PostInjury'};
 
 directionLabels = {'LightFlux','LplusS','RodMel'};
 yLimSet = {[-6 6],[-2 2],[-1 1]};
@@ -30,7 +33,7 @@ for gg = 1:length(groupLabels)
     for ss = 1:length(subList)
         resultPath = fullfile(dataOutputDirRoot,'Experiments','OLApproach_TrialSequenceMR',protocol,'EyeTracking',subList{ss});
         sessList = dir(fullfile(resultPath,'*-*-*'));
-        resultPath = fullfile(sessList(end).folder,sessList(end).name);
+        resultPath = fullfile(sessList(end).folder,sessList(session{gg}).name);
         for dd = 1:length(directionLabels)
             for ee = 1:length(eyeLabels)
                 fileName = ['pupil_' directionLabels{dd} '_1-6Hz_' eyeLabels{ee} 'EyeStim_fourierFit.mat'];
@@ -57,7 +60,7 @@ for gg = 1:length(groupLabels)
         
         resultPath = fullfile(dataOutputDirRoot,'Experiments','OLApproach_TrialSequenceMR',protocol,'EyeTracking',subList{ss});
         sessList = dir(fullfile(resultPath,'*-*-*'));
-        resultPath = fullfile(sessList(end).folder,sessList(end).name);
+        resultPath = fullfile(sessList(end).folder,sessList(session{gg}).name);
         Y = nan(length(eyeLabels),length(directionLabels));
         
         for dd = 1:length(directionLabels)
@@ -80,7 +83,7 @@ for gg = 1:length(groupLabels)
         data = nanmean(Y',2);
         
         set(0,'CurrentFigure', figHandle1)
-        subplot(length(groupLabels),4,ss+(gg-1)*length(groupLabels));
+        subplot(length(groupLabels),5,ss+(gg-1)*length(groupLabels));
         bar(categorical(directionLabels),data);
         ylabel('% pupil change');
         ylim([0 10]);
