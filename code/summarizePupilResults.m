@@ -15,7 +15,7 @@ groups = { ...
 
 session = { 1, 1, 1, 1, 2 };
 
-groupLabels = {'WT','XLPRA2+','RCD1','RHOT4R+ PreInjury','RHOT4R+ PostInjury'};
+groupLabels = {'WT','XLPRA2','RCD1',["RHOT4R","PreInjury"],["RHOT4R","PostInjury"]};
 
 directionLabels = {'LightFlux','LplusS','RodMel'};
 eyeLabels = {'Left','Right'};
@@ -110,9 +110,21 @@ for gg = 1:length(groupLabels)
         plot(0:1/60:12-1/60,yVals + yFitCycleIQR,'-','Color',[1,0.5,0.5],'Linewidth',1);
         plot(0:1/60:12-1/60,yVals - yFitCycleIQR,'-','Color',[1,0.5,0.5],'Linewidth',1);
         xlim([0 12]);
-        xlabel('time [seconds]')
         ylim([-7.5 7.5]);
+        if dd == 1 && gg == 1
+        xlabel('time [seconds]')
         ylabel('pupil change [%]')
+        end
+        if gg == 1
+            title(directionLabels{dd})
+        end
+        if dd == length(directionLabels)
+            xlimVals=get(gca,'XLim');
+            ylimVals=get(gca,'YLim');
+            ht = text(1.15*xlimVals(1)+1.15*xlimVals(2),0*ylimVals(1)+0.5*ylimVals(2),groupLabels{gg},...
+                'FontWeight','bold','HorizontalAlignment', 'center');
+            set(ht,'Rotation',-90)            
+        end
         box off
 
     end
