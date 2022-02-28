@@ -10,8 +10,6 @@
 % For the glint, put a tight box around the glint. For the pupil, define a
 % mask area that safely contains the pupil at its most dilated.
 
-
-
 reprocessFlag = false;
 
 
@@ -68,7 +66,7 @@ glintFrameMaskSet = {...
     [177   317   254   276], ...
     [180   318   255   279]};
 pupilFrameMaskSet = {...
-    [125    43   129   363], ... %
+    [130    36   146   357], ... %
     [128    43   123   351], ... %
     [132    20   112   370], ...  %
     [22    157   235   233], ... %
@@ -83,26 +81,26 @@ pupilFrameMaskSet = {...
 
 pupilCircleThreshSet = [0.057, 0.055, 0.050, 0.050, 0.050, 0.050, 0.050, 0.050, 0.050, 0.050, 0.050, 0.050];
 
-pupilRangeSets = {[50 90], [65 90], [65 90], [55 90], [55 90], [55 90], [55 90], [55 90], [55 90], [55 90], [55 90], [55 90]};
+pupilRangeSets = {[50 80], [65 90], [65 90], [55 90], [55 90], [55 90], [55 90], [55 90], [55 90], [55 90], [55 90], [55 90]};
 candidateThetas = {[pi],[pi],[pi],[pi],[pi],[pi/2],[pi],[pi],[pi],[pi],[pi],[pi]};
 
 ellipseEccenLBUB = {[0.2 0.6],[0.2 0.7],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0.2 0.6],[0 0.6]};
 
-glintPatchRadius = [35,45,50,45,45,55,45,45,55,45,45,45];
+glintPatchRadius = [60,45,50,45,45,55,45,45,55,45,45,45];
 
 minRadiusProportion = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
-cutErrorThreshold = [1,2,2,2,2,2,2,2,2,2,2,2];
+cutErrorThreshold = [3,2,2,2,2,2,2,2,2,2,2,2];
 
 ellipseAreaLB = [1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000];
 ellipseAreaUP = [90000, 90000, 90000, 90000, 90000, 90000, 90000, 90000, 90000, 90000, 90000, 90000];
 glintThreshold = [0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4];
 
 goodGlintFrame = [15, 9, 13, 5, 25, 9, 13, 179, 8, 9, 15, 3];
-pupilGammaCorrection = [0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75];
+pupilGammaCorrection = [0.45,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75];
 motionCorrect = [false,false,false,false,false,false,false,false,false,false,false,false];
 %% Loop through video name stems get each video and its corresponding masks
-vids = [1,2,3,4,5,6,7,8,9,10,11,12];
+vids = [12];
 
 if reprocessFlag
     for ii = vids
@@ -123,7 +121,7 @@ if reprocessFlag
             'goodGlintFrame', goodGlintFrame(ii), ...
             'pupilGammaCorrection', pupilGammaCorrection(ii), ...
             'startFrame',1, ...
-            'nFrames', Inf, ...
+            'nFrames',Inf, ...
             'checkCountTRs',checkCountTRs(ii), ...
             'glintFrameMask',glintFrameMask,...
             'glintGammaCorrection',0.75,...
