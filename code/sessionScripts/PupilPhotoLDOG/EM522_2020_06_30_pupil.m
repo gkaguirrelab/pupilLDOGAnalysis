@@ -12,7 +12,7 @@
 
 
 
-reprocessFlag = false;
+reprocessFlag = true;
 
 
 %% Session parameters
@@ -100,10 +100,10 @@ ellipseAreaLB = [1000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 500
 ellipseAreaUP = [15000, 15000, 15000, 50000, 15000, 15000, 15000, 15000, 15000, 50000, 15000, 50000];
 glintThreshold = [0.3, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.3];
 %% Loop through video name stems get each video and its corresponding masks
-numVids = length(videoNameStems);
+numVids = [2];
 
 if reprocessFlag
-    for ii = 1:numVids
+    for ii = numVids
         
         pupilCircleThresh = pupilCircleThreshSet(ii);
         pupilRange = pupilRangeSets{ii};
@@ -143,6 +143,6 @@ if reprocessFlag
     end
 end
 
-%% Call the frequency fitting pipeline
-fourierFitPipeline(pathParams,videoNameStems,sets,labels,durations,freqs);
+% % % Call the frequency fitting pipeline
+% fourierFitPipeline(pathParams,videoNameStems,sets,labels,durations,freqs);
 
