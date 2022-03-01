@@ -61,7 +61,7 @@ pupilFrameMaskSet = {...
     [83   155   146   210], ... % 
     [122   141   112   215]}; % 
 
-pupilCircleThreshSet = [0.038, 0.038, 0.038, 0.038, 0.04, 0.038];
+pupilCircleThreshSet = [0.038, 0.038, 0.038, 0.038, 0.05, 0.038];
 
 pupilRangeSets = {[59 72], [59 72], [59 72], [59 72], [59 72], [59 72]};
 candidateThetas = {[pi],[pi],[pi],[pi],[pi],[pi]};
