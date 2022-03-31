@@ -12,7 +12,7 @@
 
 
 
-reprocessFlag = true;
+reprocessFlag = false;
 
 
 %% Session parameters
@@ -57,8 +57,8 @@ glintFrameMaskSet = {...
     [222   279   220   322], ... % Selected frame 1956
     [224   290   234   329], ... % 2519
     [210   290   248   327], ... % 10790
-    [116   198   214   142], ... % 6825
-    [131   320   326   298], ... % 10790
+    [169   339   242   237], ... % 6825
+    [107   261   218   232], ... % 10790
     [129   318   326   298], ... % 1919
     [174   283   283   334], ... % 971
     [163   303   295   318], ... % 3064
@@ -72,25 +72,25 @@ pupilFrameMaskSet = {...
     [191   259   176   284], ...
     [165   251   179   266], ...
     [117   113   127   206], ...
-    [135   256   175   209], ...
+    [62    203   175   177], ...
     [86    244   252   264], ...
     [103   236   218   263], ...
     [100   230   200   216], ...
     [71    239   218   205], ...
-    [80    285   193   131], ...
+    [80    307   193   122], ...
     [114   350   212   136], ...
     [95    340   223   130], ...
     };
 
-pupilCircleThreshSet = [0.0200, 0.0160, 0.0250, 0.0450, 0.0310, 0.0530, 0.0490, 0.0400, 0.0300, 0.0400, 0.0490, 0.0370, 0.0350];
+pupilCircleThreshSet = [0.0200, 0.0160, 0.0250, 0.0450, 0.0310, 0.0530, 0.04, 0.0400, 0.0300, 0.0400, 0.0600, 0.0370];
 
-pupilRangeSets = {[39 60], [41 50], [39 70], [47 60], [47 57], [55 67], [58 71], [42 60], [44 57], [63 80], [50 70], [44 54], [45 60]};
+pupilRangeSets = {[39 60], [41 50], [39 70], [47 60], [47 57], [55 67], [58 71], [42 60], [44 57], [63 80], [50 70], [44 54]};
 
-candidateThetas = {[7*pi/4; pi/2],[5*pi/4],[5*pi/4],[3*pi/2; pi],[3*pi/2],[3*pi/2; pi],[5*pi/4],[5*pi/4],[pi],[3*pi/2; 5*pi/4; pi],[pi; 5*pi/4],[pi; 5*pi/4; 3*pi/2]};
+candidateThetas = {[7*pi/4; pi/2],[5*pi/4],[5*pi/4],[3*pi/2; pi],[3*pi/2],[3*pi/2; pi],[5*pi/4],[5*pi/4],[pi],[5*pi/4],[pi; 5*pi/4],[pi; 5*pi/4; 3*pi/2]};
 
 ellipseEccenLBUB = {[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.3 0.5],[0.35 0.45],[0.4 0.5]};
 
-glintPatchRadius = [30,20,20,20,20,20,20,20,20,20,20,30];
+glintPatchRadius = [30,20,20,45,20,20,20,20,20,20,20,30];
 
 minRadiusProportion = [0, 0, 0, 0.5, 0, 0, 0, 0, 0, 0, 0.5, 0.5];
 
@@ -98,9 +98,10 @@ cutErrorThreshold = [1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 2, 1.5];
 
 ellipseAreaLB = [1000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000];
 ellipseAreaUP = [15000, 15000, 15000, 50000, 15000, 15000, 15000, 15000, 15000, 50000, 15000, 50000];
-glintThreshold = [0.3, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.3];
+glintThreshold = [0.3, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.3, 0.5, 0.3];
+pupilGammaCorrection = [0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.45,0.75,0.75];
 %% Loop through video name stems get each video and its corresponding masks
-numVids = [2];
+numVids = [1,2,3,4,5,6,7,8,9,10,11,12]; % Stopped at 10 guess stage
 
 if reprocessFlag
     for ii = numVids
@@ -127,6 +128,7 @@ if reprocessFlag
             'pupilFrameMask',pupilFrameMask,...
             'pupilRange',pupilRange,...
             'pupilCircleThresh',pupilCircleThresh,...
+            'pupilGammaCorrection', pupilGammaCorrection(ii), ...
             'glintPatchRadius',glintPatchRadius(ii),...
             'candidateThetas',candidateThetas{ii},...
             'cutErrorThreshold',cutErrorThreshold(ii),...
@@ -143,6 +145,6 @@ if reprocessFlag
     end
 end
 
-% % % Call the frequency fitting pipeline
-% fourierFitPipeline(pathParams,videoNameStems,sets,labels,durations,freqs);
+% % Call the frequency fitting pipeline
+fourierFitPipeline(pathParams,videoNameStems,sets,labels,durations,freqs);
 
