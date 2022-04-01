@@ -84,13 +84,13 @@ pupilFrameMaskSet = {...
 pupilCircleThreshSet = [0.035, 0.052, 0.038, 0.071, 0.08, 0.067, 0.051, 0.056, 0.06, 0.078, 0.084, 0.084];
 
 pupilRangeSets = {[55 67], [63 77], [60 74], [81 99], [89 109], [83 101], [67 82], [69 84], [72 88], [83 101], [87 106], [67 82]};
-candidateThetas = {[pi],[pi],[pi],[pi],[pi],[pi],[pi],[pi],[pi],[pi],[pi],[pi]};
+candidateThetas = {[pi],[pi],[pi],[pi],[pi],[pi/4],[pi],[pi],[pi],[pi],[pi],[pi]};
 
 ellipseEccenLBUB = {[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6]};
 
 glintPatchRadius = [40,40,40,50,40,50,40,40,40,40,40,50];
 
-minRadiusProportion = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+minRadiusProportion = [0, 0, 0, 0, 0, 0.5, 0, 0, 0, 0, 0, 0];
 
 cutErrorThreshold = [2,2,2,2,2,2,2,2,2,2,2,2];
 
@@ -146,6 +146,6 @@ if reprocessFlag
     end
 end
 
-%% Call the frequency fitting pipeline
+% Call the frequency fitting pipeline
 fourierFitPipeline(pathParams,videoNameStems,sets,labels,durations,freqs);
 
