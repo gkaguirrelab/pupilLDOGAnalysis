@@ -12,7 +12,7 @@
 
 
 
-reprocessFlag = true;
+reprocessFlag = false;
 
 
 %% Session parameters
@@ -43,7 +43,7 @@ videoNameStems = {...
     };
 
 % Stimulus properties
-sets = {[1 7],[2 8],[3 9],[4 10],[5 11], [6, 12]};
+sets = {[1 7],[2 8],[3 3],[4 10],[5 11], [6, 12]};
 labels = {'pupil_LightFlux_1-6Hz_RightEyeStim','pupil_RodMel_1-6Hz_RightEyeStim',...
     'pupil_LplusS_1-6Hz_RightEyeStim', 'pupil_LightFlux_1-6Hz_LeftEyeStim',...
     'pupil_RodMel_1-6Hz_LeftEyeStim', 'pupil_LplusS_1-6Hz_LeftEyeStim'};
@@ -81,15 +81,15 @@ pupilFrameMaskSet = {...
     [71   138   108   127], ... 
     [46   165    93   127]}; 
 
-pupilCircleThreshSet = [0.1, 0.07, 0.15, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1];
+pupilCircleThreshSet = [0.1, 0.07, 0.15, 0.1, 0.1, 0.1, 0.15, 0.1, 0.1, 0.1, 0.1, 0.1];
 pupilRangeSets = {[82 130], [80 120], [80 180], [80 130], [80 130], [80 130], [90 190], [90 130], [90 130], [80 130], [80 110], [80 110]};
 candidateThetas = {[pi],[pi],[3*pi/4],[pi],[pi/2],[pi/2; 3*pi/4],[pi],[3*pi/2],[pi],[3*pi/4],[3*pi/4],[3*pi/4]};
 ellipseEccenLBUB = {[0.1 0.6],[0.1 0.7],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6]};
 glintPatchRadius = [65,65,65,65,65,65,75,60,50,50,50,50];
 pupilCircleThreshSet = [0.1, 0.07, 0.15, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1];
 
-pupilRangeSets = {[82 130], [80 120], [80 180], [80 130], [80 130], [80 130], [90 190], [90 130], [90 130], [80 130], [80 110], [80 110]};
-candidateThetas = {[pi],[pi],[3*pi/4],[pi],[pi/2],[pi/2; 3*pi/4],[pi],[3*pi/4; 3*pi/2],[pi; 3*pi/4],[pi; 3*pi/4],[3*pi/4],[3*pi/4]};
+pupilRangeSets = {[82 130], [80 120], [80 180], [80 130], [80 130], [80 130], [90 200], [90 130], [90 130], [80 130], [80 110], [80 130]};
+candidateThetas = {[pi],[pi],[3*pi/4],[pi/2],[pi/2],[pi/2; 3*pi/4],[pi],[3*pi/4; 3*pi/2],[pi/2; 3*pi/4],[pi; 3*pi/4],[3*pi/4],[3*pi/4]};
 
 ellipseEccenLBUB = {[0.1 0.6],[0.1 0.7],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6]};
 
@@ -103,11 +103,10 @@ ellipseAreaUP = [90000, 90000, 90000, 90000, 90000, 90000, 90000, 90000, 90000, 
 glintThreshold = [0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4];
 
 goodGlintFrame = [15, 9, 13, 5, 25, 9, 13, 179, 8, 9, 15, 3];
-pupilGammaCorrection = [0.75,0.75,0.75,0.65,0.65,0.65,0.40,0.40,0.35,0.75,0.40,0.40];
+pupilGammaCorrection = [0.75,0.75,0.75,0.55,0.55,0.65,0.40,0.40,0.45,0.75,0.40,0.55];
 motionCorrect = [false,false,false,false,false,false,false,false,false,false,false,false];
 %% Loop through video name stems get each video and its corresponding masks
 vids = [1,2,3,4,5,6,7,8,9,10,11,12]; %run 3 just after control
-vids = [9];
 
 if reprocessFlag
     for ii = vids
@@ -151,6 +150,6 @@ if reprocessFlag
     end
 end
 
-% % Call the frequency fitting pipeline
-% fourierFitPipeline(pathParams,videoNameStems,sets,labels,durations,freqs);
+% Call the frequency fitting pipeline
+fourierFitPipeline(pathParams,videoNameStems,sets,labels,durations,freqs);
 
