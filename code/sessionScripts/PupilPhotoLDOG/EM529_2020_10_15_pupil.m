@@ -88,7 +88,7 @@ candidateThetas = {[pi],[pi],[pi],[pi],[pi],[pi/4],[pi],[pi],[pi],[pi],[pi],[pi]
 
 ellipseEccenLBUB = {[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6]};
 
-glintPatchRadius = [40,40,40,50,40,50,40,40,40,40,40,50];
+glintPatchRadius = [40,40,40,50,50,50,40,40,40,55,40,50];
 
 minRadiusProportion = [0, 0, 0, 0, 0, 0.5, 0, 0, 0, 0, 0, 0];
 
@@ -99,7 +99,7 @@ ellipseAreaUP = [90000, 90000, 90000, 90000, 90000, 90000, 90000, 90000, 90000, 
 glintThreshold = [0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4];
 
 goodGlintFrame = [15, 9, 13, 5, 25, 9, 13, 179, 8, 9, 15, 3];
-pupilGammaCorrection = [0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75];
+pupilGammaCorrection = [0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.55,0.75,0.75];
 motionCorrect = [false,false,false,false,false,false,false,false,false,false,false,false];
 %% Loop through video name stems get each video and its corresponding masks
 vids = [1,2,3,4,5,6,7,8,9,10,11,12];
