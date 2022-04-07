@@ -10,8 +10,6 @@
 % For the glint, put a tight box around the glint. For the pupil, define a
 % mask area that safely contains the pupil at its most dilated.
 
-
-
 reprocessFlag = false;
 
 
@@ -81,14 +79,14 @@ pupilFrameMaskSet = {...
     [153   199     8    94], ... % 7125
     [172   171     4    97]}; % 635
 
-pupilCircleThreshSet = [0.2, 0.135, 0.15, 0.074, 0.059, 0.055, 0.085, 0.079, 0.032, 0.082, 0.062, 0.079];
+pupilCircleThreshSet = [0.15, 0.135, 0.15, 0.074, 0.059, 0.055, 0.085, 0.079, 0.032, 0.082, 0.062, 0.079];
 
 pupilRangeSets = {[98 134], [93 114], [70 180], [78 95], [72 88], [71 86], [89 111], [55 150], [50 61], [78 95], [74 91], [83 102]};
 candidateThetas = {[pi],[pi],[3*pi/4],[pi],[pi],[pi],[3*pi/4; pi],[3*pi/4],[3*pi/4],[pi],[pi],[pi]};
 
 ellipseEccenLBUB = {[0.1 0.6],[0.1 0.7],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6],[0.1 0.6]};
 
-glintPatchRadius = [40,40,65,40,40,40,75,50,50,50,50,50];
+glintPatchRadius = [40,40,75,40,40,40,75,50,50,50,50,50];
 
 minRadiusProportion = [0, 0, 0.3, 0, 0, 0, 0.5, 0, 0, 0, 0, 0];
 
@@ -99,10 +97,10 @@ ellipseAreaUP = [90000, 90000, 90000, 90000, 90000, 90000, 90000, 90000, 90000, 
 glintThreshold = [0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4];
 
 goodGlintFrame = [15, 9, 13, 5, 25, 9, 13, 179, 8, 9, 15, 3];
-pupilGammaCorrection = [0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75];
+pupilGammaCorrection = [0.75,0.75,0.55,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75];
 motionCorrect = [false,false,false,false,false,false,false,false,false,false,false,false];
 %% Loop through video name stems get each video and its corresponding masks
-vids = [1,2,3,4,5,6,7,8,9,10,11,12]; %run 3 just after control
+vids = [1,2,3,4,5,6,7,8,9,10,11,12]; % DO THE GUESS
 
 if reprocessFlag
     for ii = vids
