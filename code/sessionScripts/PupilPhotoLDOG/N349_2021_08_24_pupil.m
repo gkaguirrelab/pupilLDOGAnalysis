@@ -12,7 +12,7 @@
 
 
 
-reprocessFlag = true;
+reprocessFlag = false;
 
 
 %% Session parameters
@@ -43,7 +43,7 @@ videoNameStems = {...
     };
 
 % Stimulus properties
-sets = {[1 7],[2 8],[3 9],[4 10],[5 11], [6, 12]};
+sets = {[1 7],[2 2],[3 3],[4 10],[11 11], [12, 12]};
 labels = {'pupil_LightFlux_1-6Hz_RightEyeStim','pupil_RodMel_1-6Hz_RightEyeStim',...
     'pupil_LplusS_1-6Hz_RightEyeStim', 'pupil_LightFlux_1-6Hz_LeftEyeStim',...
     'pupil_RodMel_1-6Hz_LeftEyeStim', 'pupil_LplusS_1-6Hz_LeftEyeStim'};
@@ -104,7 +104,7 @@ pupilGammaCorrection = [0.65,0.65,0.65,0.50,0.40,0.50,0.50,0.30,0.45,0.30,0.30,0
 motionCorrect = [false,false,false,false,false,false,false,false,false,false,false,false];
 %% Loop through video name stems get each video and its corresponding masks
 vids = [1,2,3,4,5,6,7,8,9,10,11,12];
-vids = [8];
+
 if reprocessFlag
     for ii = vids
         pupilCircleThresh = pupilCircleThreshSet(ii);
@@ -148,5 +148,5 @@ if reprocessFlag
 end
 
 % %% Call the frequency fitting pipeline
-% fourierFitPipeline(pathParams,videoNameStems,sets,labels,durations,freqs);
+fourierFitPipeline(pathParams,videoNameStems,sets,labels,durations,freqs);
 
