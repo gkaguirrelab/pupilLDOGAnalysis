@@ -54,8 +54,8 @@ checkCountTRs = [112 112 112 112 112 112 112 112 112 112 112 112];
 
 % Mask bounds
 glintFrameMaskSet = {...
-    [112   256   332   350], ... %2232
-    [21   263   313   183], ...
+    [3   268   324   233], ... %2232
+    [4   206   236   114], ...
     [76   209   321   364], ...
     [221   358   217   244], ...
     [214   355   218   237], ...
@@ -92,15 +92,15 @@ glintPatchRadius = [40,40,45,40,40,40,40,40,40,40,40,40];
 
 minRadiusProportion = [0, 0, 0.5, 0, 0, 0, 0, 0.2, 0, 0, 0, 0];
 
-cutErrorThreshold = [1,1,1,2,2,1,1,1,1,1,2,2];
+cutErrorThreshold = [1,1,1,2,2,5,1,1,1,1,2,2];
 
 ellipseAreaLB = [1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000];
 ellipseAreaUP = [90000, 90000, 90000, 90000, 90000, 90000, 90000, 90000, 90000, 90000, 90000, 90000];
-glintThreshold = [0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4];
+glintThreshold = [0.4, 0.2, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4];
 
 goodGlintFrame = [15, 9, 13, 5, 25, 9, 13, 179, 8, 9, 15, 3];
-pupilGammaCorrection = [0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75];
-motionCorrect = [false,false,false,false,false,false,false,false,false,false,false,false];
+pupilGammaCorrection = [0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.8,0.75,0.75,0.75,0.75];
+motionCorrect = [false,true,false,false,false,false,false,false,false,false,false,false];
 %% Loop through video name stems get each video and its corresponding masks
 vids = [1,2,3,4,5,6,7,8,9,10,11,12];
 
