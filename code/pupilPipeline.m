@@ -98,49 +98,49 @@ for vv = 1:length(videoNameStems)
     fit3VideoName = fullfile(outputBaseDir,[videoNameStems{vv} '_stage3fit.avi']);
     fit6VideoName = fullfile(outputBaseDir,[videoNameStems{vv} '_stage6fit.avi']);
      
-%     % Deinterlace
-%     deinterlaceVideo(videoInFileName, grayVideoName, ...
-%         universalKeyValues{:},sessionKeyValues{:});
-%     
-%     % Timebase
-%     makeTimebase(videoInFileName, timebaseFileName, ...
-%         universalKeyValues{:},sessionKeyValues{:});
-%     
-%     % Glint
-%     findGlint(grayVideoName, glintFileName, ...
-%         universalKeyValues{:},sessionKeyValues{:});
-% 
-%     % Motion correction
-%     if any(strcmp(sessionKeyValues,'motionCorrect'))
-%         if true(sessionKeyValues{find(strcmp(sessionKeyValues, 'motionCorrect')) + 1})
-%             motionCorrectedVideoName = fullfile(outputBaseDir,[videoNameStems{vv} '_corrected' '.avi']);
-%             correctMotion(grayVideoName, glintFileName, ...
-%                 sessionKeyValues{find(strcmp(sessionKeyValues, 'goodGlintFrame')) + 1}, ...
-%                 'startFrame', sessionKeyValues{find(strcmp(sessionKeyValues, 'startFrame')) + 1},...
-%                 'nFrames', sessionKeyValues{find(strcmp(sessionKeyValues, 'nFrames')) + 1}, 'verbose', true)
-%             grayVideoName = motionCorrectedVideoName;
-% 
-%             % Find the glint again
-%             findGlint(grayVideoName, glintFileName, ...
-%                 universalKeyValues{:},sessionKeyValues{:});
-%         end
-%     end
-%     % Set gray video variable to motion corrected video if the flag is used
-%     if any(strcmp(sessionKeyValues,'motionCorrect'))
-%         if true(sessionKeyValues{find(strcmp(sessionKeyValues, 'motionCorrect')) + 1})
-%             grayVideoName = fullfile(outputBaseDir,[videoNameStems{vv} '_corrected' '.avi']);
-%         end
-%     end
-%     
-%     % Perimeter
-%     findPupilPerimeter(grayVideoName, perimeterFileName, ...
-%         universalKeyValues{:},sessionKeyValues{:});
-% 
-%     % Video
-%     makeFitVideo(grayVideoName, fit3VideoName, ...
-%         'perimeterFileName',perimeterFileName,...
-%         'glintFileName',glintFileName,...
-%         universalKeyValues{:},sessionKeyValues{:});
+    % Deinterlace
+    deinterlaceVideo(videoInFileName, grayVideoName, ...
+        universalKeyValues{:},sessionKeyValues{:});
+    
+    % Timebase
+    makeTimebase(videoInFileName, timebaseFileName, ...
+        universalKeyValues{:},sessionKeyValues{:});
+    
+    % Glint
+    findGlint(grayVideoName, glintFileName, ...
+        universalKeyValues{:},sessionKeyValues{:});
+
+    % Motion correction
+    if any(strcmp(sessionKeyValues,'motionCorrect'))
+        if true(sessionKeyValues{find(strcmp(sessionKeyValues, 'motionCorrect')) + 1})
+            motionCorrectedVideoName = fullfile(outputBaseDir,[videoNameStems{vv} '_corrected' '.avi']);
+            correctMotion(grayVideoName, glintFileName, ...
+                sessionKeyValues{find(strcmp(sessionKeyValues, 'goodGlintFrame')) + 1}, ...
+                'startFrame', sessionKeyValues{find(strcmp(sessionKeyValues, 'startFrame')) + 1},...
+                'nFrames', sessionKeyValues{find(strcmp(sessionKeyValues, 'nFrames')) + 1}, 'verbose', true)
+            grayVideoName = motionCorrectedVideoName;
+
+            % Find the glint again
+            findGlint(grayVideoName, glintFileName, ...
+                universalKeyValues{:},sessionKeyValues{:});
+        end
+    end
+    % Set gray video variable to motion corrected video if the flag is used
+    if any(strcmp(sessionKeyValues,'motionCorrect'))
+        if true(sessionKeyValues{find(strcmp(sessionKeyValues, 'motionCorrect')) + 1})
+            grayVideoName = fullfile(outputBaseDir,[videoNameStems{vv} '_corrected' '.avi']);
+        end
+    end
+    
+    % Perimeter
+    findPupilPerimeter(grayVideoName, perimeterFileName, ...
+        universalKeyValues{:},sessionKeyValues{:});
+
+    % Video
+    makeFitVideo(grayVideoName, fit3VideoName, ...
+        'perimeterFileName',perimeterFileName,...
+        'glintFileName',glintFileName,...
+        universalKeyValues{:},sessionKeyValues{:});
     
     % Control
     makeControlFile(controlFileName, perimeterFileName, glintFileName, ...
