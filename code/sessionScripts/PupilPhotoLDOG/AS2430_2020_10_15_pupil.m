@@ -37,10 +37,10 @@ videoNameStems = {...
     };
 
 % Stimulus properties
-sets = {[1 2 3], [4 5 6]};
-labels = {'pupil_LightFlux_1-6Hz_RightEyeStim','pupil_LightFlux_1-6Hz_LeftEyeStim'};
-durations = [360,360];
-freqs = [1/6,1/6];
+sets = {[1 2 3 4 5 6]};
+labels = {'pupil_LightFlux_1-6Hz_BothEyes'};
+durations = [360];
+freqs = [1/6];
 
 % There is only one audio TTL pulse 
 checkCountTRs = [112 112 112 112 112 112];

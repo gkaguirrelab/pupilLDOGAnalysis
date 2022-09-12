@@ -41,10 +41,9 @@ videoNameStems = {...
     };
 
 % Stimulus properties
-sets = {[1 7],[2 8],[3 9],[4 10],[5 11], [6, 12]};
-labels = {'pupil_LightFlux_1-6Hz_RightEyeStim','pupil_RodMel_1-6Hz_RightEyeStim',...
-    'pupil_LplusS_1-6Hz_RightEyeStim', 'pupil_LightFlux_1-6Hz_LeftEyeStim',...
-    'pupil_RodMel_1-6Hz_LeftEyeStim', 'pupil_LplusS_1-6Hz_LeftEyeStim'};
+sets = {[1 4 7 10],[2 5 8 11],[3 6 9 12]};
+labels = {'pupil_LightFlux_1-6Hz_BothEyes','pupil_RodMel_1-6Hz_BothEyes',...
+    'pupil_LplusS_1-6Hz_BothEyes'};
 durations = [360,360,360,360,360,360];
 freqs = [1/6,1/6,1/6,1/6,1/6,1/6];
 
