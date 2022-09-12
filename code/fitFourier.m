@@ -1,4 +1,4 @@
-function [amplitude, phase, figHandle, ts, y, yFit] = fitFourier(videoPathNameStems, freq, endTime, startTime, highPassCutoff, rmseThresh, showPlot)
+function [amplitude, phase, figHandle, ts, y, yFit, semAmplitude, semPhase] = fitFourier(videoPathNameStems, freq, endTime, startTime, highPassCutoff, rmseThresh, showPlot)
 % Fit a Fourier basis at a specified frequency to pupil ellipse area
 %
 % Syntax:
@@ -136,18 +136,44 @@ for vv = 1:nVideos
     tmpS = cellSignal{vv};
     signalMatrix(vv,1:length(tmpS))=tmpS;
 end
-signal = nanmean(signalMatrix);
 
-% Perform the fit
-t = 1:length(signal);
-y = signal';
-x = 1:length(y);
+% Determine the number of available combinations with resampling
+bootSets = combinator(nVideos,nVideos,'c','r');
+
+% Set up the regression matrix
+t = 1:size(signalMatrix,2);
 X = [];
-X(:,1) = sin(  x./(fs/freq).*2*pi );
-X(:,2) = cos(  x./(fs/freq).*2*pi );
+X(:,1) = sin(  t./(fs/freq).*2*pi );
+X(:,2) = cos(  t./(fs/freq).*2*pi );
+
+% Loop over all available combinations
+for bb=1:size(bootSets,1)
+
+    % Get this bootstrapped signal
+    signal = nanmean(signalMatrix(bootSets(bb,:),:));
+    signal = signal - nanmean(signal);
+    signal(isnan(signal)) = 0;
+
+    % Perform the fit
+    y = signal';
+    b = X\y;
+    amplitudeBoot(bb) = norm(b);
+    phaseBoot(bb) = -atan(b(2)/b(1));
+
+end
+
+% Derive the vector means and sems across bootstraps
+xVals = amplitudeBoot.*cos(phaseBoot);
+yVals = amplitudeBoot.*sin(phaseBoot);
+amplitude = norm([mean(xVals) mean(yVals)]);
+phase = atan2(mean(yVals),mean(xVals));
+semAmplitude = std(amplitudeBoot);
+semPhase = std(phaseBoot);
+
+% Now just take the average signal
+signal = nanmean(signalMatrix);
+y = signal';
 b = X\y;
-amplitude = norm(b);
-phase = -atan(b(2)/b(1));
 
 % Create a figure
 if showPlot

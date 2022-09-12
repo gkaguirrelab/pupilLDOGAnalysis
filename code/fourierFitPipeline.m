@@ -30,11 +30,11 @@ end
 for ss = 1:length(sets)
     freq = freqs(ss);
     videoPathNameStems = cellfun(@(x) fullfile(outputBaseDir,x),videoNameStems(sets{ss}),'UniformOutput',false);
-    [amplitude,phase,figHandle,ts,y,yFit]=fitFourier(videoPathNameStems,freq,durations(ss),0,freqs(ss)/4);
+    [amplitude,phase,figHandle,ts,y,yFit,semAmplitude,semPhase]=fitFourier(videoPathNameStems,freq,durations(ss),0,freqs(ss)/4);
     
     % Save the result
     resultFile = fullfile(outputBaseDir,[labels{ss} '_fourierFit.mat']);
-    save(resultFile,'freq','amplitude','phase','ts','y','yFit');
+    save(resultFile,'freq','amplitude','phase','ts','y','yFit','semAmplitude','semPhase');
     
     % Save the plot
     plotFile = fullfile(outputBaseDir,[labels{ss} '_fourierFit.pdf']);
