@@ -18,8 +18,6 @@ groupLabels = {'WT','RCD1','XLPRA2'};
 directionLabels = {'LightFlux','LplusS','RodMel'};
 eyeLabels = {'Left','Right'};
 
-
-figHandle1 = figure();
 figHandle2 = figure();
 
 scatterList = struct();
@@ -80,17 +78,7 @@ for gg = 1:length(groupLabels)
         end
         
         data = nanmedian(Y',2);
-        
-        set(0,'CurrentFigure', figHandle1)
-        subplot(length(groupLabels),5,ss+(gg-1)*length(groupLabels));
-        bar(categorical(directionLabels),data);
-        ylabel('% pupil change');
-        ylim([0 10]);
-        title(subList{ss});
-        
-        scatterList.(directionLabels{1}).(['subject_' subList{ss}]) = data(1);
-        scatterList.(directionLabels{2}).(['subject_' subList{ss}]) = data(2);
-        scatterList.(directionLabels{3}).(['subject_' subList{ss}]) = data(3);        
+             
     end
     
     set(0,'CurrentFigure', figHandle2)
@@ -134,27 +122,5 @@ for gg = 1:length(groupLabels)
     end
     foo=1;
     
-end
-
-figure
-set(gcf, 'Position', [217.8000  477.0000  853.6000  217.6000])
-groupColors = {[0.5 0.5 0.5],[0 0 1],[1 0 0]};
-for ii = 1:length(directionLabels)
-    subplot(1,3,ii)
-    title(directionLabels{ii})
-    ylim([0 10])
-    ylabel('% pupil change')
-    hold on
-    fn = fieldnames(scatterList.(directionLabels{ii}));
-    for pp = 1:length(fn)
-        if contains(fn{pp}, 'N')
-            scatter(categorical(groupLabels(1)), scatterList.(directionLabels{ii}).(fn{pp}) ,'MarkerEdgeColor','k','MarkerFaceColor',groupColors{1})
-        elseif contains(fn{pp}, '23')
-            scatter(categorical(groupLabels(2)), scatterList.(directionLabels{ii}).(fn{pp}) ,'MarkerEdgeColor','k','MarkerFaceColor',groupColors{2})            
-        elseif contains(fn{pp}, 'Z')
-            scatter(categorical(groupLabels(3)), scatterList.(directionLabels{ii}).(fn{pp}) ,'MarkerEdgeColor','k','MarkerFaceColor',groupColors{3})        
-        end
-    end
-    hold off
 end
     
