@@ -17,6 +17,8 @@ plotColors = {groupColors{1},groupColors{1}, ...
 
 directionLabels = {'LightFlux','LplusS','RodMel'};
 
+accumPhase = [];
+
 figure()
 
 for ii = 1:length(directionLabels)
@@ -28,7 +30,7 @@ for ii = 1:length(directionLabels)
         resultPath = fullfile(sessList(end).folder,sessList(1).name);
         fileName = ['pupil_' directionLabels{ii} '_1-6Hz_BothEyes_fourierFit.mat'];
         load(fullfile(resultPath,fileName),'amplitude','phase','semAmplitude','semPhase');
-        
+        accumPhase(ii,ss) = phase;
         p{ss} = polarplot(phase,amplitude,'o', 'MarkerEdgeColor','k','MarkerFaceColor',plotColors{ss});
         pax = gca;
         pax.RLim = [0 8];
@@ -42,3 +44,9 @@ for ii = 1:length(directionLabels)
     title(directionLabels{ii}) 
 end
 
+% Report a t-test of the phase of the light flux vs. the luminance
+% response:
+
+[h,pVal,ci,stats] = ttest(accumPhase(1,:),accumPhase(2,:));
+
+fprintf('Phase of LF vs L+S response: t(%d df) = %2.2f, p = %2.2f \n',stats.df,stats.tstat,pVal)
