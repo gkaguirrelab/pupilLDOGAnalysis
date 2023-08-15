@@ -103,6 +103,8 @@ for gg = 1:length(groupLabels)
         plot(0:1/60:12-1/60,yVals - yFitCycleIQR,'-','Color',[1,0.5,0.5],'Linewidth',1);
         xlim([0 12]);
         ylim([-7.5 7.5]);
+        % Report the amplitude of the response
+        fprintf([groupLabels{gg}, '_', directionLabels{dd}, 'amplitude: %2.2f \n'],range(yVals));
         if dd == 1 && gg == 1
         xlabel('time [seconds]')
         ylabel('pupil change [%]')
